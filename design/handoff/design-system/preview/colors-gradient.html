@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; font-family: var(--font-ui); background: var(--bg); padding: 22px 24px; }
+  .cap { font: var(--t-label); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--fg-2); margin: 0 2px 12px; }
+  .grad { height: 120px; border-radius: var(--r-lg); box-shadow: var(--sh-3); display: flex; align-items: flex-end; padding: 14px; }
+  .grad .nm { font: var(--t-h3); color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,.3); }
+  .small { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .small > div { height: 54px; border-radius: var(--r-md); display: flex; align-items: center; padding: 0 12px; font: var(--t-caption); font-weight: 700; color: #fff; }
+</style>
+</head>
+<body>
+  <div class="cap">Festival gradient — celebratory moments only</div>
+  <div class="grad" style="background:var(--grad-festival)"><div class="nm">green → cyan → magenta → gold</div></div>
+  <div class="small">
+    <div style="background:var(--grad-pitch)">--grad-pitch</div>
+    <div style="background:var(--grad-night);border:1px solid var(--border)">--grad-night</div>
+  </div>
+</body>
+</html>

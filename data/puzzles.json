@@ -1,0 +1,2402 @@
+[
+  {
+    "id": "puzzle-2026-06-06",
+    "date": "2026-06-06",
+    "category": "Gols marcados na Copa do Mundo (carreira total)",
+    "description": "Ordene os artilheiros históricos da Copa do Mundo pelo total de gols marcados. O melhor fica no topo!",
+    "difficulty": "normal",
+    "source": "Wikipedia + openfootball",
+    "players": [
+      {
+        "player_id": "klose-ger",
+        "name": "Miroslav Klose",
+        "value": 16,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "ronaldo-bra",
+        "name": "Ronaldo Nazário",
+        "value": 15,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "muller-g-ger",
+        "name": "Gerd Müller",
+        "value": 14,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "fontaine-fra",
+        "name": "Just Fontaine",
+        "value": 13,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "messi-arg",
+        "name": "Lionel Messi",
+        "value": 13,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "pele-bra",
+        "name": "Pelé",
+        "value": 12,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "mbappe-fra",
+        "name": "Kylian Mbappé",
+        "value": 12,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "kocsis-hun",
+        "name": "Sándor Kocsis",
+        "value": 11,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "klinsmann-ger",
+        "name": "Jürgen Klinsmann",
+        "value": 11,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "rahn-ger",
+        "name": "Helmut Rahn",
+        "value": 10,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-07",
+    "date": "2026-06-07",
+    "category": "Artilheiros da Copa 2022 — Qatar",
+    "description": "Quem fez mais gols no Qatar 2022? Do artilheiro ao que marcou menos neste top 10.",
+    "difficulty": "normal",
+    "source": "API-Football / openfootball 2022",
+    "players": [
+      {
+        "player_id": "mbappe-fra",
+        "name": "Kylian Mbappé",
+        "value": 8,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "messi-arg",
+        "name": "Lionel Messi",
+        "value": 7,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "giroud-fra",
+        "name": "Olivier Giroud",
+        "value": 4,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "alvarez-arg",
+        "name": "Julián Álvarez",
+        "value": 4,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "rashford-eng",
+        "name": "Marcus Rashford",
+        "value": 3,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "gakpo-ned",
+        "name": "Cody Gakpo",
+        "value": 3,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "valencia-ecu",
+        "name": "Enner Valencia",
+        "value": 3,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "taremi-irn",
+        "name": "Mehdi Taremi",
+        "value": 3,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "saka-eng",
+        "name": "Bukayo Saka",
+        "value": 3,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "delaet-bel",
+        "name": "Ritchie De Laet",
+        "value": 2,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-08",
+    "date": "2026-06-08",
+    "category": "Artilheiros da Copa 2014 — Brasil",
+    "description": "Quem foi mais artilheiro no Brasil 2014? Ordene do maior para o menor goleador.",
+    "difficulty": "normal",
+    "source": "openfootball 2014 + API-Football",
+    "players": [
+      {
+        "player_id": "rodriguez-col",
+        "name": "James Rodríguez",
+        "value": 6,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "muller-t-ger",
+        "name": "Thomas Müller",
+        "value": 5,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "neymar-bra",
+        "name": "Neymar",
+        "value": 4,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "benzema-fra",
+        "name": "Karim Benzema",
+        "value": 4,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "vanpersie-ned",
+        "name": "Robin van Persie",
+        "value": 4,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "hummels-ger",
+        "name": "Mats Hummels",
+        "value": 3,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "gotze-ger",
+        "name": "Mario Götze",
+        "value": 3,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "robben-ned",
+        "name": "Arjen Robben",
+        "value": 3,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "messi-arg",
+        "name": "Lionel Messi",
+        "value": 4,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "schurrle-ger",
+        "name": "André Schürrle",
+        "value": 3,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-09",
+    "date": "2026-06-09",
+    "category": "Gols na Copa — Era Clássica (1958–1986)",
+    "description": "Os maiores artilheiros da era clássica da Copa. Do topo à base da pirâmide!",
+    "difficulty": "normal",
+    "source": "Wikipedia",
+    "players": [
+      {
+        "player_id": "muller-g-ger",
+        "name": "Gerd Müller",
+        "value": 14,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "fontaine-fra",
+        "name": "Just Fontaine",
+        "value": 13,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "pele-bra",
+        "name": "Pelé",
+        "value": 12,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "kocsis-hun",
+        "name": "Sándor Kocsis",
+        "value": 11,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "klinsmann-ger",
+        "name": "Jürgen Klinsmann",
+        "value": 11,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "eusebio-por",
+        "name": "Eusébio",
+        "value": 9,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "seeler-ger",
+        "name": "Uwe Seeler",
+        "value": 9,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "cubillas-per",
+        "name": "Teófilo Cubillas",
+        "value": 10,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "maradona-arg",
+        "name": "Diego Maradona",
+        "value": 8,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "rossi-ita",
+        "name": "Paolo Rossi",
+        "value": 9,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-10",
+    "date": "2026-06-10",
+    "category": "Copas em que marcou pelo menos 1 gol",
+    "description": "Quantas Copas diferentes cada jogador balançou a rede? Do recordista ao que marcou em menos edições.",
+    "difficulty": "normal",
+    "source": "Wikipedia",
+    "players": [
+      {
+        "player_id": "ronaldo-c-por",
+        "name": "Cristiano Ronaldo",
+        "value": 5,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "klose-ger",
+        "name": "Miroslav Klose",
+        "value": 4,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "pele-bra",
+        "name": "Pelé",
+        "value": 4,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "seeler-ger",
+        "name": "Uwe Seeler",
+        "value": 4,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "messi-arg",
+        "name": "Lionel Messi",
+        "value": 4,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "ronaldo-bra",
+        "name": "Ronaldo Nazário",
+        "value": 2,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "muller-g-ger",
+        "name": "Gerd Müller",
+        "value": 2,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "modric-cro",
+        "name": "Luka Modrić",
+        "value": 2,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "neymar-bra",
+        "name": "Neymar",
+        "value": 2,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "henry-fra",
+        "name": "Thierry Henry",
+        "value": 2,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-11",
+    "date": "2026-06-11",
+    "category": "Total de jogos disputados na Copa do Mundo",
+    "description": "Quem jogou mais partidas em Copas do Mundo ao longo da carreira? Do recordista à base.",
+    "difficulty": "normal",
+    "source": "Wikipedia / Olympics.com",
+    "players": [
+      {
+        "player_id": "messi-arg",
+        "name": "Lionel Messi",
+        "value": 26,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "matthaus-ger",
+        "name": "Lothar Matthäus",
+        "value": 25,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "klose-ger",
+        "name": "Miroslav Klose",
+        "value": 24,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "ronaldo-c-por",
+        "name": "Cristiano Ronaldo",
+        "value": 22,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "maradona-arg",
+        "name": "Diego Maradona",
+        "value": 21,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "seeler-ger",
+        "name": "Uwe Seeler",
+        "value": 21,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "mascherano-arg",
+        "name": "Javier Mascherano",
+        "value": 20,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "zmuda-pol",
+        "name": "Władysław Żmuda",
+        "value": 21,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "lato-pol",
+        "name": "Grzegorz Lato",
+        "value": 20,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "maldini-ita",
+        "name": "Paolo Maldini",
+        "value": 23,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-12",
+    "date": "2026-06-12",
+    "category": "Países com mais Copas do Mundo disputadas (1930–2022)",
+    "description": "Quantas vezes cada seleção esteve presente em Copas do Mundo? Do país mais veterano ao menos presente.",
+    "difficulty": "easy",
+    "source": "Wikipedia",
+    "players": [
+      {
+        "player_id": "selecao-bra",
+        "name": "Brasil",
+        "value": 22,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "selecao-ger",
+        "name": "Alemanha",
+        "value": 20,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "selecao-ita",
+        "name": "Itália",
+        "value": 18,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "selecao-arg",
+        "name": "Argentina",
+        "value": 18,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-mex",
+        "name": "México",
+        "value": 17,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-fra",
+        "name": "França",
+        "value": 16,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-esp",
+        "name": "Espanha",
+        "value": 16,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-eng",
+        "name": "Inglaterra",
+        "value": 16,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-bel",
+        "name": "Bélgica",
+        "value": 14,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-yug",
+        "name": "Iugoslávia/Sérvia",
+        "value": 12,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-13",
+    "date": "2026-06-13",
+    "category": "Jogadores com mais Copas disputadas (edições)",
+    "description": "Quem participou do maior número de edições da Copa do Mundo? Do veterano máximo à base.",
+    "difficulty": "normal",
+    "source": "Wikipedia",
+    "players": [
+      {
+        "player_id": "carbajal-mex",
+        "name": "Antonio Carbajal",
+        "value": 5,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "matthaus-ger",
+        "name": "Lothar Matthäus",
+        "value": 5,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "marquez-mex",
+        "name": "Rafael Márquez",
+        "value": 5,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "guardado-mex",
+        "name": "Andrés Guardado",
+        "value": 5,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "ronaldo-c-por",
+        "name": "Cristiano Ronaldo",
+        "value": 5,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "messi-arg",
+        "name": "Lionel Messi",
+        "value": 5,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "lato-pol",
+        "name": "Grzegorz Lato",
+        "value": 3,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "pele-bra",
+        "name": "Pelé",
+        "value": 4,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "maradona-arg",
+        "name": "Diego Maradona",
+        "value": 4,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "maldini-ita",
+        "name": "Paolo Maldini",
+        "value": 4,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-14",
+    "date": "2026-06-14",
+    "category": "Minutos jogados no Qatar 2022",
+    "description": "Quem passou mais tempo em campo na Copa de 2022? Do jogador mais minutos ao menos.",
+    "difficulty": "normal",
+    "source": "Dados públicos consolidados",
+    "players": [
+      {
+        "player_id": "messi-arg",
+        "name": "Lionel Messi",
+        "value": 690,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "martinez-e-arg",
+        "name": "Emiliano Martínez",
+        "value": 690,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "otamendi-arg",
+        "name": "Nicolás Otamendi",
+        "value": 690,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "mbappe-fra",
+        "name": "Kylian Mbappé",
+        "value": 629,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "modric-cro",
+        "name": "Luka Modrić",
+        "value": 570,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "bounou-mar",
+        "name": "Yassine Bounou",
+        "value": 540,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "livakovic-cro",
+        "name": "Dominik Livaković",
+        "value": 510,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "griezmann-fra",
+        "name": "Antoine Griezmann",
+        "value": 508,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "giroud-fra",
+        "name": "Olivier Giroud",
+        "value": 496,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "kane-eng",
+        "name": "Harry Kane",
+        "value": 480,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-15",
+    "date": "2026-06-15",
+    "category": "Partidas disputadas como capitão em Copas do Mundo",
+    "description": "Quem mais liderou sua seleção com a braçadeira de capitão na Copa? Do recorde à base.",
+    "difficulty": "normal",
+    "source": "Guinness World Records + Wikipedia",
+    "players": [
+      {
+        "player_id": "messi-arg",
+        "name": "Lionel Messi",
+        "value": 19,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "cannavaro-ita",
+        "name": "Fabio Cannavaro",
+        "value": 18,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "beckenbauer-ger",
+        "name": "Franz Beckenbauer",
+        "value": 18,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "casillas-esp",
+        "name": "Iker Casillas",
+        "value": 17,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "marquez-mex",
+        "name": "Rafael Márquez",
+        "value": 17,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "maradona-arg",
+        "name": "Diego Maradona",
+        "value": 16,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "moore-eng",
+        "name": "Bobby Moore",
+        "value": 14,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "matthaus-ger",
+        "name": "Lothar Matthäus",
+        "value": 13,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "cafu-bra",
+        "name": "Cafu",
+        "value": 7,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "deschamps-fra",
+        "name": "Didier Deschamps",
+        "value": 6,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-16",
+    "date": "2026-06-16",
+    "category": "Países com mais títulos mundiais conquistados",
+    "description": "Quais seleções levantaram mais vezes a taça da Copa do Mundo? Da mais campeã à menos.",
+    "difficulty": "easy",
+    "source": "Wikipedia",
+    "players": [
+      {
+        "player_id": "selecao-bra",
+        "name": "Brasil",
+        "value": 5,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "selecao-ger",
+        "name": "Alemanha",
+        "value": 4,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "selecao-ita",
+        "name": "Itália",
+        "value": 4,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "selecao-arg",
+        "name": "Argentina",
+        "value": 3,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-fra",
+        "name": "França",
+        "value": 2,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-uru",
+        "name": "Uruguai",
+        "value": 2,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-eng",
+        "name": "Inglaterra",
+        "value": 1,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-esp",
+        "name": "Espanha",
+        "value": 1,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-ned",
+        "name": "Holanda",
+        "value": 0,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-por",
+        "name": "Portugal",
+        "value": 0,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-17",
+    "date": "2026-06-17",
+    "category": "Jogadores com mais títulos mundiais",
+    "description": "Quantas Copas do Mundo cada jogador venceu? Do tricampeão à base.",
+    "difficulty": "normal",
+    "source": "Wikipedia",
+    "players": [
+      {
+        "player_id": "pele-bra",
+        "name": "Pelé",
+        "value": 3,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "cafu-bra",
+        "name": "Cafu",
+        "value": 2,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "roberto-c-bra",
+        "name": "Roberto Carlos",
+        "value": 1,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "ronaldo-bra",
+        "name": "Ronaldo Nazário",
+        "value": 2,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "ronaldinho-bra",
+        "name": "Ronaldinho",
+        "value": 1,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "zidane-fra",
+        "name": "Zinedine Zidane",
+        "value": 1,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "klose-ger",
+        "name": "Miroslav Klose",
+        "value": 1,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "messi-arg",
+        "name": "Lionel Messi",
+        "value": 1,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "mbappe-fra",
+        "name": "Kylian Mbappé",
+        "value": 1,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "modric-cro",
+        "name": "Luka Modrić",
+        "value": 0,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-18",
+    "date": "2026-06-18",
+    "category": "Países com mais finais de Copa do Mundo disputadas",
+    "description": "Quais seleções mais vezes jogaram a grande final? Da mais frequente à menos.",
+    "difficulty": "normal",
+    "source": "Wikipedia",
+    "players": [
+      {
+        "player_id": "selecao-ger",
+        "name": "Alemanha",
+        "value": 8,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "selecao-bra",
+        "name": "Brasil",
+        "value": 7,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "selecao-ita",
+        "name": "Itália",
+        "value": 6,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "selecao-arg",
+        "name": "Argentina",
+        "value": 6,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-fra",
+        "name": "França",
+        "value": 3,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-ned",
+        "name": "Holanda",
+        "value": 3,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-uru",
+        "name": "Uruguai",
+        "value": 2,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-eng",
+        "name": "Inglaterra",
+        "value": 1,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-esp",
+        "name": "Espanha",
+        "value": 1,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-tch",
+        "name": "Tcheco/Hungria",
+        "value": 2,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-19",
+    "date": "2026-06-19",
+    "category": "Copa do Mundo e Champions League no mesmo ano",
+    "description": "Quem conquistou Copa do Mundo e Champions League no mesmo ano civil? Ordene pelos maiores títulos combinados.",
+    "difficulty": "normal",
+    "source": "Wikipedia + artigos históricos verificados",
+    "players": [
+      {
+        "player_id": "cafu-bra",
+        "name": "Cafu",
+        "value": 2002,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "roberto-c-bra",
+        "name": "Roberto Carlos",
+        "value": 2002,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "ronaldo-bra",
+        "name": "Ronaldo Nazário",
+        "value": 2002,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "ronaldinho-bra",
+        "name": "Ronaldinho",
+        "value": 2002,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "gilberto-bra",
+        "name": "Gilberto Silva",
+        "value": 2002,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "khedira-ger",
+        "name": "Sami Khedira",
+        "value": 2014,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "varane-fra",
+        "name": "Raphaël Varane",
+        "value": 2018,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "kroos-ger",
+        "name": "Toni Kroos",
+        "value": 2014,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "marcelo-bra",
+        "name": "Marcelo",
+        "value": 0,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "ramos-esp",
+        "name": "Sergio Ramos",
+        "value": 0,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-20",
+    "date": "2026-06-20",
+    "category": "Bola de Ouro da Copa do Mundo (Golden Ball)",
+    "description": "Quem ganhou o prêmio de melhor jogador da Copa? Ordene do mais recente ao mais antigo.",
+    "difficulty": "normal",
+    "source": "Wikipedia",
+    "players": [
+      {
+        "player_id": "messi-arg",
+        "name": "Lionel Messi",
+        "value": 2022,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "modric-cro",
+        "name": "Luka Modrić",
+        "value": 2018,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "muller-t-ger",
+        "name": "Thomas Müller",
+        "value": 2010,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "zidane-fra",
+        "name": "Zinedine Zidane",
+        "value": 2006,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "ronaldo-bra",
+        "name": "Ronaldo Nazário",
+        "value": 2002,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "rivaldo-bra",
+        "name": "Rivaldo",
+        "value": 1998,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "romario-bra",
+        "name": "Romário",
+        "value": 1994,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "schillaci-ita",
+        "name": "Salvatore Schillaci",
+        "value": 1990,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "maradona-arg",
+        "name": "Diego Maradona",
+        "value": 1986,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "rossi-ita",
+        "name": "Paolo Rossi",
+        "value": 1982,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-21",
+    "date": "2026-06-21",
+    "category": "Gols mais rápidos da Copa do Mundo (em segundos)",
+    "description": "Quem marcou mais rápido na história da Copa? Do gol relâmpago ao mais demorado do top 10.",
+    "difficulty": "normal",
+    "source": "Wikipedia — Fastest goals in World Cup history",
+    "players": [
+      {
+        "player_id": "sukur-tur",
+        "name": "Hakan Şükür",
+        "value": 11,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "masek-tch",
+        "name": "Václav Mašek",
+        "value": 15,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "lehner-ger",
+        "name": "Ernst Lehner",
+        "value": 60,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "ruiz-crc",
+        "name": "Bryan Ruiz",
+        "value": 60,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "dempsey-usa",
+        "name": "Clint Dempsey",
+        "value": 30,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "fowler-eng",
+        "name": "Robbie Fowler",
+        "value": 120,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "baggio-ita",
+        "name": "Roberto Baggio",
+        "value": 120,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "klose-ger",
+        "name": "Miroslav Klose",
+        "value": 180,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "robben-ned",
+        "name": "Arjen Robben",
+        "value": 240,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "benzema-fra",
+        "name": "Karim Benzema",
+        "value": 300,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-22",
+    "date": "2026-06-22",
+    "category": "Países com mais gols em uma única Copa do Mundo",
+    "description": "Qual seleção mais balançou as redes em uma única edição da Copa? Do recorde à base.",
+    "difficulty": "normal",
+    "source": "Wikipedia + openfootball",
+    "players": [
+      {
+        "player_id": "selecao-hun-1954",
+        "name": "Hungria 1954",
+        "value": 27,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "selecao-ger-1954",
+        "name": "Alemanha 1954",
+        "value": 25,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "selecao-fra-1958",
+        "name": "França 1958",
+        "value": 23,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "selecao-bra-1970",
+        "name": "Brasil 1970",
+        "value": 19,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-ger-2014",
+        "name": "Alemanha 2014",
+        "value": 18,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-bra-2002",
+        "name": "Brasil 2002",
+        "value": 18,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-ned-1978",
+        "name": "Holanda 1978",
+        "value": 15,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-arg-1978",
+        "name": "Argentina 1978",
+        "value": 15,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-uru-1950",
+        "name": "Uruguai 1950",
+        "value": 15,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-ita-1938",
+        "name": "Itália 1938",
+        "value": 11,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-23",
+    "date": "2026-06-23",
+    "category": "Goleiros com mais jogos sem sofrer gol na Copa (Clean Sheets)",
+    "description": "Quais goleiros mais vezes fecharam o gol em Copas do Mundo? Do recordista à base.",
+    "difficulty": "normal",
+    "source": "Wikipedia + FBRef",
+    "players": [
+      {
+        "player_id": "shilton-eng",
+        "name": "Peter Shilton",
+        "value": 10,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "maier-ger",
+        "name": "Sepp Maier",
+        "value": 9,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "buffon-ita",
+        "name": "Gianluigi Buffon",
+        "value": 8,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "barthez-fra",
+        "name": "Fabien Barthez",
+        "value": 8,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "kahn-ger",
+        "name": "Oliver Kahn",
+        "value": 7,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "neuer-ger",
+        "name": "Manuel Neuer",
+        "value": 7,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "banks-eng",
+        "name": "Gordon Banks",
+        "value": 6,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "casillas-esp",
+        "name": "Iker Casillas",
+        "value": 5,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "martinez-e-arg",
+        "name": "Emiliano Martínez",
+        "value": 4,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "bounou-mar",
+        "name": "Yassine Bounou",
+        "value": 3,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-24",
+    "date": "2026-06-24",
+    "category": "Países com mais expulsões em Copas do Mundo",
+    "description": "Quais seleções acumularam mais cartões vermelhos na história da Copa? Do mais indisciplinado ao menos.",
+    "difficulty": "normal",
+    "source": "Wikipedia",
+    "players": [
+      {
+        "player_id": "selecao-bra",
+        "name": "Brasil",
+        "value": 11,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "selecao-arg",
+        "name": "Argentina",
+        "value": 10,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "selecao-uru",
+        "name": "Uruguai",
+        "value": 9,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "selecao-ger",
+        "name": "Alemanha",
+        "value": 8,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-cmr",
+        "name": "Camarões",
+        "value": 8,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-por",
+        "name": "Portugal",
+        "value": 7,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "selecao-ned",
+        "name": "Holanda",
+        "value": 7,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-ita",
+        "name": "Itália",
+        "value": 6,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-col",
+        "name": "Colômbia",
+        "value": 6,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "selecao-fra",
+        "name": "França",
+        "value": 5,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-25",
+    "date": "2026-06-25",
+    "category": "Maiores goleadas da Copa do Mundo (saldo de gols)",
+    "description": "Quais foram as maiores goleadas da história da Copa? Do saldo mais devastador ao menor.",
+    "difficulty": "normal",
+    "source": "openfootball (todos os placares 1930–2022)",
+    "players": [
+      {
+        "player_id": "hungria-elsalvador-1982",
+        "name": "Hungria 10×1 El Salvador (1982)",
+        "value": 9,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "hungria-coreia-1954",
+        "name": "Hungria 9×0 Coreia (1954)",
+        "value": 9,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "iugo-zaire-1974",
+        "name": "Iugoslávia 9×0 Zaire (1974)",
+        "value": 9,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "alemanha-arabia-2002",
+        "name": "Alemanha 8×0 Arábia (2002)",
+        "value": 8,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "suecia-cuba-1938",
+        "name": "Suécia 8×0 Cuba (1938)",
+        "value": 8,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "uruguai-bolivia-1950",
+        "name": "Uruguai 8×0 Bolívia (1950)",
+        "value": 8,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "alemanha-brasil-2014",
+        "name": "Alemanha 7×1 Brasil (2014)",
+        "value": 6,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "portugal-coreia-2010",
+        "name": "Portugal 7×0 Coreia (2010)",
+        "value": 7,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "brasil-elsalvador-1982",
+        "name": "Brasil 5×1 El Salvador (1982)",
+        "value": 4,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "franca-paraguai-1998",
+        "name": "França 1×0 Paraguai (1998)",
+        "value": 1,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-26",
+    "date": "2026-06-26",
+    "category": "Rating médio por partida no Qatar 2022 (mín. 5 jogos)",
+    "description": "Quem teve o melhor desempenho médio avaliado por partida no Qatar 2022? Do mais bem avaliado ao décimo.",
+    "difficulty": "normal",
+    "source": "API-Football /fixtures/players",
+    "players": [
+      {
+        "player_id": "messi-arg",
+        "name": "Lionel Messi",
+        "value": 84,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "mbappe-fra",
+        "name": "Kylian Mbappé",
+        "value": 81,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "modric-cro",
+        "name": "Luka Modrić",
+        "value": 79,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "bounou-mar",
+        "name": "Yassine Bounou",
+        "value": 78,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "livakovic-cro",
+        "name": "Dominik Livaković",
+        "value": 77,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "alvarez-arg",
+        "name": "Julián Álvarez",
+        "value": 76,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "hakimi-mar",
+        "name": "Achraf Hakimi",
+        "value": 75,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "griezmann-fra",
+        "name": "Antoine Griezmann",
+        "value": 74,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "amrabat-mar",
+        "name": "Sofyan Amrabat",
+        "value": 73,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "kane-eng",
+        "name": "Harry Kane",
+        "value": 71,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-27",
+    "date": "2026-06-27",
+    "category": "Assistências no Qatar 2022",
+    "description": "Quem mais distribuiu passes para gol no Qatar 2022? Do líder em assistências à base.",
+    "difficulty": "normal",
+    "source": "API-Football",
+    "players": [
+      {
+        "player_id": "messi-arg",
+        "name": "Lionel Messi",
+        "value": 3,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "griezmann-fra",
+        "name": "Antoine Griezmann",
+        "value": 3,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "mbappe-fra",
+        "name": "Kylian Mbappé",
+        "value": 2,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "macallister-arg",
+        "name": "Alexis Mac Allister",
+        "value": 2,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "fernandez-arg",
+        "name": "Enzo Fernández",
+        "value": 2,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "amrabat-mar",
+        "name": "Sofyan Amrabat",
+        "value": 1,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "hakimi-mar",
+        "name": "Achraf Hakimi",
+        "value": 1,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "modric-cro",
+        "name": "Luka Modrić",
+        "value": 1,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "giroud-fra",
+        "name": "Olivier Giroud",
+        "value": 1,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "alvarez-arg",
+        "name": "Julián Álvarez",
+        "value": 1,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-28",
+    "date": "2026-06-28",
+    "category": "Passes completados na Copa da Rússia 2018",
+    "description": "Quem mais acertou passes no Mundial de 2018? Do maestro do meio-campo à base.",
+    "difficulty": "normal",
+    "source": "FBRef.com — pandas.read_html()",
+    "players": [
+      {
+        "player_id": "kroos-ger",
+        "name": "Toni Kroos",
+        "value": 316,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "modric-cro",
+        "name": "Luka Modrić",
+        "value": 298,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "rakitic-cro",
+        "name": "Ivan Rakitić",
+        "value": 271,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "debruyne-bel",
+        "name": "Kevin De Bruyne",
+        "value": 265,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "busquets-esp",
+        "name": "Sergio Busquets",
+        "value": 248,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "thiago-esp",
+        "name": "Thiago Alcântara",
+        "value": 231,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "kante-fra",
+        "name": "N'Golo Kanté",
+        "value": 196,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "pogba-fra",
+        "name": "Paul Pogba",
+        "value": 188,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "casemiro-bra",
+        "name": "Casemiro",
+        "value": 175,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "xhaka-sui",
+        "name": "Granit Xhaka",
+        "value": 168,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-29",
+    "date": "2026-06-29",
+    "category": "Defesas de goleiros no Qatar 2022 (Total de Saves)",
+    "description": "Quais goleiros mais defenderam no Qatar 2022? Do guardião com mais defesas ao décimo.",
+    "difficulty": "normal",
+    "source": "Squawka / FBRef",
+    "players": [
+      {
+        "player_id": "livakovic-cro",
+        "name": "Dominik Livaković",
+        "value": 26,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "martinez-e-arg",
+        "name": "Emiliano Martínez",
+        "value": 23,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "szczesny-pol",
+        "name": "Wojciech Szczęsny",
+        "value": 19,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "bounou-mar",
+        "name": "Yassine Bounou",
+        "value": 19,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "pickford-eng",
+        "name": "Jordan Pickford",
+        "value": 17,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "lloris-fra",
+        "name": "Hugo Lloris",
+        "value": 15,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "neuer-ger",
+        "name": "Manuel Neuer",
+        "value": 14,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "alisson-bra",
+        "name": "Alisson",
+        "value": 12,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "alsheeb-qat",
+        "name": "Saad Al-Sheeb",
+        "value": 10,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "courtois-bel",
+        "name": "Thibaut Courtois",
+        "value": 8,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-06-30",
+    "date": "2026-06-30",
+    "category": "Finalizações no Alvo no Brasil 2014 (Shots on Target)",
+    "description": "Quem mais chutou no gol no Brasil 2014? Do maior finalizador ao décimo.",
+    "difficulty": "normal",
+    "source": "FBRef.com",
+    "players": [
+      {
+        "player_id": "muller-t-ger",
+        "name": "Thomas Müller",
+        "value": 10,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "rodriguez-col",
+        "name": "James Rodríguez",
+        "value": 9,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "benzema-fra",
+        "name": "Karim Benzema",
+        "value": 8,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "messi-arg",
+        "name": "Lionel Messi",
+        "value": 8,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "vanpersie-ned",
+        "name": "Robin van Persie",
+        "value": 7,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "neymar-bra",
+        "name": "Neymar",
+        "value": 7,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "robben-ned",
+        "name": "Arjen Robben",
+        "value": 6,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "suarez-uru",
+        "name": "Luis Suárez",
+        "value": 5,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "higuain-arg",
+        "name": "Gonzalo Higuaín",
+        "value": 5,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "gotze-ger",
+        "name": "Mario Götze",
+        "value": 4,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-07-01",
+    "date": "2026-07-01",
+    "category": "Idade do artilheiro em cada Copa (do mais jovem ao mais velho)",
+    "description": "Qual era a idade do artilheiro quando ganhou a Chuteira de Ouro? Do mais jovem ao mais experiente.",
+    "difficulty": "normal",
+    "source": "Wikipedia + cálculo por data de nascimento",
+    "players": [
+      {
+        "player_id": "pele-bra",
+        "name": "Pelé (1958)",
+        "value": 17,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "thomas-m-ger",
+        "name": "Thomas Müller (2010)",
+        "value": 20,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "james-col",
+        "name": "James Rodríguez (2014)",
+        "value": 22,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "mbappe-fra",
+        "name": "Kylian Mbappé (2022)",
+        "value": 23,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "eusebio-por",
+        "name": "Eusébio (1966)",
+        "value": 24,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "muller-g-ger",
+        "name": "Gerd Müller (1970)",
+        "value": 24,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "kane-eng",
+        "name": "Harry Kane (2018)",
+        "value": 24,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "fontaine-fra",
+        "name": "Just Fontaine (1958)",
+        "value": 25,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "ronaldo-bra",
+        "name": "Ronaldo Nazário (2002)",
+        "value": 25,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "klose-ger",
+        "name": "Miroslav Klose (2006)",
+        "value": 27,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-07-02",
+    "date": "2026-07-02",
+    "category": "Países com mais expulsões em uma única Copa do Mundo",
+    "description": "Qual seleção mais perdeu jogadores por expulsão em uma única edição da Copa?",
+    "difficulty": "normal",
+    "source": "Wikipedia + openfootball",
+    "players": [
+      {
+        "player_id": "nigeria-1998",
+        "name": "Nigéria 1998",
+        "value": 3,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "camaroes-1998",
+        "name": "Camarões 1998",
+        "value": 3,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "brasil-2006",
+        "name": "Brasil 2006",
+        "value": 3,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "franca-1998",
+        "name": "França 1998",
+        "value": 2,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "portugal-2006",
+        "name": "Portugal 2006",
+        "value": 2,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "uruguai-2010",
+        "name": "Uruguai 2010",
+        "value": 2,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "holanda-2010",
+        "name": "Holanda 2010",
+        "value": 2,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "colombia-2014",
+        "name": "Colômbia 2014",
+        "value": 2,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "equador-2006",
+        "name": "Equador 2006",
+        "value": 1,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "chile-2014",
+        "name": "Chile 2014",
+        "value": 1,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-07-03",
+    "date": "2026-07-03",
+    "category": "Faltas sofridas em uma única Copa do Mundo",
+    "description": "Quem foi mais fouled (sofreu mais faltas) em uma única edição da Copa? Do mais perseguido ao menos.",
+    "difficulty": "normal",
+    "source": "SportsHistori.com + registros Opta",
+    "players": [
+      {
+        "player_id": "maradona-1986",
+        "name": "Maradona (1986)",
+        "value": 53,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "maradona-1990",
+        "name": "Maradona (1990)",
+        "value": 50,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "maradona-1982",
+        "name": "Maradona (1982)",
+        "value": 36,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "ortega-1998",
+        "name": "Ariel Ortega (1998)",
+        "value": 33,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "ardiles-1978",
+        "name": "Ossie Ardiles (1978)",
+        "value": 32,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "jairzinho-1974",
+        "name": "Jairzinho (1974)",
+        "value": 30,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "cruyff-1974",
+        "name": "Johan Cruyff (1974)",
+        "value": 30,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "kempes-1978",
+        "name": "Kempes (1978)",
+        "value": 29,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "robben-2014",
+        "name": "Arjen Robben (2014)",
+        "value": 28,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "toni-2006",
+        "name": "Luca Toni (2006)",
+        "value": 28,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-07-04",
+    "date": "2026-07-04",
+    "category": "Edições da Copa do Mundo com mais gols no total",
+    "description": "Quais Copas produziram mais gols? Da edição mais goleadora à décima.",
+    "difficulty": "normal",
+    "source": "openfootball (calculável direto dos JSONs 1930–2022)",
+    "players": [
+      {
+        "player_id": "copa-2022",
+        "name": "Qatar 2022",
+        "value": 172,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "copa-1998",
+        "name": "França 1998",
+        "value": 171,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "copa-2014",
+        "name": "Brasil 2014",
+        "value": 171,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "copa-2002",
+        "name": "Coreia/Japão 2002",
+        "value": 161,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "copa-1954",
+        "name": "Suíça 1954",
+        "value": 140,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "copa-1982",
+        "name": "Espanha 1982",
+        "value": 146,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "copa-2018",
+        "name": "Rússia 2018",
+        "value": 169,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "copa-1958",
+        "name": "Suécia 1958",
+        "value": 126,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "copa-1990",
+        "name": "Itália 1990",
+        "value": 115,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "copa-1970",
+        "name": "México 1970",
+        "value": 95,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  },
+  {
+    "id": "puzzle-2026-07-05",
+    "date": "2026-07-05",
+    "category": "Hat-tricks na Copa do Mundo — gols totais na edição",
+    "description": "Jogadores famosos por hat-tricks na Copa, ordenados pelo total de gols que marcaram naquela edição.",
+    "difficulty": "normal",
+    "source": "Wikipedia — Hat-tricks in FIFA World Cup",
+    "players": [
+      {
+        "player_id": "fontaine-fra",
+        "name": "Just Fontaine (1958)",
+        "value": 13,
+        "correct_rank": 1,
+        "correct_level": 1
+      },
+      {
+        "player_id": "kocsis-hun",
+        "name": "Sándor Kocsis (1954)",
+        "value": 11,
+        "correct_rank": 2,
+        "correct_level": 2
+      },
+      {
+        "player_id": "muller-g-ger",
+        "name": "Gerd Müller (1970)",
+        "value": 10,
+        "correct_rank": 3,
+        "correct_level": 2
+      },
+      {
+        "player_id": "klose-ger",
+        "name": "Miroslav Klose (2002)",
+        "value": 5,
+        "correct_rank": 4,
+        "correct_level": 3
+      },
+      {
+        "player_id": "ronaldo-bra",
+        "name": "Ronaldo Nazário (2002)",
+        "value": 8,
+        "correct_rank": 5,
+        "correct_level": 3
+      },
+      {
+        "player_id": "ronaldo-c-por",
+        "name": "Cristiano Ronaldo (2018)",
+        "value": 4,
+        "correct_rank": 6,
+        "correct_level": 3
+      },
+      {
+        "player_id": "mbappe-fra",
+        "name": "Kylian Mbappé (2022)",
+        "value": 12,
+        "correct_rank": 7,
+        "correct_level": 4
+      },
+      {
+        "player_id": "hurst-eng",
+        "name": "Geoff Hurst (1966)",
+        "value": 4,
+        "correct_rank": 8,
+        "correct_level": 4
+      },
+      {
+        "player_id": "laszlo-hun",
+        "name": "Laszlo Kiss (1982)",
+        "value": 3,
+        "correct_rank": 9,
+        "correct_level": 4
+      },
+      {
+        "player_id": "eusebio-por",
+        "name": "Eusébio (1966)",
+        "value": 9,
+        "correct_rank": 10,
+        "correct_level": 4
+      }
+    ]
+  }
+]

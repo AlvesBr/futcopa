@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 20px 24px; font-family: var(--font-ui); }
+  .cap { font: var(--t-label); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--fg-2); margin: 0 0 16px; }
+  .row { display: flex; gap: 14px; align-items: flex-start; }
+  .col { display: flex; flex-direction: column; align-items: center; gap: 9px; }
+  .slot { width: 92px; height: 70px; border-radius: var(--r-md); display: grid; place-items: center; position: relative; font-weight: 800; }
+  .empty { background: var(--slot); border: 2px dashed var(--slot-border); color: var(--fg-3); }
+  .active { background: var(--grass-50); border: 2px solid var(--grass-500); box-shadow: var(--glow-grass); color: var(--grass-700); }
+  .filled { background: var(--gold-100); border: 2px solid var(--gold-400); box-shadow: var(--sh-2); color: #2a1c00; }
+  .correct { background: var(--success-bg); border: 2px solid var(--success); color: var(--success-ink); }
+  .incorrect { background: var(--error-bg); border: 2px solid var(--error); color: var(--error-ink); }
+  .mark { position: absolute; top: -9px; right: -9px; }
+  .t { font: var(--t-caption); font-weight: 700; color: var(--fg-2); }
+  .nm { font-size: 13px; }
+</style>
+</head>
+<body>
+  <div class="cap">Pyramid slot states</div>
+  <div class="row">
+    <div class="col"><div class="slot empty">+</div><div class="t">Vazio</div></div>
+    <div class="col"><div class="slot active">Solte</div><div class="t">Ativo</div></div>
+    <div class="col"><div class="slot filled"><span class="nm">Mbappé</span></div><div class="t">Preenchido</div></div>
+    <div class="col"><div class="slot correct"><span class="nm">Messi</span><span class="mark"><svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#4aa70f"/><path d="M7 12.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="t">Correto</div></div>
+    <div class="col"><div class="slot incorrect"><span class="nm">Neymar</span><span class="mark"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="4.5" y="4.5" width="15" height="15" rx="3" transform="rotate(45 12 12)" fill="#ff3b47"/><path d="M9 9l6 6M15 9l-6 6" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span></div><div class="t">Incorreto</div></div>
+  </div>
+</body>
+</html>

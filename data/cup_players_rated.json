@@ -1,0 +1,1018 @@
+[
+  {
+    "year": 1970,
+    "host_country": "México",
+    "champion": "Brasil",
+    "squads": [
+      {
+        "country_code": "BR",
+        "country_name": "Brasil",
+        "flag_emoji": "🇧🇷",
+        "phase_reached": "CAMPEÃO",
+        "avg_rating": 86,
+        "players": [
+          {
+            "squad_number": 1,
+            "name": "Félix",
+            "positions": [
+              "GOL"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 630,
+            "rating_computed": 87,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 87
+          },
+          {
+            "squad_number": 2,
+            "name": "C. Alberto",
+            "positions": [
+              "LD"
+            ],
+            "goals": 1,
+            "assists": 2,
+            "minutes_played": 630,
+            "rating_computed": 96,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 96
+          },
+          {
+            "squad_number": 3,
+            "name": "Everaldo",
+            "positions": [
+              "LE"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 540,
+            "rating_computed": 75,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 75
+          },
+          {
+            "squad_number": 4,
+            "name": "Piazza",
+            "positions": [
+              "ZAG",
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 450,
+            "rating_computed": 62,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 62
+          },
+          {
+            "squad_number": 5,
+            "name": "Brito",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 630,
+            "rating_computed": 81,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 81
+          },
+          {
+            "squad_number": 6,
+            "name": "Clodoaldo",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 1,
+            "assists": 1,
+            "minutes_played": 540,
+            "rating_computed": 80,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 80
+          },
+          {
+            "squad_number": 7,
+            "name": "Jairzinho",
+            "positions": [
+              "PD",
+              "CA"
+            ],
+            "goals": 7,
+            "assists": 3,
+            "minutes_played": 630,
+            "rating_computed": 99,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 99
+          },
+          {
+            "squad_number": 8,
+            "name": "Gérson",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 1,
+            "assists": 4,
+            "minutes_played": 540,
+            "rating_computed": 92,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 92
+          },
+          {
+            "squad_number": 9,
+            "name": "Tostão",
+            "positions": [
+              "CA"
+            ],
+            "goals": 4,
+            "assists": 5,
+            "minutes_played": 540,
+            "rating_computed": 92,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 92
+          },
+          {
+            "squad_number": 10,
+            "name": "Pelé",
+            "positions": [
+              "CA"
+            ],
+            "goals": 4,
+            "assists": 7,
+            "minutes_played": 540,
+            "rating_computed": 94,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 94
+          },
+          {
+            "squad_number": 11,
+            "name": "Rivelino",
+            "positions": [
+              "PE",
+              "MEI"
+            ],
+            "goals": 3,
+            "assists": 2,
+            "minutes_played": 630,
+            "rating_computed": 85,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 85
+          }
+        ]
+      },
+      {
+        "country_code": "IT",
+        "country_name": "Itália",
+        "flag_emoji": "🇮🇹",
+        "phase_reached": "VICE",
+        "avg_rating": 69,
+        "players": [
+          {
+            "squad_number": 1,
+            "name": "Albertosi",
+            "positions": [
+              "GOL"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 540,
+            "rating_computed": 60,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 60
+          },
+          {
+            "squad_number": 5,
+            "name": "Facchetti",
+            "positions": [
+              "LE"
+            ],
+            "goals": 0,
+            "assists": 1,
+            "minutes_played": 540,
+            "rating_computed": 71,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 71
+          },
+          {
+            "squad_number": 6,
+            "name": "Bertini",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 360,
+            "rating_computed": 61,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 61
+          },
+          {
+            "squad_number": 7,
+            "name": "Domenghini",
+            "positions": [
+              "PD"
+            ],
+            "goals": 1,
+            "assists": 1,
+            "minutes_played": 360,
+            "rating_computed": 67,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 67
+          },
+          {
+            "squad_number": 9,
+            "name": "Boninsegna",
+            "positions": [
+              "CA"
+            ],
+            "goals": 2,
+            "assists": 1,
+            "minutes_played": 450,
+            "rating_computed": 71,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 71
+          },
+          {
+            "squad_number": 10,
+            "name": "Mazzola",
+            "positions": [
+              "MEI",
+              "CA"
+            ],
+            "goals": 2,
+            "assists": 3,
+            "minutes_played": 450,
+            "rating_computed": 75,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 75
+          },
+          {
+            "squad_number": 11,
+            "name": "Riva",
+            "positions": [
+              "PE",
+              "CA"
+            ],
+            "goals": 4,
+            "assists": 2,
+            "minutes_played": 540,
+            "rating_computed": 83,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 83
+          },
+          {
+            "squad_number": 2,
+            "name": "Burgnich",
+            "positions": [
+              "LD",
+              "ZAG"
+            ],
+            "goals": 1,
+            "assists": 0,
+            "minutes_played": 540,
+            "rating_computed": 75,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 75
+          },
+          {
+            "squad_number": 3,
+            "name": "Cera",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 540,
+            "rating_computed": 67,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 67
+          },
+          {
+            "squad_number": 4,
+            "name": "Rosato",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 360,
+            "rating_computed": 60,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 60
+          },
+          {
+            "squad_number": 8,
+            "name": "De Sisti",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 1,
+            "minutes_played": 360,
+            "rating_computed": 65,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 65
+          }
+        ]
+      },
+      {
+        "country_code": "DE",
+        "country_name": "Alemanha",
+        "flag_emoji": "🇩🇪",
+        "phase_reached": "SEMI",
+        "avg_rating": 78,
+        "players": [
+          {
+            "squad_number": 1,
+            "name": "Maier",
+            "positions": [
+              "GOL"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 630,
+            "rating_computed": 68,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 68
+          },
+          {
+            "squad_number": 5,
+            "name": "Beckenbauer",
+            "positions": [
+              "ZAG",
+              "MEI"
+            ],
+            "goals": 2,
+            "assists": 3,
+            "minutes_played": 630,
+            "rating_computed": 99,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 99
+          },
+          {
+            "squad_number": 9,
+            "name": "Müller",
+            "positions": [
+              "CA"
+            ],
+            "goals": 10,
+            "assists": 2,
+            "minutes_played": 630,
+            "rating_computed": 97,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 97
+          },
+          {
+            "squad_number": 13,
+            "name": "Seeler",
+            "positions": [
+              "CA"
+            ],
+            "goals": 3,
+            "assists": 2,
+            "minutes_played": 540,
+            "rating_computed": 81,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 81
+          },
+          {
+            "squad_number": 7,
+            "name": "Held",
+            "positions": [
+              "PD",
+              "CA"
+            ],
+            "goals": 2,
+            "assists": 1,
+            "minutes_played": 450,
+            "rating_computed": 74,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 74
+          },
+          {
+            "squad_number": 3,
+            "name": "Schnellinger",
+            "positions": [
+              "LE"
+            ],
+            "goals": 1,
+            "assists": 0,
+            "minutes_played": 540,
+            "rating_computed": 84,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 84
+          },
+          {
+            "squad_number": 4,
+            "name": "Vogts",
+            "positions": [
+              "LD"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 450,
+            "rating_computed": 65,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 65
+          },
+          {
+            "squad_number": 2,
+            "name": "Schulz",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 540,
+            "rating_computed": 80,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 80
+          },
+          {
+            "squad_number": 8,
+            "name": "Overath",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 2,
+            "assists": 2,
+            "minutes_played": 540,
+            "rating_computed": 89,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 89
+          },
+          {
+            "squad_number": 10,
+            "name": "Grabowski",
+            "positions": [
+              "PE",
+              "PD"
+            ],
+            "goals": 0,
+            "assists": 2,
+            "minutes_played": 360,
+            "rating_computed": 65,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 65
+          },
+          {
+            "squad_number": 11,
+            "name": "Libuda",
+            "positions": [
+              "PD"
+            ],
+            "goals": 0,
+            "assists": 1,
+            "minutes_played": 270,
+            "rating_computed": 60,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 60
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 1986,
+    "host_country": "México",
+    "champion": "Argentina",
+    "squads": [
+      {
+        "country_code": "AR",
+        "country_name": "Argentina",
+        "flag_emoji": "🇦🇷",
+        "phase_reached": "CAMPEÃO",
+        "avg_rating": 81,
+        "players": [
+          {
+            "squad_number": 1,
+            "name": "Pumpido",
+            "positions": [
+              "GOL"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 630,
+            "rating_computed": 87,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 87
+          },
+          {
+            "squad_number": 2,
+            "name": "Cuciuffo",
+            "positions": [
+              "LD"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 450,
+            "rating_computed": 62,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 62
+          },
+          {
+            "squad_number": 3,
+            "name": "Olarticoechea",
+            "positions": [
+              "LE"
+            ],
+            "goals": 0,
+            "assists": 1,
+            "minutes_played": 630,
+            "rating_computed": 88,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 88
+          },
+          {
+            "squad_number": 4,
+            "name": "Ruggeri",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 1,
+            "assists": 0,
+            "minutes_played": 630,
+            "rating_computed": 90,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 90
+          },
+          {
+            "squad_number": 5,
+            "name": "Brown",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 1,
+            "assists": 0,
+            "minutes_played": 630,
+            "rating_computed": 90,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 90
+          },
+          {
+            "squad_number": 6,
+            "name": "Burruchaga",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 1,
+            "assists": 3,
+            "minutes_played": 540,
+            "rating_computed": 87,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 87
+          },
+          {
+            "squad_number": 7,
+            "name": "Valdano",
+            "positions": [
+              "CA",
+              "PE"
+            ],
+            "goals": 3,
+            "assists": 3,
+            "minutes_played": 630,
+            "rating_computed": 88,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 88
+          },
+          {
+            "squad_number": 8,
+            "name": "Giusti",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 1,
+            "minutes_played": 540,
+            "rating_computed": 70,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 70
+          },
+          {
+            "squad_number": 9,
+            "name": "Batista",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 360,
+            "rating_computed": 67,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 67
+          },
+          {
+            "squad_number": 10,
+            "name": "Maradona",
+            "positions": [
+              "MEI",
+              "CA"
+            ],
+            "goals": 5,
+            "assists": 5,
+            "minutes_played": 630,
+            "rating_computed": 99,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 99
+          },
+          {
+            "squad_number": 11,
+            "name": "Enrique",
+            "positions": [
+              "PE"
+            ],
+            "goals": 0,
+            "assists": 1,
+            "minutes_played": 270,
+            "rating_computed": 62,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 62
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 1998,
+    "host_country": "França",
+    "champion": "França",
+    "squads": [
+      {
+        "country_code": "FR",
+        "country_name": "França",
+        "flag_emoji": "🇫🇷",
+        "phase_reached": "CAMPEÃO",
+        "avg_rating": 84,
+        "players": [
+          {
+            "squad_number": 1,
+            "name": "Barthez",
+            "positions": [
+              "GOL"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 690,
+            "rating_computed": 99,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 99
+          },
+          {
+            "squad_number": 2,
+            "name": "Thuram",
+            "positions": [
+              "LD",
+              "ZAG"
+            ],
+            "goals": 2,
+            "assists": 0,
+            "minutes_played": 690,
+            "rating_computed": 97,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 97
+          },
+          {
+            "squad_number": 3,
+            "name": "Lizarazu",
+            "positions": [
+              "LE"
+            ],
+            "goals": 0,
+            "assists": 1,
+            "minutes_played": 600,
+            "rating_computed": 83,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 83
+          },
+          {
+            "squad_number": 4,
+            "name": "Desailly",
+            "positions": [
+              "ZAG",
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 540,
+            "rating_computed": 75,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 75
+          },
+          {
+            "squad_number": 5,
+            "name": "Blanc",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 1,
+            "assists": 0,
+            "minutes_played": 600,
+            "rating_computed": 86,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 86
+          },
+          {
+            "squad_number": 6,
+            "name": "Deschamps",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 690,
+            "rating_computed": 82,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 82
+          },
+          {
+            "squad_number": 7,
+            "name": "Petit",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 1,
+            "assists": 1,
+            "minutes_played": 600,
+            "rating_computed": 84,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 84
+          },
+          {
+            "squad_number": 8,
+            "name": "Djorkaeff",
+            "positions": [
+              "MEI",
+              "PD"
+            ],
+            "goals": 1,
+            "assists": 2,
+            "minutes_played": 450,
+            "rating_computed": 72,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 72
+          },
+          {
+            "squad_number": 10,
+            "name": "Zidane",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 2,
+            "assists": 5,
+            "minutes_played": 630,
+            "rating_computed": 97,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 97
+          },
+          {
+            "squad_number": 20,
+            "name": "Trezeguet",
+            "positions": [
+              "CA"
+            ],
+            "goals": 1,
+            "assists": 1,
+            "minutes_played": 360,
+            "rating_computed": 69,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 69
+          },
+          {
+            "squad_number": 12,
+            "name": "Henry",
+            "positions": [
+              "PE",
+              "CA"
+            ],
+            "goals": 3,
+            "assists": 2,
+            "minutes_played": 540,
+            "rating_computed": 78,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 78
+          }
+        ]
+      },
+      {
+        "country_code": "BR",
+        "country_name": "Brasil",
+        "flag_emoji": "🇧🇷",
+        "phase_reached": "VICE",
+        "avg_rating": 80,
+        "players": [
+          {
+            "squad_number": 1,
+            "name": "Taffarel",
+            "positions": [
+              "GOL"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 690,
+            "rating_computed": 76,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 76
+          },
+          {
+            "squad_number": 2,
+            "name": "Cafu",
+            "positions": [
+              "LD"
+            ],
+            "goals": 0,
+            "assists": 2,
+            "minutes_played": 690,
+            "rating_computed": 93,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 93
+          },
+          {
+            "squad_number": 3,
+            "name": "R. Carlos",
+            "positions": [
+              "LE"
+            ],
+            "goals": 0,
+            "assists": 2,
+            "minutes_played": 690,
+            "rating_computed": 93,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 93
+          },
+          {
+            "squad_number": 4,
+            "name": "Aldair",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 600,
+            "rating_computed": 78,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 78
+          },
+          {
+            "squad_number": 5,
+            "name": "César Sampaio",
+            "positions": [
+              "ZAG",
+              "MEI"
+            ],
+            "goals": 2,
+            "assists": 0,
+            "minutes_played": 450,
+            "rating_computed": 70,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 70
+          },
+          {
+            "squad_number": 6,
+            "name": "Júnior Baiano",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 540,
+            "rating_computed": 67,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 67
+          },
+          {
+            "squad_number": 8,
+            "name": "Dunga",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 690,
+            "rating_computed": 77,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 77
+          },
+          {
+            "squad_number": 20,
+            "name": "Rivaldo",
+            "positions": [
+              "MEI",
+              "PE"
+            ],
+            "goals": 3,
+            "assists": 3,
+            "minutes_played": 630,
+            "rating_computed": 94,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 94
+          },
+          {
+            "squad_number": 10,
+            "name": "Ronaldo",
+            "positions": [
+              "CA"
+            ],
+            "goals": 4,
+            "assists": 3,
+            "minutes_played": 630,
+            "rating_computed": 90,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 90
+          },
+          {
+            "squad_number": 9,
+            "name": "Bebeto",
+            "positions": [
+              "CA"
+            ],
+            "goals": 3,
+            "assists": 2,
+            "minutes_played": 540,
+            "rating_computed": 76,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 76
+          },
+          {
+            "squad_number": 7,
+            "name": "Émerson",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 360,
+            "rating_computed": 61,
+            "rating_override": null,
+            "override_reason": null,
+            "rating": 61
+          }
+        ]
+      }
+    ]
+  }
+]

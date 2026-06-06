@@ -1,0 +1,748 @@
+[
+  {
+    "year": 1970,
+    "host_country": "México",
+    "champion": "Brasil",
+    "squads": [
+      {
+        "country_code": "BR",
+        "country_name": "Brasil",
+        "flag_emoji": "🇧🇷",
+        "phase_reached": "CAMPEÃO",
+        "players": [
+          {
+            "squad_number": 1,
+            "name": "Félix",
+            "positions": [
+              "GOL"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 2,
+            "name": "C. Alberto",
+            "positions": [
+              "LD"
+            ],
+            "goals": 1,
+            "assists": 2,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 3,
+            "name": "Everaldo",
+            "positions": [
+              "LE"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 4,
+            "name": "Piazza",
+            "positions": [
+              "ZAG",
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 450
+          },
+          {
+            "squad_number": 5,
+            "name": "Brito",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 6,
+            "name": "Clodoaldo",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 1,
+            "assists": 1,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 7,
+            "name": "Jairzinho",
+            "positions": [
+              "PD",
+              "CA"
+            ],
+            "goals": 7,
+            "assists": 3,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 8,
+            "name": "Gérson",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 1,
+            "assists": 4,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 9,
+            "name": "Tostão",
+            "positions": [
+              "CA"
+            ],
+            "goals": 4,
+            "assists": 5,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 10,
+            "name": "Pelé",
+            "positions": [
+              "CA"
+            ],
+            "goals": 4,
+            "assists": 7,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 11,
+            "name": "Rivelino",
+            "positions": [
+              "PE",
+              "MEI"
+            ],
+            "goals": 3,
+            "assists": 2,
+            "minutes_played": 630
+          }
+        ]
+      },
+      {
+        "country_code": "IT",
+        "country_name": "Itália",
+        "flag_emoji": "🇮🇹",
+        "phase_reached": "VICE",
+        "players": [
+          {
+            "squad_number": 1,
+            "name": "Albertosi",
+            "positions": [
+              "GOL"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 5,
+            "name": "Facchetti",
+            "positions": [
+              "LE"
+            ],
+            "goals": 0,
+            "assists": 1,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 6,
+            "name": "Bertini",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 360
+          },
+          {
+            "squad_number": 7,
+            "name": "Domenghini",
+            "positions": [
+              "PD"
+            ],
+            "goals": 1,
+            "assists": 1,
+            "minutes_played": 360
+          },
+          {
+            "squad_number": 9,
+            "name": "Boninsegna",
+            "positions": [
+              "CA"
+            ],
+            "goals": 2,
+            "assists": 1,
+            "minutes_played": 450
+          },
+          {
+            "squad_number": 10,
+            "name": "Mazzola",
+            "positions": [
+              "MEI",
+              "CA"
+            ],
+            "goals": 2,
+            "assists": 3,
+            "minutes_played": 450
+          },
+          {
+            "squad_number": 11,
+            "name": "Riva",
+            "positions": [
+              "PE",
+              "CA"
+            ],
+            "goals": 4,
+            "assists": 2,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 2,
+            "name": "Burgnich",
+            "positions": [
+              "LD",
+              "ZAG"
+            ],
+            "goals": 1,
+            "assists": 0,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 3,
+            "name": "Cera",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 4,
+            "name": "Rosato",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 360
+          },
+          {
+            "squad_number": 8,
+            "name": "De Sisti",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 1,
+            "minutes_played": 360
+          }
+        ]
+      },
+      {
+        "country_code": "DE",
+        "country_name": "Alemanha",
+        "flag_emoji": "🇩🇪",
+        "phase_reached": "SEMI",
+        "players": [
+          {
+            "squad_number": 1,
+            "name": "Maier",
+            "positions": [
+              "GOL"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 5,
+            "name": "Beckenbauer",
+            "positions": [
+              "ZAG",
+              "MEI"
+            ],
+            "goals": 2,
+            "assists": 3,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 9,
+            "name": "Müller",
+            "positions": [
+              "CA"
+            ],
+            "goals": 10,
+            "assists": 2,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 13,
+            "name": "Seeler",
+            "positions": [
+              "CA"
+            ],
+            "goals": 3,
+            "assists": 2,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 7,
+            "name": "Held",
+            "positions": [
+              "PD",
+              "CA"
+            ],
+            "goals": 2,
+            "assists": 1,
+            "minutes_played": 450
+          },
+          {
+            "squad_number": 3,
+            "name": "Schnellinger",
+            "positions": [
+              "LE"
+            ],
+            "goals": 1,
+            "assists": 0,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 4,
+            "name": "Vogts",
+            "positions": [
+              "LD"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 450
+          },
+          {
+            "squad_number": 2,
+            "name": "Schulz",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 8,
+            "name": "Overath",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 2,
+            "assists": 2,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 10,
+            "name": "Grabowski",
+            "positions": [
+              "PE",
+              "PD"
+            ],
+            "goals": 0,
+            "assists": 2,
+            "minutes_played": 360
+          },
+          {
+            "squad_number": 11,
+            "name": "Libuda",
+            "positions": [
+              "PD"
+            ],
+            "goals": 0,
+            "assists": 1,
+            "minutes_played": 270
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 1986,
+    "host_country": "México",
+    "champion": "Argentina",
+    "squads": [
+      {
+        "country_code": "AR",
+        "country_name": "Argentina",
+        "flag_emoji": "🇦🇷",
+        "phase_reached": "CAMPEÃO",
+        "players": [
+          {
+            "squad_number": 1,
+            "name": "Pumpido",
+            "positions": [
+              "GOL"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 2,
+            "name": "Cuciuffo",
+            "positions": [
+              "LD"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 450
+          },
+          {
+            "squad_number": 3,
+            "name": "Olarticoechea",
+            "positions": [
+              "LE"
+            ],
+            "goals": 0,
+            "assists": 1,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 4,
+            "name": "Ruggeri",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 1,
+            "assists": 0,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 5,
+            "name": "Brown",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 1,
+            "assists": 0,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 6,
+            "name": "Burruchaga",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 1,
+            "assists": 3,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 7,
+            "name": "Valdano",
+            "positions": [
+              "CA",
+              "PE"
+            ],
+            "goals": 3,
+            "assists": 3,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 8,
+            "name": "Giusti",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 1,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 9,
+            "name": "Batista",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 360
+          },
+          {
+            "squad_number": 10,
+            "name": "Maradona",
+            "positions": [
+              "MEI",
+              "CA"
+            ],
+            "goals": 5,
+            "assists": 5,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 11,
+            "name": "Enrique",
+            "positions": [
+              "PE"
+            ],
+            "goals": 0,
+            "assists": 1,
+            "minutes_played": 270
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 1998,
+    "host_country": "França",
+    "champion": "França",
+    "squads": [
+      {
+        "country_code": "FR",
+        "country_name": "França",
+        "flag_emoji": "🇫🇷",
+        "phase_reached": "CAMPEÃO",
+        "players": [
+          {
+            "squad_number": 1,
+            "name": "Barthez",
+            "positions": [
+              "GOL"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 690
+          },
+          {
+            "squad_number": 2,
+            "name": "Thuram",
+            "positions": [
+              "LD",
+              "ZAG"
+            ],
+            "goals": 2,
+            "assists": 0,
+            "minutes_played": 690
+          },
+          {
+            "squad_number": 3,
+            "name": "Lizarazu",
+            "positions": [
+              "LE"
+            ],
+            "goals": 0,
+            "assists": 1,
+            "minutes_played": 600
+          },
+          {
+            "squad_number": 4,
+            "name": "Desailly",
+            "positions": [
+              "ZAG",
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 5,
+            "name": "Blanc",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 1,
+            "assists": 0,
+            "minutes_played": 600
+          },
+          {
+            "squad_number": 6,
+            "name": "Deschamps",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 690
+          },
+          {
+            "squad_number": 7,
+            "name": "Petit",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 1,
+            "assists": 1,
+            "minutes_played": 600
+          },
+          {
+            "squad_number": 8,
+            "name": "Djorkaeff",
+            "positions": [
+              "MEI",
+              "PD"
+            ],
+            "goals": 1,
+            "assists": 2,
+            "minutes_played": 450
+          },
+          {
+            "squad_number": 10,
+            "name": "Zidane",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 2,
+            "assists": 5,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 20,
+            "name": "Trezeguet",
+            "positions": [
+              "CA"
+            ],
+            "goals": 1,
+            "assists": 1,
+            "minutes_played": 360
+          },
+          {
+            "squad_number": 12,
+            "name": "Henry",
+            "positions": [
+              "PE",
+              "CA"
+            ],
+            "goals": 3,
+            "assists": 2,
+            "minutes_played": 540
+          }
+        ]
+      },
+      {
+        "country_code": "BR",
+        "country_name": "Brasil",
+        "flag_emoji": "🇧🇷",
+        "phase_reached": "VICE",
+        "players": [
+          {
+            "squad_number": 1,
+            "name": "Taffarel",
+            "positions": [
+              "GOL"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 690
+          },
+          {
+            "squad_number": 2,
+            "name": "Cafu",
+            "positions": [
+              "LD"
+            ],
+            "goals": 0,
+            "assists": 2,
+            "minutes_played": 690
+          },
+          {
+            "squad_number": 3,
+            "name": "R. Carlos",
+            "positions": [
+              "LE"
+            ],
+            "goals": 0,
+            "assists": 2,
+            "minutes_played": 690
+          },
+          {
+            "squad_number": 4,
+            "name": "Aldair",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 600
+          },
+          {
+            "squad_number": 5,
+            "name": "César Sampaio",
+            "positions": [
+              "ZAG",
+              "MEI"
+            ],
+            "goals": 2,
+            "assists": 0,
+            "minutes_played": 450
+          },
+          {
+            "squad_number": 6,
+            "name": "Júnior Baiano",
+            "positions": [
+              "ZAG"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 8,
+            "name": "Dunga",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 690
+          },
+          {
+            "squad_number": 20,
+            "name": "Rivaldo",
+            "positions": [
+              "MEI",
+              "PE"
+            ],
+            "goals": 3,
+            "assists": 3,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 10,
+            "name": "Ronaldo",
+            "positions": [
+              "CA"
+            ],
+            "goals": 4,
+            "assists": 3,
+            "minutes_played": 630
+          },
+          {
+            "squad_number": 9,
+            "name": "Bebeto",
+            "positions": [
+              "CA"
+            ],
+            "goals": 3,
+            "assists": 2,
+            "minutes_played": 540
+          },
+          {
+            "squad_number": 7,
+            "name": "Émerson",
+            "positions": [
+              "MEI"
+            ],
+            "goals": 0,
+            "assists": 0,
+            "minutes_played": 360
+          }
+        ]
+      }
+    ]
+  }
+]

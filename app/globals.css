@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Space+Mono:wght@400;700&display=swap');
+
+@font-face {
+  font-family: 'Russo One';
+  src: url('/fonts/RussoOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================================
+   DESIGN TOKENS — FutCopa
+   Festival of nations · 2026 World Cup energy · mobile-first · PT-BR
+   ============================================================================ */
+
+:root {
+  /* Brand primitives */
+  --grass-50:  #f5fce3;
+  --grass-100: #e9f8bd;
+  --grass-200: #d6f08c;
+  --grass-300: #bbe75a;
+  --grass-400: #9bd933;
+  --grass-500: #6fc01a;
+  --grass-600: #57a010;
+  --grass-700: #437d10;
+  --grass-800: #345e12;
+  --grass-900: #294810;
+
+  --gold-50:  #fff8e1;
+  --gold-100: #ffedb0;
+  --gold-300: #ffd451;
+  --gold-400: #ffc21e;
+  --gold-500: #f2ab00;
+  --gold-700: #b87b00;
+
+  --magenta-100: #ffd6e2;
+  --magenta-300: #ff7aa3;
+  --magenta-500: #ff2e63;
+  --magenta-600: #e01250;
+  --magenta-800: #8f0a31;
+
+  --cyan-100: #cdf3ff;
+  --cyan-300: #6fd9f5;
+  --cyan-500: #15b8e8;
+  --cyan-600: #0a93bd;
+  --cyan-800: #0a5a73;
+
+  /* Neutrals — green ink ramp */
+  --ink-950: #04140c;
+  --ink-900: #07210f;
+  --ink-800: #0c3119;
+  --ink-700: #15512c;
+  --ink-600: #2a6b41;
+  --ink-500: #4a8b60;
+  --ink-400: #82b598;
+  --ink-300: #bedccb;
+  --ink-200: #dcebe2;
+  --ink-100: #eaf4ee;
+  --ink-50:  #f4faf6;
+  --white:   #ffffff;
+
+  /* Semantic feedback — colorblind-safe (each state has shape + icon) */
+  --success:     #4aa70f;   /* shape: circle  · icon: check   */
+  --success-bg:  #f0f9da;
+  --success-ink: #356b08;
+  --error:       #ff3b47;   /* shape: diamond · icon: ×        */
+  --error-bg:    #ffe5e6;
+  --error-ink:   #9c0f17;
+  --warning:     #ff9e1b;   /* shape: triangle · icon: !       */
+  --warning-bg:  #fff1dc;
+  --warning-ink: #8a4b00;
+  --info:        #15b8e8;   /* shape: square  · icon: i        */
+  --info-bg:     #e2f7fe;
+  --info-ink:    #08566e;
+
+  /* Semantic surfaces — LIGHT theme */
+  --bg:          #f6f8f7;
+  --bg-elevated: #ffffff;
+  --surface:     #ffffff;
+  --surface-2:   #eef2f0;
+  --surface-3:   #e1e6e3;
+  --slot:        #ffffff;
+  --slot-border: #c2cac5;
+
+  /* Foreground */
+  --fg:          #07210f;
+  --fg-2:        #265a37;
+  --fg-3:        #4a8b60;
+  --fg-on-brand: #ffffff;
+  --fg-on-gold:  #2a1c00;
+
+  /* Borders & rings */
+  --border:        #e1e6e3;
+  --border-strong: #c2cac5;
+  --ring:          #6fc01a;
+
+  /* Primary action */
+  --primary:       var(--grass-500);
+  --primary-hover: var(--grass-600);
+  --primary-press: var(--grass-700);
+  --on-primary:    #18280b;
+
+  /* Gradients */
+  --grad-festival: linear-gradient(105deg, #6fc01a 0%, #15b8e8 38%, #ff2e63 72%, #ffc21e 100%);
+  --grad-pitch:    linear-gradient(180deg, #9bd933 0%, #6fc01a 100%);
+  --grad-night:    linear-gradient(180deg, #0d1f17 0%, #07120d 100%);
+
+  /* Typography */
+  --font-display: 'Russo One', 'Hanken Grotesk', system-ui, sans-serif;
+  --font-ui:      'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  --font-mono:    'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* Fluid type scale */
+  --t-display-xl: 700 clamp(56px, 16vw, 104px)/0.92 var(--font-display);
+  --t-display:    400 clamp(40px, 11vw, 72px)/0.94 var(--font-display);
+  --t-h1:         800 clamp(28px, 6.5vw, 40px)/1.05 var(--font-ui);
+  --t-h2:         700 clamp(22px, 5vw, 30px)/1.1 var(--font-ui);
+  --t-h3:         700 clamp(18px, 4vw, 22px)/1.2 var(--font-ui);
+  --t-body-lg:    500 18px/1.5 var(--font-ui);
+  --t-body:       500 16px/1.5 var(--font-ui);
+  --t-body-sm:    500 14px/1.45 var(--font-ui);
+  --t-label:      700 13px/1.2 var(--font-ui);
+  --t-caption:    600 12px/1.3 var(--font-ui);
+  --t-mono:       700 14px/1 var(--font-mono);
+
+  --tracking-display: -0.01em;
+  --tracking-label:    0.06em;
+  --tracking-caption:  0.02em;
+
+  /* Spacing — 4pt base */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px; --sp-5: 20px;
+  --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 48px; --sp-16: 64px;
+
+  /* Radii */
+  --r-xs: 6px; --r-sm: 10px; --r-md: 14px; --r-lg: 18px;
+  --r-xl: 24px; --r-card: 20px; --r-pill: 999px;
+
+  /* Elevation */
+  --sh-1: 0 1px 2px rgba(7,18,13,.08), 0 1px 1px rgba(7,18,13,.04);
+  --sh-2: 0 2px 6px rgba(7,18,13,.10), 0 1px 2px rgba(7,18,13,.06);
+  --sh-3: 0 8px 20px rgba(7,18,13,.12), 0 2px 6px rgba(7,18,13,.07);
+  --sh-4: 0 18px 44px rgba(7,18,13,.18), 0 6px 14px rgba(7,18,13,.10);
+  --glow-grass:   0 6px 22px rgba(111,192,26,.45);
+  --glow-magenta: 0 6px 22px rgba(255,46,99,.40);
+  --glow-gold:    0 6px 22px rgba(255,194,30,.45);
+
+  /* Motion */
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+  --dur-3: 320ms;
+  --dur-4: 500ms;
+  --ease-standard: cubic-bezier(.2, .8, .2, 1);
+  --ease-out:      cubic-bezier(.16, 1, .3, 1);
+  --ease-bounce:   cubic-bezier(.34, 1.56, .64, 1);
+}
+
+/* ============================================================================
+   DARK THEME — stadium at night
+   Triggered by .dark class (Tailwind) OR data-theme="dark" (ThemeProvider)
+   ============================================================================ */
+.dark,
+[data-theme="dark"] {
+  --bg:          #07120d;
+  --bg-elevated: #0d1f17;
+  --surface:     #11241a;
+  --surface-2:   #16261e;
+  --surface-3:   #1f342a;
+  --slot:        #11241a;
+  --slot-border: #2b3b33;
+
+  --fg:          #eef2f0;
+  --fg-2:        #b6c2bb;
+  --fg-3:        #8a988f;
+  --fg-on-brand: #07120d;
+  --fg-on-gold:  #2a1c00;
+
+  --border:        #21342b;
+  --border-strong: #2f4639;
+  --ring:          #1bcb6c;
+
+  --primary:       #1bcb6c;
+  --primary-hover: #3ada84;
+  --primary-press: #08b65a;
+  --on-primary:    #07120d;
+
+  --success:     #2bdd7e;  --success-bg: #0d2c1d; --success-ink: #8eeab2;
+  --error:       #ff5a64;  --error-bg:   #341214; --error-ink:   #ffc2c6;
+  --warning:     #ffb43d;  --warning-bg: #33240c; --warning-ink: #ffe0a8;
+  --info:        #3cc9f3;  --info-bg:    #0a2733; --info-ink:    #bdeefc;
+
+  --sh-1: 0 1px 2px rgba(0,0,0,.40);
+  --sh-2: 0 2px 8px rgba(0,0,0,.45);
+  --sh-3: 0 10px 24px rgba(0,0,0,.50);
+  --sh-4: 0 20px 50px rgba(0,0,0,.60);
+  --glow-grass:   0 6px 26px rgba(27,203,108,.50);
+  --glow-magenta: 0 6px 26px rgba(255,46,99,.50);
+  --glow-gold:    0 6px 26px rgba(255,194,30,.45);
+
+  --grad-pitch: linear-gradient(180deg, #1bcb6c 0%, #08b65a 100%);
+}
+
+/* ============================================================================
+   BASE LAYER
+   ============================================================================ */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { font-family: var(--font-ui); }
+
+  body {
+    @apply bg-bg text-fg;
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  }
+}
+
+/* ============================================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================================ */
+@layer utilities {
+  .fc-display-xl { font: var(--t-display-xl); letter-spacing: var(--tracking-display); text-transform: uppercase; }
+  .fc-display    { font: var(--t-display);    letter-spacing: var(--tracking-display); text-transform: uppercase; }
+  .fc-h1  { font: var(--t-h1);      letter-spacing: -0.01em; }
+  .fc-h2  { font: var(--t-h2);      letter-spacing: -0.01em; }
+  .fc-h3  { font: var(--t-h3); }
+  .fc-body-lg { font: var(--t-body-lg); }
+  .fc-body    { font: var(--t-body); }
+  .fc-body-sm { font: var(--t-body-sm); }
+  .fc-label   { font: var(--t-label);   text-transform: uppercase; letter-spacing: var(--tracking-label); }
+  .fc-caption { font: var(--t-caption); letter-spacing: var(--tracking-caption); }
+  .fc-mono    { font: var(--t-mono);    font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+  .fc-tnum    { font-variant-numeric: tabular-nums; }
+
+  /* Festival gradient text */
+  .fc-grad-text {
+    background: var(--grad-festival);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}

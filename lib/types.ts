@@ -108,6 +108,16 @@ export const SLOTS_PER_LEVEL: Readonly<Record<Level, number>> = {
   4: 4,
 };
 
+/** Modo de jogo selecionado pelo usuário. */
+export type GameMode = 'normal' | 'easy'
+
+/** Estado de um slot preenchido na pirâmide. */
+export interface SlotEntry {
+  playerId: string
+  playerName: string
+  correct: boolean
+}
+
 /** Retorna o nível correto da pirâmide para um dado rank (1–10). */
 export function levelForRank(rank: number): Level {
   const level = RANK_TO_LEVEL[rank as Rank];
@@ -115,4 +125,159 @@ export function levelForRank(rank: number): Level {
     throw new RangeError(`Rank fora do intervalo 1–10: ${rank}`);
   }
   return level;
+}
+
+// ============================================================
+// COPA DOS SONHOS — Tipos independentes do puzzle diário
+// ============================================================
+
+/** Posições táticas reconhecidas pelo jogo. */
+export type TacticalPosition =
+  | 'GOL'
+  | 'LD' | 'ZAG' | 'LE'
+  | 'MEI' | 'MD' | 'ME'
+  | 'PD' | 'PE' | 'CA';
+
+/** Formações táticas disponíveis. */
+export type Formation =
+  | '4-3-3' | '4-4-2' | '4-2-3-1' | '4-2-4'
+  | '3-5-2' | '5-3-2' | '4-5-1'   | '3-4-3';
+
+/** Modo de dificuldade do draft. */
+export type DraftMode = 'classico' | 'almanaque';
+
+/** Fase alcançada numa Copa. */
+export type PhaseReached =
+  | 'CAMPEÃO' | 'VICE' | 'SEMI' | 'QUARTAS' | 'OITAVAS' | 'FASE_GRUPOS';
+
+/** Fase do torneio na simulação. */
+export type TournamentPhase =
+  | 'grupos' | 'oitavas' | 'quartas' | 'semi' | 'final';
+
+// ── Dados de banco ────────────────────────────────────────────
+
+/** Edição da Copa do Mundo. Tabela `cup_editions`. */
+export interface CupEdition {
+  id:           string;
+  year:         number;        // ex: 1998
+  host_country: string;        // ex: "França"
+  champion:     string;        // ex: "França"
+}
+
+/** Seleção numa edição da Copa. Tabela `cup_squads`. */
+export interface CupSquad {
+  id:            string;
+  edition_id:    string;
+  country_code:  string;       // ISO-2: "BR", "AR"
+  country_name:  string;       // ex: "Brasil"
+  flag_emoji:    string;       // ex: "🇧🇷"
+  phase_reached: PhaseReached;
+  avg_rating:    number;       // média dos 11 maiores ratings; usado no pool de adversários
+}
+
+/**
+ * Jogador numa seleção × edição específica. Tabela `cup_players`.
+ * Rating é SEMPRE por campanha — Messi 2006 ≠ Messi 2022.
+ */
+export interface CupPlayer {
+  id:              string;
+  squad_id:        string;
+  squad_number:    number | null;
+  name:            string;
+  positions:       TacticalPosition[];  // [0] = posição principal
+  rating_computed: number;              // calculado offline (60–99)
+  rating_override: number | null;       // ajuste manual para casos históricos
+  override_reason: string | null;
+  photo_url:       string | null;
+  goals:           number;
+  assists:         number;
+  minutes_played:  number | null;
+  /** Rating efetivo: override ?? computed. Vem da view `cup_players_with_rating`. */
+  rating:          number;
+}
+
+// ── Estado do draft (sessionStorage) ─────────────────────────
+
+/** Um slot preenchido no draft (posição + jogador escolhido). */
+export interface DraftSlot {
+  position:     TacticalPosition;
+  slotIndex:    number;               // para formações com posições repetidas (ex: ZAG 0 e ZAG 1)
+  player:       CupPlayer;
+  squadInfo: {
+    country_code: string;
+    country_name: string;
+    flag_emoji:   string;
+    edition_year: number;
+  };
+}
+
+/** Estado completo do draft persistido em sessionStorage. */
+export interface DraftState {
+  formation:    Formation;
+  mode:         DraftMode;
+  picks:        DraftSlot[];          // 0–11 picks feitos
+  rerollsLeft:  number;               // re-rolls restantes no pick atual (0–3)
+  currentRoll: {
+    squad:   CupSquad   | null;
+    edition: CupEdition | null;
+    players: CupPlayer[];
+  } | null;
+}
+
+// ── Simulação ─────────────────────────────────────────────────
+
+/** Gol gerado pela engine de simulação. */
+export interface SimulatedGoal {
+  minute:     number;         // 1–90 (ou 90+ para acréscimos)
+  scorerName: string;
+  isOpponent: boolean;        // false = gol do time do usuário
+}
+
+/** Resultado de uma partida simulada. */
+export interface SimulatedMatch {
+  phase:        TournamentPhase;
+  opponentSquad: CupSquad;
+  homeGoals:    number;        // gols do time do usuário
+  awayGoals:    number;        // gols do adversário
+  goals:        SimulatedGoal[];
+  penalties?:   PenaltyShootout;
+  won:          boolean;
+}
+
+/** Disputas de pênaltis. */
+export interface PenaltyShootout {
+  userKicks:     PenaltyKick[];
+  opponentKicks: PenaltyKick[];
+  userWon:       boolean;
+}
+
+export interface PenaltyKick {
+  takerName: string;
+  converted: boolean;
+}
+
+/** Resultado completo de uma campanha. */
+export interface CampaignResult {
+  seed:         string;           // ex: "1YYUVSJ"
+  formation:    Formation;
+  mode:         DraftMode;
+  picks:        DraftSlot[];
+  matches:      SimulatedMatch[];
+  phaseReached: TournamentPhase | 'campeao';
+  wins:         number;
+  goalsFor:     number;
+  goalsAgainst: number;
+}
+
+// ── Hub de modos ──────────────────────────────────────────────
+
+/** Registro de um modo de jogo na home hub (D9). Renomeado para HubMode para não colidir com GameMode do Pyramid. */
+export interface HubMode {
+  id:          string;
+  title:       string;
+  description: string;
+  href:        string;
+  duration:    string;          // ex: "~10 min"
+  available:   boolean;
+  badge?:      'NOVO' | 'EM BREVE';
 }

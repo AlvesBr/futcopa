@@ -46,3 +46,7 @@ yarn-error.log*
 
 # Vercel
 .vercel
+
+# Build artifacts
+storybook-static/
+tsconfig.tsbuildinfo

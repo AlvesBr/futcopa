@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 22px 24px; font-family: var(--font-ui); }
+  .cap { font: var(--t-label); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--fg-2); margin: 0 0 16px; }
+  .track { position: relative; height: 26px; margin-bottom: 10px; display: flex; align-items: center; }
+  .lab { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); width: 150px; flex: none; }
+  .rail { position: relative; flex: 1; height: 4px; background: var(--surface-3); border-radius: 999px; }
+  .ball { position: absolute; top: -7px; width: 18px; height: 18px; border-radius: 999px; background: var(--grass-500); }
+  @keyframes run { 0% { left: 0 } 45% { left: calc(100% - 18px) } 55% { left: calc(100% - 18px) } 100% { left: 0 } }
+  .b1 { animation: run 2.6s var(--ease-standard) infinite; }
+  .b2 { animation: run 2.6s var(--ease-out) infinite; background: var(--cyan-500); }
+  .b3 { animation: run 2.6s var(--ease-bounce) infinite; background: var(--magenta-500); }
+  .durs { display: flex; gap: 8px; margin-top: 14px; }
+  .d { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--fg-2); background: var(--surface-2); padding: 4px 9px; border-radius: var(--r-sm); }
+  @media (prefers-reduced-motion: reduce) { .ball { animation: none !important; left: calc(100% - 18px); } }
+</style>
+</head>
+<body>
+  <div class="cap">Motion · easings &amp; durations</div>
+  <div class="track"><span class="lab">standard</span><span class="rail"><span class="ball b1"></span></span></div>
+  <div class="track"><span class="lab">ease-out</span><span class="rail"><span class="ball b2"></span></span></div>
+  <div class="track"><span class="lab">bounce · card drop</span><span class="rail"><span class="ball b3"></span></span></div>
+  <div class="durs"><span class="d">120ms</span><span class="d">200ms</span><span class="d">320ms</span><span class="d">500ms</span></div>
+</body>
+</html>

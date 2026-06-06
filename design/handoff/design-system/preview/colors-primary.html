@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; font-family: var(--font-ui); background: var(--bg); padding: 22px 24px; }
+  .row { display: flex; gap: 0; border-radius: var(--r-md); overflow: hidden; box-shadow: var(--sh-2); }
+  .sw { flex: 1; height: 92px; display: flex; flex-direction: column; justify-content: flex-end; padding: 8px 10px; }
+  .sw b { font: var(--t-caption); font-weight: 700; }
+  .sw span { font: var(--t-caption); opacity: .8; font-family: var(--font-mono); font-size: 10px; }
+  .cap { font: var(--t-label); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--fg-2); margin: 0 2px 12px; }
+  .dot { color: var(--grass-500); }
+</style>
+</head>
+<body>
+  <div class="cap">Primary · Pitch Lime <span class="dot">●</span></div>
+  <div class="row">
+    <div class="sw" style="background:var(--grass-100)"><b style="color:#294810">100</b><span style="color:#294810">#e9f8bd</span></div>
+    <div class="sw" style="background:var(--grass-300)"><b style="color:#294810">300</b><span style="color:#294810">#bbe75a</span></div>
+    <div class="sw" style="background:var(--grass-500)"><b style="color:#18280b">500</b><span style="color:#18280b">#6fc01a</span></div>
+    <div class="sw" style="background:var(--grass-600)"><b style="color:#fff">600</b><span style="color:#eaf4ee">#57a010</span></div>
+    <div class="sw" style="background:var(--grass-700)"><b style="color:#fff">700</b><span style="color:#e9f8bd">#437d10</span></div>
+    <div class="sw" style="background:var(--grass-900)"><b style="color:#fff">900</b><span style="color:#bbe75a">#294810</span></div>
+  </div>
+</body>
+</html>
