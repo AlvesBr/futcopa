@@ -107,12 +107,12 @@ export function FormationPitch({
 
   return (
     <div
-      className="relative w-full rounded-lg overflow-hidden"
-      style={{ paddingBottom: '130%', background: 'var(--grass-50, #1a4a2e)' }}
+      className="relative w-full rounded-lg overflow-hidden shadow-2"
+      style={{ paddingBottom: '130%', background: 'var(--grad-pitch)' }}
     >
       {/* Linhas do campo */}
       <svg
-        className="absolute inset-0 w-full h-full opacity-20"
+        className="absolute inset-0 w-full h-full opacity-25"
         viewBox="0 0 100 130"
         preserveAspectRatio="none"
       >
@@ -121,6 +121,11 @@ export function FormationPitch({
         <circle cx="50" cy="65" r="12" fill="none" stroke="white" strokeWidth="0.6"/>
         <rect x="30" y="5"  width="40" height="18" fill="none" stroke="white" strokeWidth="0.5"/>
         <rect x="30" y="107" width="40" height="18" fill="none" stroke="white" strokeWidth="0.5"/>
+        {/* Faixas de relva alternada (efeito estádio) */}
+        <rect x="10" y="5"  width="80" height="15" fill="white" fillOpacity="0.04"/>
+        <rect x="10" y="35" width="80" height="15" fill="white" fillOpacity="0.04"/>
+        <rect x="10" y="65" width="80" height="15" fill="white" fillOpacity="0.04"/>
+        <rect x="10" y="95" width="80" height="15" fill="white" fillOpacity="0.04"/>
       </svg>
 
       {/* Slots dos jogadores */}
@@ -169,25 +174,33 @@ function PitchSlot({
     >
       {/* Círculo do slot */}
       <div className={cn(
-        'w-9 h-9 rounded-full border-2 flex items-center justify-center text-center transition-colors',
+        'w-10 h-10 rounded-full border-2 flex items-center justify-center text-center transition-all duration-150',
         filled
-          ? 'bg-[var(--gold-100,#f5c518)] border-[var(--gold-400,#c9a227)] shadow-md'
+          ? 'shadow-md'
           : pickable
-            ? 'bg-primary/80 border-primary shadow-glow animate-pulse'
-            : 'bg-black/30 border-white/30',
-      )}>
+            ? 'animate-pulse'
+            : '',
+      )} style={
+        filled
+          ? { backgroundColor: 'var(--gold-100)', borderColor: 'var(--gold-400)' }
+          : pickable
+            ? { backgroundColor: 'rgba(255,255,255,0.85)', borderColor: 'white', boxShadow: '0 0 12px rgba(255,255,255,0.8)' }
+            : { backgroundColor: 'rgba(255,255,255,0.15)', borderColor: 'rgba(255,255,255,0.55)' }
+      }>
         {filled ? (
-          <span className="fc-caption font-bold text-[10px] leading-none text-[var(--fg-on-gold,#1a1a1a)]">
+          <span className="fc-caption font-bold text-[10px] leading-none" style={{ color: 'var(--fg-on-gold)' }}>
             {pick!.player.squad_number ?? pick!.player.name.slice(0, 2).toUpperCase()}
           </span>
         ) : (
-          <span className="fc-caption text-white/60 text-[10px]">{pos}</span>
+          <span className="fc-caption font-bold text-white text-[9px] leading-none drop-shadow">
+            {pos}
+          </span>
         )}
       </div>
 
       {/* Nome abaixo do disco */}
       {filled && (
-        <span className="fc-caption text-white text-[9px] font-bold leading-none max-w-[56px] truncate text-center drop-shadow">
+        <span className="fc-caption text-white text-[9px] font-bold leading-none max-w-[60px] truncate text-center drop-shadow-sm">
           {(pick?.player.name.split(' ').pop() ?? '').toUpperCase()}
         </span>
       )}

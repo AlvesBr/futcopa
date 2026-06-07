@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { cn } from '@/lib/cn'
 import type { Formation, DraftMode } from '@/lib/types'
 import { createEmptyDraftState, saveDraftState } from '@/lib/draftState'
+import { useTheme } from '@/components/ThemeProvider'
 
 const FORMATIONS: Formation[] = [
   '4-3-3', '4-4-2', '4-2-3-1', '4-2-4',
@@ -14,6 +15,7 @@ const FORMATIONS: Formation[] = [
 
 export default function CopaDosSonhosPage() {
   const router = useRouter()
+  const { resolvedTheme, setTheme } = useTheme()
   const [formation, setFormation] = useState<Formation>('4-3-3')
   const [mode, setMode]           = useState<DraftMode>('classico')
 
@@ -24,13 +26,22 @@ export default function CopaDosSonhosPage() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-4 py-10 gap-8">
+    <main className="min-h-screen flex flex-col items-center justify-center px-4 py-10 gap-8"
+          style={{ backgroundColor: 'var(--bg)', color: 'var(--fg)' }}>
 
       {/* Header */}
-      <header className="text-center">
+      <header className="text-center w-full max-w-sm relative">
         <Link href="/" className="fc-caption text-fg-3 hover:text-fg mb-4 block">
           ← Voltar
         </Link>
+        <button
+          onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+          className="absolute top-0 right-0 fc-caption text-fg-3 hover:text-fg px-2 py-1 rounded transition-colors"
+          aria-label="Alternar tema"
+          title={resolvedTheme === 'dark' ? 'Modo claro' : 'Modo escuro'}
+        >
+          {resolvedTheme === 'dark' ? '☀️' : '🌙'}
+        </button>
         <h1 className="fc-title text-fg">Copa dos Sonhos</h1>
         <p className="fc-body text-fg-2 mt-2 max-w-sm mx-auto">
           Role o dado. Sorteie uma seleção e uma Copa. Escale um craque histórico.
