@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--ink-200); padding: 20px; font-family: var(--font-ui); }
+  .cap { font: var(--t-label); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--fg-2); margin: 0 0 14px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .panel { border-radius: var(--r-lg); padding: 22px; display: flex; align-items: center; gap: 14px; }
+  .lock { display: flex; align-items: center; gap: 12px; }
+  .lock img { width: 46px; height: 46px; }
+  .wm { font-family: var(--font-display); text-transform: uppercase; font-size: 38px; line-height: .9; letter-spacing: -.01em; }
+  .wm .fut { color: var(--grass-500); }
+  .wm .copa { color: var(--gold-400); }
+  .lt { background: #fff; }
+  .lt .wm .fut { color: var(--grass-600); }
+  .dk { background: var(--ink-950); }
+</style>
+</head>
+<body>
+  <div class="cap">Logo lockup — mark + wordmark (Anton)</div>
+  <div class="row">
+    <div class="panel lt"><div class="lock"><img src="../assets/logo-mark.svg" alt="FutCopa mark"><span class="wm"><span class="fut">FUT</span><span class="copa">COPA</span></span></div></div>
+    <div class="panel dk"><div class="lock"><img src="../assets/logo-mark.svg" alt="FutCopa mark"><span class="wm"><span class="fut">FUT</span><span class="copa">COPA</span></span></div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 22px 24px; font-family: var(--font-ui); }
+  .cap { font: var(--t-label); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--fg-2); margin: 0 0 16px; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; font: var(--t-label); text-transform: uppercase; letter-spacing: .04em; padding: 7px 13px; border-radius: var(--r-pill); }
+  .cat { background: var(--ink-900); color: #fff; }
+  .cat b { color: var(--gold-400); }
+  .level { background: var(--cyan-100); color: var(--cyan-800); }
+  .streak { background: var(--magenta-100); color: var(--magenta-800); }
+  .rank { background: var(--gold-100); color: var(--gold-700); font-family: var(--font-mono); }
+  .live { background: var(--grass-100); color: var(--grass-700); }
+  .live .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--grass-500); }
+</style>
+</head>
+<body>
+  <div class="cap">Badges &amp; chips</div>
+  <div class="row">
+    <span class="chip cat">Categoria do dia · <b>Mais gols</b></span>
+    <span class="chip level">📍 Nível 1</span>
+  </div>
+  <div class="row">
+    <span class="chip streak">🔥 Sequência 4</span>
+    <span class="chip rank">#128</span>
+    <span class="chip live"><span class="dot"></span> Ao vivo</span>
+  </div>
+</body>
+</html>

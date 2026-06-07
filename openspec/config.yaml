@@ -1,20 +1,34 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+# Project context (shown to AI when creating artifacts)
+context: |
+  Produto: WorldCup Pyramid — jogo web diário estilo Wordle. O jogador ordena 10
+  jogadores/seleções de Copa do Mundo numa pirâmide de 4 níveis (1-2-3-4 slots) por
+  categoria (gols, minutos, participações...). Topo = maior valor, base = menor.
+  Um puzzle por dia, sem replay, resultado compartilhável. Referência:
+  https://futbol11.netlify.app/futbol11-pyramid
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+  Stack: Next.js 14 (App Router) + TypeScript + Tailwind CSS; @dnd-kit/core para
+  drag-and-drop; Supabase (PostgreSQL) como backend; scripts Python offline para coleta
+  de dados; deploy na Vercel (front) + Supabase (banco), ambos no plano gratuito.
+  Design system criado no Claude Design (tokens claro+escuro) + Storybook.
+
+  Princípios:
+  - Mobile-first. Sem necessidade de conta (estado via localStorage).
+  - Coleta de dados é SEMPRE offline; o frontend NUNCA chama APIs externas em runtime.
+  - Mapeamento rank→nível: rank 1 → nível 1; ranks 2-3 → nível 2; ranks 4-6 → nível 3;
+    ranks 7-10 → nível 4.
+  - Feedback de acerto/erro nunca depende só de cor (usar também ícone/forma) — a11y.
+  - Copy de UI em português (BR). Conventional commits.
+
+# Per-artifact rules
+rules:
+  tasks:
+    - Quebrar em chunks de no máximo ~2h, cada um com um critério de verificação claro.
+    - Incluir sempre uma tarefa de verificação (dev/build/test) ao final do change.
+  design:
+    - Referenciar a spec implementada em openspec/specs/<capability>/spec.md.
+    - Reutilizar os tipos centrais de lib/types.ts e os primitivos de components/ui/*
+      (quando existirem); não duplicar shapes de Player/Puzzle.
+    - Criar delta spec (ADDED/MODIFIED) apenas quando a change adiciona/altera capacidade;
+      changes que só implementam spec existente não criam delta.

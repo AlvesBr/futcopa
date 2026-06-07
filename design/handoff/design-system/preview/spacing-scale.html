@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 22px 24px; font-family: var(--font-ui); }
+  .cap { font: var(--t-label); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--fg-2); margin: 0 0 16px; }
+  .scale { display: flex; align-items: flex-end; gap: 14px; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .bar { background: var(--grass-500); border-radius: 4px; width: 24px; }
+  .item .n { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); }
+  .item .t { font: var(--t-caption); font-weight: 700; color: var(--fg-2); }
+</style>
+</head>
+<body>
+  <div class="cap">Spacing · 4pt base</div>
+  <div class="scale">
+    <div class="item"><div class="bar" style="height:4px"></div><div class="t">1</div><div class="n">4</div></div>
+    <div class="item"><div class="bar" style="height:8px"></div><div class="t">2</div><div class="n">8</div></div>
+    <div class="item"><div class="bar" style="height:12px"></div><div class="t">3</div><div class="n">12</div></div>
+    <div class="item"><div class="bar" style="height:16px"></div><div class="t">4</div><div class="n">16</div></div>
+    <div class="item"><div class="bar" style="height:20px"></div><div class="t">5</div><div class="n">20</div></div>
+    <div class="item"><div class="bar" style="height:24px"></div><div class="t">6</div><div class="n">24</div></div>
+    <div class="item"><div class="bar" style="height:32px"></div><div class="t">8</div><div class="n">32</div></div>
+    <div class="item"><div class="bar" style="height:40px"></div><div class="t">10</div><div class="n">40</div></div>
+    <div class="item"><div class="bar" style="height:48px"></div><div class="t">12</div><div class="n">48</div></div>
+    <div class="item"><div class="bar" style="height:64px"></div><div class="t">16</div><div class="n">64</div></div>
+  </div>
+</body>
+</html>

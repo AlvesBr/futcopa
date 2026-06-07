@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; font-family: var(--font-ui); background: var(--ink-200); padding: 20px; }
+  .cap { font: var(--t-label); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--fg-2); margin: 0 2px 12px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .panel { border-radius: var(--r-lg); padding: 14px; }
+  .panel .lab { font: var(--t-caption); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+  .card { border-radius: var(--r-md); padding: 12px; margin-bottom: 8px; }
+  .t1 { font: var(--t-body); font-weight: 700; }
+  .t2 { font: var(--t-body-sm); }
+</style>
+</head>
+<body>
+  <div class="cap">Surfaces — light / dark</div>
+  <div class="pair">
+    <div class="panel" style="background:#f6f8f7;border:1px solid #e1e6e3">
+      <div class="lab" style="color:#46554d">Light</div>
+      <div class="card" style="background:#fff;box-shadow:var(--sh-2)"><div class="t1" style="color:#0d1f17">Surface / card</div><div class="t2" style="color:#46554d">bg · surface · border</div></div>
+      <div class="card" style="background:#eef2f0"><div class="t2" style="color:#46554d">surface-2 · inset well</div></div>
+    </div>
+    <div class="panel" style="background:#07120d;border:1px solid #21342b">
+      <div class="lab" style="color:#b6c2bb">Dark · stadium night</div>
+      <div class="card" style="background:#11241a;box-shadow:0 2px 8px rgba(0,0,0,.5)"><div class="t1" style="color:#eef2f0">Surface / card</div><div class="t2" style="color:#b6c2bb">bg · surface · border</div></div>
+      <div class="card" style="background:#16261e"><div class="t2" style="color:#b6c2bb">surface-2 · inset well</div></div>
+    </div>
+  </div>
+</body>
+</html>

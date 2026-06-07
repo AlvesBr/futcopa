@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; font-family: var(--font-ui); background: var(--bg); padding: 22px 24px; }
+  .cap { font: var(--t-label); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--fg-2); margin: 0 2px 4px; }
+  .sub { font: var(--t-caption); color: var(--fg-3); margin: 0 2px 14px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .tile { border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--border); box-shadow: var(--sh-1); padding: 14px 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+  .tile .nm { font: var(--t-label); text-transform: uppercase; letter-spacing: .04em; }
+  .tile .sh { font: var(--t-caption); color: var(--fg-3); }
+  svg { display: block; }
+</style>
+</head>
+<body>
+  <div class="cap">Semantic feedback</div>
+  <div class="sub">Colorblind-safe — every state pairs a color with a dedicated shape + icon.</div>
+  <div class="grid">
+    <div class="tile">
+      <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#08b65a"/><path d="M15 24.5l6 6 12-13" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="nm" style="color:#06593a">Acerto</div><div class="sh">circle · check</div>
+    </div>
+    <div class="tile">
+      <svg width="48" height="48" viewBox="0 0 48 48"><rect x="9" y="9" width="30" height="30" rx="6" transform="rotate(45 24 24)" fill="#ff3b47"/><path d="M18 18l12 12M30 18l-12 12" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/></svg>
+      <div class="nm" style="color:#9c0f17">Erro</div><div class="sh">diamond · ✕</div>
+    </div>
+    <div class="tile">
+      <svg width="48" height="48" viewBox="0 0 48 48"><path d="M24 5l21 36H3z" fill="#ff9e1b" stroke="#ff9e1b" stroke-width="4" stroke-linejoin="round"/><path d="M24 19v9" stroke="#3a2400" stroke-width="4.2" stroke-linecap="round"/><circle cx="24" cy="34.5" r="2.6" fill="#3a2400"/></svg>
+      <div class="nm" style="color:#8a4b00">Parcial</div><div class="sh">triangle · !</div>
+    </div>
+    <div class="tile">
+      <svg width="48" height="48" viewBox="0 0 48 48"><rect x="3" y="3" width="42" height="42" rx="11" fill="#15b8e8"/><circle cx="24" cy="15" r="2.8" fill="#06283a"/><path d="M24 23v12" stroke="#06283a" stroke-width="4.2" stroke-linecap="round"/></svg>
+      <div class="nm" style="color:#08566e">Info</div><div class="sh">square · i</div>
+    </div>
+  </div>
+</body>
+</html>
