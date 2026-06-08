@@ -54,3 +54,5 @@ tsconfig.tsbuildinfo
 # Agent skills (installed via npx skills, não versionar)
 .agents/
 .claude/skills/
+
+.vercel
