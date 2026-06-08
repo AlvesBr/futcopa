@@ -10,9 +10,12 @@ import type { CupEdition, CupSquad, CupPlayer, TournamentPhase } from '@/lib/typ
 // Posição do jogador → slots de formação onde pode jogar (D11)
 export const POSITION_COMPATIBILITY: Record<string, string[]> = {
   GOL: ['GOL'],
-  LD:  ['LD'],
-  LE:  ['LE'],
-  ZAG: ['ZAG'],
+  LD:  ['LD', 'ZAG'],
+  LE:  ['LE', 'ZAG'],
+  // Wikipedia só tem DF genérico → todos os defensores chegam como ZAG.
+  // ZAG pode cobrir LD e LE pois não há como distinguir laterais de zagueiros
+  // centrais a partir dos dados coletados.
+  ZAG: ['ZAG', 'LD', 'LE'],
   MEI: ['MEI'],
   MD:  ['MEI', 'PD'],
   ME:  ['MEI', 'PE'],
