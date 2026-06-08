@@ -16,9 +16,11 @@ export const POSITION_COMPATIBILITY: Record<string, string[]> = {
   // ZAG pode cobrir LD e LE pois não há como distinguir laterais de zagueiros
   // centrais a partir dos dados coletados.
   ZAG: ['ZAG', 'LD', 'LE'],
-  MEI: ['MEI'],
-  MD:  ['MEI', 'PD'],
-  ME:  ['MEI', 'PE'],
+  // Wikipedia só tem MF genérico → todos os meias chegam como MEI.
+  // MEI cobre MD e ME pois não há como distinguir meia-direito/esquerdo.
+  MEI: ['MEI', 'MD', 'ME'],
+  MD:  ['MEI', 'MD', 'PD'],
+  ME:  ['MEI', 'ME', 'PE'],
   PD:  ['PD', 'CA'],
   PE:  ['PE', 'CA'],
   CA:  ['CA', 'PE', 'PD'],
