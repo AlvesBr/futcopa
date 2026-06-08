@@ -103,9 +103,9 @@ export default function DraftPage() {
 
     try {
       // Exclui os últimos N squads únicos do histórico de picks para criar
-      // um efeito round-robin. N = totalSquads - 1 = 5 (banco tem ~6 squads),
-      // garantindo que sempre há pelo menos 1 squad disponível.
-      const MAX_EXCLUDE = 5
+      // um efeito round-robin. N = 15 (banco tem 30 squads),
+      // garantindo que sempre há pelo menos 15 squads disponíveis.
+      const MAX_EXCLUDE = 15
       const recentIds = draft.picks.map(p => p.player.squad_id).reverse()
       const seen = new Set<string>()
       const usedSquadIds: string[] = []

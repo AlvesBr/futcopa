@@ -277,3 +277,9 @@ INSERT INTO public.cup_players (id, squad_id, squad_number, name, positions, rat
 ('c0140110-0000-4000-8000-000000000001', 'b0140100-0000-4000-8000-000000000001', 11, 'Klose',          '{CA}',       84, NULL, NULL, NULL, 2, 1, 450, NOW()),
 ('c0140111-0000-4000-8000-000000000001', 'b0140100-0000-4000-8000-000000000001', 19, 'Götze',          '{CA,MEI}',   82, NULL, NULL, NULL, 1, 1, 270, NOW())
 ON CONFLICT (id) DO NOTHING;
+
+-- ============================================================
+-- add_squads_v3 — todos os campeões e vice-campeões 1970–2022
+-- (arquivo completo em supabase/add_squads_v3.sql)
+-- Aplicado em produção em 2026-06-08
+-- ============================================================
