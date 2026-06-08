@@ -11,6 +11,7 @@ import { CampaignCard }      from '@/components/copa/CampaignCard'
 import { loadDraftState, saveCampaignResult, resetCopaState } from '@/lib/draftState'
 import { getOpponentPool }   from '@/lib/cupData'
 import { generateCampaign }  from '@/lib/simulation'
+import { useTheme }          from '@/components/ThemeProvider'
 import type { CampaignResult, TournamentPhase } from '@/lib/types'
 
 type RevealMode = 'passo-a-passo' | 'automatico'
@@ -21,6 +22,7 @@ function SimulacaoInner() {
   const router       = useRouter()
   const searchParams = useSearchParams()
   const seed         = searchParams.get('seed') ?? 'UNKNOWN'
+  const { resolvedTheme, setTheme } = useTheme()
 
   const [campaign,      setCampaign]      = useState<CampaignResult | null>(null)
   const [revealedCount, setRevealedCount] = useState(0)
@@ -46,11 +48,21 @@ function SimulacaoInner() {
         const usedOppIds: string[] = []
 
         for (const phase of PHASES_ORDER) {
-          const pool = await getOpponentPool(phase, draftedSquadIds, usedOppIds)
+          // Tier 1: strict — exclude draft squads AND previously-used opponents
+          let pool = await getOpponentPool(phase, draftedSquadIds, usedOppIds)
+
+          // Tier 2: relaxed — exclude only draft squads (allow opponent repeats)
           if (pool.length === 0) {
-            // Fallback: usar adversário genérico
-            break
+            pool = await getOpponentPool(phase, draftedSquadIds, [])
           }
+
+          // Tier 3: any — exclude nothing (use any squad in the DB)
+          if (pool.length === 0) {
+            pool = await getOpponentPool(phase, [], [])
+          }
+
+          if (pool.length === 0) break
+
           // Sortear adversário do pool usando o seed
           const charCode: number = seed.charCodeAt(opponents.length) ?? 0
           const idx: number = Math.abs(charCode) % pool.length
@@ -132,16 +144,27 @@ function SimulacaoInner() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: 'var(--bg)' }}>
 
       {/* Top bar */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--slot-border)]">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--slot-border)]"
+              style={{ backgroundColor: 'var(--surface)' }}>
         <h1 className="fc-subtitle text-fg font-bold">
           A campanha · SEED <span className="text-fg-3">#{seed}</span>
         </h1>
-        <button onClick={handleRepeat} className="fc-caption text-fg-3 hover:text-fg">
-          ↻ Repetir
-        </button>
+        <div className="flex items-center gap-3">
+          <button onClick={handleRepeat} className="fc-caption text-fg-3 hover:text-fg">
+            ↻ Repetir
+          </button>
+          <button
+            onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+            className="fc-caption text-fg-3 hover:text-fg px-2 py-1 rounded transition-colors"
+            aria-label="Alternar tema"
+            title={resolvedTheme === 'dark' ? 'Modo claro' : 'Modo escuro'}
+          >
+            {resolvedTheme === 'dark' ? '☀️' : '🌙'}
+          </button>
+        </div>
       </header>
 
       <main className="flex-1 flex flex-col lg:flex-row gap-6 p-4 max-w-4xl mx-auto w-full">

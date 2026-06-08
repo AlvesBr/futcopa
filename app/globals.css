@@ -212,7 +212,8 @@
   html { font-family: var(--font-ui); }
 
   body {
-    @apply bg-bg text-fg;
+    background-color: var(--bg);
+    color: var(--fg);
     font-family: var(--font-ui);
     -webkit-font-smoothing: antialiased;
   }

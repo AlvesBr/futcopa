@@ -50,3 +50,7 @@ yarn-error.log*
 # Build artifacts
 storybook-static/
 tsconfig.tsbuildinfo
+
+# Agent skills (installed via npx skills, não versionar)
+.agents/
+.claude/skills/

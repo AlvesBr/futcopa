@@ -102,7 +102,8 @@ export async function getPlayersBySquad(squadId: string): Promise<CupPlayer[]> {
  * Exclui squads já usados no draft atual.
  */
 export async function getRandomRoll(
-  excludeSquadIds: string[] = []
+  excludeSquadIds: string[] = [],
+  _attempt = 0,
 ): Promise<{ edition: CupEdition; squad: CupSquad; players: CupPlayer[] } | null> {
   const sb = createBrowserClient()
 
@@ -127,6 +128,90 @@ export async function getRandomRoll(
   if (players.length < 11) {
     // Tentar outro squad se este tiver poucos jogadores
     return getRandomRoll([...excludeSquadIds, squad.id])
+  }
+
+  return {
+    edition: squad.cup_editions,
+    squad:   { ...squad, cup_editions: undefined } as unknown as CupSquad,
+    players,
+  }
+}
+
+/**
+ * Para "↺ Outra Seleção": mesma Copa (editionId), país diferente.
+ * Fallback automático para qualquer squad se não houver outros na mesma Copa.
+ */
+export async function getRandomRollSameEdition(
+  editionId: string,
+  excludeSquadIds: string[] = []
+): Promise<{ edition: CupEdition; squad: CupSquad; players: CupPlayer[] } | null> {
+  const sb = createBrowserClient()
+
+  let query = sb
+    .from('cup_squads')
+    .select('*, cup_editions!inner(*)')
+    .eq('edition_id', editionId)
+
+  if (excludeSquadIds.length > 0) {
+    query = query.not('id', 'in', `(${excludeSquadIds.join(',')})`)
+  }
+
+  const { data: squads, error } = await query
+  if (error) throw new Error(`getRandomRollSameEdition: ${error.message}`)
+
+  if (!squads || squads.length === 0) {
+    // Fallback: qualquer squad não usado
+    return getRandomRoll(excludeSquadIds)
+  }
+
+  const idx   = Math.floor(Math.random() * squads.length)
+  const squad = squads[idx] as CupSquad & { cup_editions: CupEdition }
+
+  const players = await getPlayersBySquad(squad.id)
+  if (players.length < 11) {
+    return getRandomRollSameEdition(editionId, [...excludeSquadIds, squad.id])
+  }
+
+  return {
+    edition: squad.cup_editions,
+    squad:   { ...squad, cup_editions: undefined } as unknown as CupSquad,
+    players,
+  }
+}
+
+/**
+ * Para "↺ Outra Copa": mesmo país (countryCode), Copa diferente.
+ * Fallback automático para qualquer squad se o país não tiver outras edições.
+ */
+export async function getRandomRollSameCountry(
+  countryCode: string,
+  excludeSquadIds: string[] = []
+): Promise<{ edition: CupEdition; squad: CupSquad; players: CupPlayer[] } | null> {
+  const sb = createBrowserClient()
+
+  let query = sb
+    .from('cup_squads')
+    .select('*, cup_editions!inner(*)')
+    .eq('country_code', countryCode)
+
+  if (excludeSquadIds.length > 0) {
+    query = query.not('id', 'in', `(${excludeSquadIds.join(',')})`)
+  }
+
+  const { data: squads, error } = await query
+  if (error) throw new Error(`getRandomRollSameCountry: ${error.message}`)
+
+  if (!squads || squads.length === 0) {
+    // Fallback: qualquer squad não usado
+    return getRandomRoll(excludeSquadIds)
+  }
+
+  const idx   = Math.floor(Math.random() * squads.length)
+  const squad = squads[idx] as CupSquad & { cup_editions: CupEdition }
+
+  const players = await getPlayersBySquad(squad.id)
+  if (players.length < 11) {
+    return getRandomRollSameCountry(countryCode, [...excludeSquadIds, squad.id])
   }
 
   return {

@@ -7,12 +7,22 @@ import { DraftRollPanel }  from '@/components/copa/DraftRollPanel'
 import { FormationPitch }  from '@/components/copa/FormationPitch'
 import { BoxScore }        from '@/components/copa/BoxScore'
 import { loadDraftState, saveDraftState, createEmptyDraftState } from '@/lib/draftState'
-import { getRandomRoll, getCompatibleSlots, FORMATION_SLOTS } from '@/lib/cupData'
+import {
+  getRandomRoll,
+  getRandomRollSameEdition,
+  getRandomRollSameCountry,
+  getCompatibleSlots,
+  FORMATION_SLOTS,
+} from '@/lib/cupData'
 import { generateSeed }    from '@/lib/simulation'
-import type { DraftState, CupPlayer, DraftSlot } from '@/lib/types'
+import { useTheme }        from '@/components/ThemeProvider'
+import type { DraftState, CupPlayer, DraftSlot, CupEdition, CupSquad } from '@/lib/types'
+
+type RollResult = { edition: CupEdition; squad: CupSquad; players: CupPlayer[] }
 
 export default function DraftPage() {
   const router = useRouter()
+  const { resolvedTheme, setTheme } = useTheme()
 
   const [draft, setDraft]                   = useState<DraftState | null>(null)
   const [selectedPlayer, setSelectedPlayer] = useState<CupPlayer | null>(null)
@@ -66,12 +76,22 @@ export default function DraftPage() {
 
     if (compatible.length === 0 && selectedPlayer) {
       setNoSlotMsg(
-        `${selectedPlayer.name} joga ${selectedPlayer.positions.join('/')} — não há slot compatível disponível.`
+        `${selectedPlayer.name} (${selectedPlayer.positions.join('/')}) — nenhum slot compatível disponível.`
       )
     } else {
       setNoSlotMsg(null)
     }
   }, [draft, selectedPlayer])
+
+  // ── Helpers ────────────────────────────────────────────────────────────────
+
+  function applyRoll(draft: DraftState, roll: RollResult, decrementReroll: boolean): DraftState {
+    return {
+      ...draft,
+      rerollsLeft: decrementReroll ? Math.max(0, draft.rerollsLeft - 1) : draft.rerollsLeft,
+      currentRoll: { squad: roll.squad, edition: roll.edition, players: roll.players },
+    }
+  }
 
   // ── Handlers ──────────────────────────────────────────────────────────────
 
@@ -82,8 +102,8 @@ export default function DraftPage() {
     setNoSlotMsg(null)
 
     try {
-      const usedSquadIds = draft.picks.map(p => p.squadInfo.country_code + p.squadInfo.edition_year)
-      const roll = await getRandomRoll([])   // passar IDs reais em produção
+      const usedSquadIds = draft.picks.map(p => p.player.squad_id)
+      const roll = await getRandomRoll(usedSquadIds)
 
       if (!roll) {
         console.error('Nenhum squad disponível')
@@ -93,11 +113,7 @@ export default function DraftPage() {
       const newDraft: DraftState = {
         ...draft,
         rerollsLeft:  3,
-        currentRoll: {
-          squad:   roll.squad,
-          edition: roll.edition,
-          players: roll.players,
-        },
+        currentRoll: { squad: roll.squad, edition: roll.edition, players: roll.players },
       }
       setDraft(newDraft)
       saveDraftState(newDraft)
@@ -108,24 +124,41 @@ export default function DraftPage() {
     }
   }, [draft, isRolling])
 
-  const handleReroll = useCallback(async (keep: 'squad' | 'edition') => {
-    if (!draft || draft.rerollsLeft <= 0 || !draft.currentRoll) return
+  // "↺ Outra Seleção" → mesma Copa, país diferente
+  // "↺ Outra Copa"    → mesmo país, Copa diferente
+  const handleReroll = useCallback(async (type: 'team' | 'edition') => {
+    if (!draft || draft.rerollsLeft <= 0 || !draft.currentRoll || isRolling) return
     setIsRolling(true)
     setSelectedPlayer(null)
+    setNoSlotMsg(null)
 
     try {
-      const roll = await getRandomRoll([])
-      if (!roll) return
+      // Exclui squads já usados no draft E o roll atual (para realmente trocar)
+      const usedSquadIds = [
+        ...draft.picks.map(p => p.player.squad_id),
+        draft.currentRoll.squad?.id ?? '',
+      ].filter(Boolean) as string[]
 
-      const newRoll = keep === 'squad'
-        ? { ...draft.currentRoll, edition: roll.edition, players: roll.players }
-        : { ...draft.currentRoll, squad: roll.squad, players: roll.players }
+      let roll: RollResult | null = null
 
-      const newDraft: DraftState = {
-        ...draft,
-        rerollsLeft:  draft.rerollsLeft - 1,
-        currentRoll: newRoll,
+      if (type === 'team') {
+        // Mesma Copa (edição), seleção diferente
+        const editionId = draft.currentRoll.edition?.id
+        if (editionId) roll = await getRandomRollSameEdition(editionId, usedSquadIds)
+        else           roll = await getRandomRoll(usedSquadIds)
+      } else {
+        // Mesmo país, Copa diferente
+        const countryCode = draft.currentRoll.squad?.country_code
+        if (countryCode) roll = await getRandomRollSameCountry(countryCode, usedSquadIds)
+        else             roll = await getRandomRoll(usedSquadIds)
       }
+
+      if (!roll) {
+        console.warn('Reroll: nenhuma seleção encontrada')
+        return
+      }
+
+      const newDraft = applyRoll(draft, roll, true)
       setDraft(newDraft)
       saveDraftState(newDraft)
     } catch (err) {
@@ -133,7 +166,38 @@ export default function DraftPage() {
     } finally {
       setIsRolling(false)
     }
-  }, [draft])
+  }, [draft, isRolling])
+
+  // Saída de emergência: rerolls esgotados + nenhum jogador tem slot disponível
+  const handleForceRoll = useCallback(async () => {
+    if (!draft || isRolling) return
+    setIsRolling(true)
+    setSelectedPlayer(null)
+    setNoSlotMsg(null)
+
+    try {
+      const usedSquadIds = [
+        ...draft.picks.map(p => p.player.squad_id),
+        draft.currentRoll?.squad?.id ?? '',
+      ].filter(Boolean) as string[]
+
+      const roll = await getRandomRoll(usedSquadIds)
+      if (!roll) return
+
+      // Mantém rerollsLeft em 0 — é uma ação de emergência, não um reroll normal
+      const newDraft: DraftState = {
+        ...draft,
+        rerollsLeft: 0,
+        currentRoll: { squad: roll.squad, edition: roll.edition, players: roll.players },
+      }
+      setDraft(newDraft)
+      saveDraftState(newDraft)
+    } catch (err) {
+      console.error('Erro ao forçar novo sortear:', err)
+    } finally {
+      setIsRolling(false)
+    }
+  }, [draft, isRolling])
 
   const handleSelectPlayer = useCallback((player: CupPlayer) => {
     setSelectedPlayer(prev => prev?.id === player.id ? null : player)
@@ -185,17 +249,29 @@ export default function DraftPage() {
   const slots      = FORMATION_SLOTS[draft.formation] ?? []
   const isComplete = draft.picks.length >= slots.length
 
+  // Detectar estado travado: rerolls esgotados + jogador selecionado sem slot
+  const isStuck = draft.rerollsLeft === 0 && noSlotMsg !== null
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: 'var(--bg)' }}>
 
       {/* Top bar */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--slot-border)]">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--slot-border)]"
+              style={{ backgroundColor: 'var(--surface)' }}>
         <Link href="/copa-dos-sonhos" className="fc-caption text-fg-3 hover:text-fg">
           ← Sair
         </Link>
         <span className="fc-caption text-fg-2">
           {draft.formation} · {draft.mode === 'classico' ? 'Clássico' : 'De Almanaque'}
         </span>
+        <button
+          onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+          className="fc-caption text-fg-3 hover:text-fg px-2 py-1 rounded transition-colors"
+          aria-label="Alternar tema"
+          title={resolvedTheme === 'dark' ? 'Modo claro' : 'Modo escuro'}
+        >
+          {resolvedTheme === 'dark' ? '☀️' : '🌙'}
+        </button>
       </header>
 
       {/* Layout principal: 3 colunas em desktop, coluna única em mobile */}
@@ -214,16 +290,36 @@ export default function DraftPage() {
             picksCount={draft.picks.length}
             onRoll={handleRoll}
             onSelectPlayer={handleSelectPlayer}
-            onRerollSquad={() => handleReroll('edition')}
-            onRerollEdition={() => handleReroll('squad')}
+            onRerollSquad={() => handleReroll('team')}
+            onRerollEdition={() => handleReroll('edition')}
           />
+
+          {/* Mensagem de slot incompatível */}
           {noSlotMsg && (
-            <p className="fc-caption text-[var(--error)] mt-2">{noSlotMsg}</p>
+            <p className="fc-caption mt-2 px-1" style={{ color: 'var(--error)' }}>
+              ⚠ {noSlotMsg}
+            </p>
+          )}
+
+          {/* Saída de emergência: travado sem slot */}
+          {isStuck && (
+            <button
+              onClick={handleForceRoll}
+              disabled={isRolling}
+              className="mt-3 w-full fc-caption px-3 py-2 rounded-sm border-2 text-left transition-colors"
+              style={{
+                borderColor: 'var(--warning)',
+                color: 'var(--warning-ink)',
+                backgroundColor: 'var(--warning-bg)',
+              }}
+            >
+              {isRolling ? 'Sorteando…' : '↻ Nenhum slot disponível — Sortear nova seleção'}
+            </button>
           )}
         </div>
 
         {/* Centro — campo visual */}
-        <div className="flex-1 max-w-xs mx-auto md:max-w-sm">
+        <div className="flex-1 w-full min-h-[320px] max-w-xs mx-auto md:max-w-sm">
           <FormationPitch
             formation={draft.formation}
             picks={draft.picks}
@@ -238,7 +334,8 @@ export default function DraftPage() {
                   const seed = generateSeed()
                   router.push(`/copa-dos-sonhos/simulacao?seed=${seed}`)
                 }}
-                className="bg-primary text-white font-bold px-6 py-2 rounded-sm fc-body"
+                className="font-bold px-6 py-2 rounded-sm fc-body transition-opacity hover:opacity-90"
+                style={{ backgroundColor: 'var(--primary)', color: 'var(--fg-on-brand)' }}
               >
                 Simular a Copa →
               </button>
