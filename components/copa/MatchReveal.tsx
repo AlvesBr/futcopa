@@ -41,9 +41,9 @@ export function MatchReveal({ match, revealed, userFlag = '🌟' }: MatchRevealP
         <span className="fc-title text-fg font-bold">
           {revealed ? awayGoals : '?'}
         </span>
-        <span className="text-xl">{opp.flag_emoji}</span>
+        <span className="text-xl">{revealed ? opp.flag_emoji : '🏴'}</span>
         <span className="fc-body text-fg-2 flex-1 truncate">
-          {opp.country_name} {opp.edition_id ? '' : ''}
+          {revealed ? `${opp.country_name}` : '???'}
         </span>
         {revealed && (
           <span className={cn(

@@ -12,9 +12,14 @@ interface TournamentBracketProps {
 }
 
 export function TournamentBracket({ matches, revealedCount }: TournamentBracketProps) {
-  // Agrupar por fase para exibição
-  const groupMatches   = matches.filter(m => m.phase === 'grupos')
+  // Só mostra jogos já revelados + o jogo atual (em andamento)
+  // Jogos futuros ficam ocultos para preservar o suspense
+  const visibleMatches = matches.filter((_, i) => i <= revealedCount)
+
+  const groupMatches   = visibleMatches.filter(m => m.phase === 'grupos')
   const knockoutPhases = ['oitavas', 'quartas', 'semi', 'final'] as const
+
+  if (visibleMatches.length === 0) return null
 
   return (
     <div className="flex flex-col gap-4 w-full">
@@ -38,7 +43,7 @@ export function TournamentBracket({ matches, revealedCount }: TournamentBracketP
       {/* Mata-mata */}
       <div className="flex gap-3 flex-wrap">
         {knockoutPhases.map(phase => {
-          const match = matches.find(m => m.phase === phase)
+          const match = visibleMatches.find(m => m.phase === phase)
           if (!match) return null
           const globalIdx = matches.indexOf(match)
           const isRevealed = globalIdx < revealedCount
