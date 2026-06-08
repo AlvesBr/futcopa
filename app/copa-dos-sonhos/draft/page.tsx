@@ -102,11 +102,20 @@ export default function DraftPage() {
     setNoSlotMsg(null)
 
     try {
-      // Só exclui o squad do último pick para evitar repetir imediato.
-      // NÃO exclui todos os picks anteriores — o banco tem apenas ~6 squads
-      // e excluir todos causaria deadlock após o 6° jogador.
-      const lastSquadId = draft.picks.at(-1)?.player.squad_id
-      const usedSquadIds = lastSquadId ? [lastSquadId] : []
+      // Exclui os últimos N squads únicos do histórico de picks para criar
+      // um efeito round-robin. N = totalSquads - 1 = 5 (banco tem ~6 squads),
+      // garantindo que sempre há pelo menos 1 squad disponível.
+      const MAX_EXCLUDE = 5
+      const recentIds = draft.picks.map(p => p.player.squad_id).reverse()
+      const seen = new Set<string>()
+      const usedSquadIds: string[] = []
+      for (const id of recentIds) {
+        if (!seen.has(id)) {
+          seen.add(id)
+          usedSquadIds.push(id)
+          if (usedSquadIds.length >= MAX_EXCLUDE) break
+        }
+      }
       const roll = await getRandomRoll(usedSquadIds)
 
       if (!roll) {

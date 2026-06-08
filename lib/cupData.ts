@@ -255,3 +255,18 @@ export async function getOpponentPool(
 
   return []
 }
+
+/**
+ * Retorna TODOS os squads do banco, sem filtro de rating.
+ * Usado para gerar a lista completa de adversários possíveis na simulação.
+ */
+export async function getAllSquads(): Promise<CupSquad[]> {
+  const sb = createBrowserClient()
+  const { data, error } = await sb
+    .from('cup_squads')
+    .select('*')
+    .order('avg_rating', { ascending: true })
+
+  if (error) throw new Error(`getAllSquads: ${error.message}`)
+  return (data ?? []) as CupSquad[]
+}

@@ -9,8 +9,8 @@ import { RevealControls }    from '@/components/copa/RevealControls'
 import { TournamentBracket } from '@/components/copa/TournamentBracket'
 import { CampaignCard }      from '@/components/copa/CampaignCard'
 import { loadDraftState, saveCampaignResult, resetCopaState } from '@/lib/draftState'
-import { getOpponentPool }   from '@/lib/cupData'
-import { generateCampaign }  from '@/lib/simulation'
+import { getAllSquads }       from '@/lib/cupData'
+import { generateCampaign, mulberry32, seedToNumber } from '@/lib/simulation'
 import { useTheme }          from '@/components/ThemeProvider'
 import type { CampaignResult, TournamentPhase } from '@/lib/types'
 
@@ -42,41 +42,36 @@ function SimulacaoInner() {
       }
 
       try {
-        // Buscar adversários para cada fase
-        const draftedSquadIds = draft.picks.map(p => p.player.squad_id)
-        const opponents = []
-        const usedOppIds: string[] = []
+        // Buscar todos os squads disponíveis (sem filtro de rating)
+        const allSquads = await getAllSquads()
 
-        for (const phase of PHASES_ORDER) {
-          // Tier 1: strict — exclude draft squads AND previously-used opponents
-          let pool = await getOpponentPool(phase, draftedSquadIds, usedOppIds)
-
-          // Tier 2: relaxed — exclude only draft squads (allow opponent repeats)
-          if (pool.length === 0) {
-            pool = await getOpponentPool(phase, draftedSquadIds, [])
-          }
-
-          // Tier 3: any — exclude nothing (use any squad in the DB)
-          if (pool.length === 0) {
-            pool = await getOpponentPool(phase, [], [])
-          }
-
-          if (pool.length === 0) break
-
-          // Sortear adversário do pool usando o seed
-          const charCode: number = seed.charCodeAt(opponents.length) ?? 0
-          const idx: number = Math.abs(charCode) % pool.length
-          const opp = pool[idx]
-          if (!opp) break
-          opponents.push(opp)
-          usedOppIds.push(opp.id)
-        }
-
-        if (opponents.length === 0) {
+        if (allSquads.length === 0) {
           setError('Não foi possível gerar adversários. Verifique se o banco está populado.')
           setLoading(false)
           return
         }
+
+        // Shuffle determinístico baseado no seed (sub-stream isolado ^ 0xA1)
+        // Garante que o mesmo seed sempre produz a mesma ordem de adversários
+        const rng = mulberry32(seedToNumber(seed) ^ 0xA1B2C3D4)
+        const shuffled: typeof allSquads = [...allSquads]
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(rng() * (i + 1))
+          const tmp = shuffled[i]!
+          shuffled[i] = shuffled[j]!
+          shuffled[j] = tmp
+        }
+
+        // Preferir squads que o usuário NÃO usou no draft como primeiros adversários
+        // Isso maximiza a variedade: adversários "novos" primeiro, repetidos por último
+        const draftedIds = new Set(draft.picks.map(p => p.player.squad_id))
+        const preferred  = shuffled.filter(s => !draftedIds.has(s.id))
+        const fallback   = shuffled.filter(s =>  draftedIds.has(s.id))
+        const orderedPool = [...preferred, ...fallback]
+
+        // Atribuir adversários ciclicamente às 7 fases
+        // Com N squads e 7 fases: no mínimo ceil(7/N) repetições — inevitável com N=6
+        const opponents = PHASES_ORDER.map((_, i) => orderedPool[i % orderedPool.length]!)
 
         const result = generateCampaign(
           draft.picks,
