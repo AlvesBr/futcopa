@@ -309,7 +309,7 @@ export function generateCampaign(
   const rngs    = buildRngs(seedNum)
 
   const matches: SimulatedMatch[] = []
-  let eliminated = false
+  let eliminatedAt: TournamentPhase | null = null
 
   for (let i = 0; i < Math.min(PHASES_ORDER.length, opponents.length); i++) {
     const phase    = PHASES_ORDER[i]!
@@ -319,18 +319,19 @@ export function generateCampaign(
     const match = simulateMatch(userPicks, opponent, phase, rngs)
     matches.push(match)
 
-    // No mata-mata, eliminação encerra a campanha
-    if (phase !== 'grupos' && !match.won) {
-      eliminated = true
-      break
+    // Registra a fase de eliminação, mas continua simulando todos os jogos
+    // para que o usuário veja a campanha completa (como no 7a0).
+    if (phase !== 'grupos' && !match.won && eliminatedAt === null) {
+      eliminatedAt = phase
     }
   }
 
-  // Fase alcançada
-  const lastMatch   = matches[matches.length - 1]
-  const lastPhase   = lastMatch?.phase ?? 'grupos'
+  // Fase alcançada: se venceu a final → campeão; se foi eliminado → fase da eliminação
+  const finalMatch = matches.find(m => m.phase === 'final')
   const phaseReached: CampaignResult['phaseReached'] =
-    lastMatch?.won && lastPhase === 'final' ? 'campeao' : lastPhase
+    finalMatch?.won
+      ? 'campeao'
+      : eliminatedAt ?? (matches[matches.length - 1]?.phase ?? 'grupos')
 
   const wins         = matches.filter(m => m.won).length
   const goalsFor     = matches.reduce((s, m) => s + m.homeGoals, 0)

@@ -102,7 +102,11 @@ export default function DraftPage() {
     setNoSlotMsg(null)
 
     try {
-      const usedSquadIds = draft.picks.map(p => p.player.squad_id)
+      // Só exclui o squad do último pick para evitar repetir imediato.
+      // NÃO exclui todos os picks anteriores — o banco tem apenas ~6 squads
+      // e excluir todos causaria deadlock após o 6° jogador.
+      const lastSquadId = draft.picks.at(-1)?.player.squad_id
+      const usedSquadIds = lastSquadId ? [lastSquadId] : []
       const roll = await getRandomRoll(usedSquadIds)
 
       if (!roll) {
