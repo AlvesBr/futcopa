@@ -19,16 +19,12 @@ jobs:
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
 
-      - name: Deploy to Vercel (Production on main)
+      - name: Deploy to Vercel
         run: |
           if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            vercel --prod --yes \
-              --token=${{ secrets.VERCEL_TOKEN }} \
-              --scope=${{ secrets.VERCEL_ORG_ID }}
+            vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
           else
-            vercel --yes \
-              --token=${{ secrets.VERCEL_TOKEN }} \
-              --scope=${{ secrets.VERCEL_ORG_ID }}
+            vercel --yes --token=${{ secrets.VERCEL_TOKEN }}
           fi
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
