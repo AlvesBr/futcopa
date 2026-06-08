@@ -20,11 +20,12 @@ jobs:
         run: npm install -g vercel@latest
 
       - name: Deploy to Vercel
+        timeout-minutes: 8
         run: |
           if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+            vercel --prod --yes --no-wait --token=${{ secrets.VERCEL_TOKEN }}
           else
-            vercel --yes --token=${{ secrets.VERCEL_TOKEN }}
+            vercel --yes --no-wait --token=${{ secrets.VERCEL_TOKEN }}
           fi
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

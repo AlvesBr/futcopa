@@ -1,0 +1,6 @@
+# Arquivos de seed/coleta — usados offline, não precisam ir para o Vercel
+data/*.json
+data/*.sql
+scripts/
+docs/
+supabase/
