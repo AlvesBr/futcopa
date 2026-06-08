@@ -1,6 +1,10 @@
 # Arquivos de seed/coleta — usados offline, não precisam ir para o Vercel
-data/*.json
-data/*.sql
+# ATENÇÃO: data/puzzles.json é necessário no build (importado por sitemap, getPuzzleOfDay, og-image)
+data/all_wc_squads.json
+data/all_wc_squads.sql
+data/cup_players_rated.json
+data/cup_squads.json
+data/raw/
 scripts/
 docs/
 supabase/
