@@ -5,20 +5,24 @@ interface PlayerPoolRowProps {
   player:   CupPlayer
   selected: boolean
   mode:     'classico' | 'almanaque'
+  disabled?: boolean   // true = nenhum slot compatível disponível — exibir acinzentado
   onClick:  () => void
 }
 
-export function PlayerPoolRow({ player, selected, mode, onClick }: PlayerPoolRowProps) {
+export function PlayerPoolRow({ player, selected, mode, disabled = false, onClick }: PlayerPoolRowProps) {
   const showRating = mode === 'classico'
 
   return (
     <button
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
+      disabled={disabled}
       className={cn(
         'pool-row w-full flex items-center gap-3 px-3 py-2 rounded-sm border-2 text-left transition-colors',
-        selected
-          ? 'border-primary bg-primary/10'
-          : 'border-transparent hover:border-[var(--slot-border)] bg-[var(--surface)]'
+        disabled
+          ? 'border-transparent opacity-35 cursor-not-allowed bg-[var(--surface)]'
+          : selected
+            ? 'border-primary bg-primary/10'
+            : 'border-transparent hover:border-[var(--slot-border)] bg-[var(--surface)]'
       )}
     >
       {/* Número da camisa */}

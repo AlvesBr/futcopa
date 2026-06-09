@@ -3,19 +3,23 @@ import { cn } from '@/lib/cn'
 type RevealMode = 'passo-a-passo' | 'automatico'
 
 interface RevealControlsProps {
-  mode:         RevealMode
-  onModeChange: (m: RevealMode) => void
-  onReveal:     () => void
-  canReveal:    boolean
-  allRevealed:  boolean
+  mode:           RevealMode
+  onModeChange:   (m: RevealMode) => void
+  onReveal:       () => void
+  onStop?:        () => void
+  canReveal:      boolean
+  allRevealed:    boolean
+  isAutoRunning?: boolean
 }
 
 export function RevealControls({
   mode,
   onModeChange,
   onReveal,
+  onStop,
   canReveal,
   allRevealed,
+  isAutoRunning = false,
 }: RevealControlsProps) {
   return (
     <div className="flex flex-col gap-3">
@@ -26,11 +30,13 @@ export function RevealControls({
           <button
             key={m}
             onClick={() => onModeChange(m)}
+            disabled={isAutoRunning}
             className={cn(
               'fc-caption px-3 py-1 rounded-sm transition-colors',
               mode === m
                 ? 'bg-primary text-white font-bold'
-                : 'text-fg-3 hover:text-fg'
+                : 'text-fg-3 hover:text-fg',
+              isAutoRunning && mode !== m && 'opacity-40 cursor-not-allowed'
             )}
           >
             {m === 'passo-a-passo' ? 'Jogo a jogo' : 'Automático'}
@@ -38,14 +44,23 @@ export function RevealControls({
         ))}
       </div>
 
-      {/* Botão revelar */}
+      {/* Botão revelar / parar */}
       {!allRevealed && canReveal && (
-        <button
-          onClick={onReveal}
-          className="bg-primary text-white font-bold px-6 py-2 rounded-sm fc-body hover:opacity-90 transition-opacity w-fit"
-        >
-          {mode === 'passo-a-passo' ? 'Revelar próximo →' : 'Revelar tudo →'}
-        </button>
+        isAutoRunning ? (
+          <button
+            onClick={onStop}
+            className="flex items-center gap-2 border border-[var(--slot-border)] text-fg-2 font-bold px-6 py-2 rounded-sm fc-body hover:border-[var(--error)] hover:text-[var(--error)] transition-colors w-fit"
+          >
+            <span className="animate-pulse">▌▌</span> Pausar
+          </button>
+        ) : (
+          <button
+            onClick={onReveal}
+            className="bg-primary text-white font-bold px-6 py-2 rounded-sm fc-body hover:opacity-90 transition-opacity w-fit"
+          >
+            {mode === 'passo-a-passo' ? 'Revelar próximo →' : '▶ Simular automaticamente'}
+          </button>
+        )
       )}
 
     </div>

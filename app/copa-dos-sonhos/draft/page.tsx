@@ -27,6 +27,7 @@ export default function DraftPage() {
   const [draft, setDraft]                   = useState<DraftState | null>(null)
   const [selectedPlayer, setSelectedPlayer] = useState<CupPlayer | null>(null)
   const [compatibleSlots, setCompatible]    = useState<string[]>([])
+  const [disabledPlayerIds, setDisabledIds] = useState<Set<string>>(new Set())
   const [isRolling, setIsRolling]           = useState(false)
   const [noSlotMsg, setNoSlotMsg]           = useState<string | null>(null)
 
@@ -41,25 +42,46 @@ export default function DraftPage() {
   }, [router])
 
   // Atualizar slots compatíveis quando jogador é selecionado
+  // E calcular quais jogadores do roll atual não têm slot disponível (para greying)
   useEffect(() => {
-    if (!draft || !selectedPlayer) {
+    if (!draft) {
       setCompatible([])
+      setDisabledIds(new Set())
       return
     }
-    const slots      = FORMATION_SLOTS[draft.formation] ?? []
-    const pickSet    = new Set(draft.picks.map(p => `${p.position}-${p.slotIndex}`))
-    const posCounts: Record<string, number> = {}
 
-    const emptySlotKeys = slots
+    const slots   = FORMATION_SLOTS[draft.formation] ?? []
+    const pickSet = new Set(draft.picks.map(p => `${p.position}-${p.slotIndex}`))
+
+    // Computar posições de slots vazios (sem índice — apenas tipo de posição)
+    const posCounts0: Record<string, number> = {}
+    const emptySlotTypes = slots
       .map(pos => {
-        const idx      = posCounts[pos] ?? 0
-        posCounts[pos] = idx + 1
-        return { pos, idx, key: `${pos}-${idx}` }
+        const idx        = posCounts0[pos] ?? 0
+        posCounts0[pos]  = idx + 1
+        return { pos, key: `${pos}-${idx}` }
       })
       .filter(({ key }) => !pickSet.has(key))
       .map(({ pos }) => pos)
 
-    const compatible = getCompatibleSlots(selectedPlayer.positions.map(p => p.toUpperCase()), emptySlotKeys)
+    // Calcular jogadores sem nenhum slot disponível (greyed)
+    if (draft.currentRoll?.players) {
+      const disabled = new Set<string>()
+      for (const player of draft.currentRoll.players) {
+        const compatible = getCompatibleSlots(player.positions.map(p => p.toUpperCase()), emptySlotTypes)
+        if (compatible.length === 0) disabled.add(player.id)
+      }
+      setDisabledIds(disabled)
+    } else {
+      setDisabledIds(new Set())
+    }
+
+    if (!selectedPlayer) {
+      setCompatible([])
+      return
+    }
+
+    const compatible = getCompatibleSlots(selectedPlayer.positions.map(p => p.toUpperCase()), emptySlotTypes)
 
     // Reconstruir as chaves com índice para os slots compatíveis
     const posCounts2: Record<string, number> = {}
@@ -301,6 +323,7 @@ export default function DraftPage() {
             mode={draft.mode}
             isRolling={isRolling}
             picksCount={draft.picks.length}
+            disabledPlayerIds={disabledPlayerIds}
             onRoll={handleRoll}
             onSelectPlayer={handleSelectPlayer}
             onRerollSquad={() => handleReroll('team')}

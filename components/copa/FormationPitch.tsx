@@ -198,11 +198,14 @@ function PitchSlot({
         )}
       </div>
 
-      {/* Nome abaixo do disco */}
+      {/* Nome + bandeira abaixo do disco */}
       {filled && (
-        <span className="fc-caption text-white text-[9px] font-bold leading-none max-w-[60px] truncate text-center drop-shadow-sm">
-          {(pick?.player.name.split(' ').pop() ?? '').toUpperCase()}
-        </span>
+        <div className="flex flex-col items-center gap-0">
+          <span className="fc-caption text-white text-[9px] font-bold leading-none max-w-[60px] truncate text-center drop-shadow-sm">
+            {(pick?.player.name.split(' ').pop() ?? '').toUpperCase()}
+          </span>
+          <span className="leading-none text-[10px]">{pick?.squadInfo.flag_emoji}</span>
+        </div>
       )}
     </button>
   )

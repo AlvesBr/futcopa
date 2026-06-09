@@ -27,6 +27,7 @@ function SimulacaoInner() {
   const [campaign,      setCampaign]      = useState<CampaignResult | null>(null)
   const [revealedCount, setRevealedCount] = useState(0)
   const [revealMode,    setRevealMode]    = useState<RevealMode>('passo-a-passo')
+  const [isAutoRunning, setIsAutoRunning] = useState(false)
   const [showCard,      setShowCard]      = useState(false)
   const [loading,       setLoading]       = useState(true)
   const [error,         setError]         = useState<string | null>(null)
@@ -97,14 +98,31 @@ function SimulacaoInner() {
   const totalMatches  = campaign?.matches.length ?? 0
   const allRevealed   = revealedCount >= totalMatches
 
+  // Animação automática: avança 1 jogo a cada 1.8s
+  useEffect(() => {
+    if (!isAutoRunning || !campaign) return
+    if (revealedCount >= totalMatches) {
+      setIsAutoRunning(false)
+      return
+    }
+    const timer = setTimeout(() => {
+      setRevealedCount(prev => Math.min(prev + 1, totalMatches))
+    }, 1800)
+    return () => clearTimeout(timer)
+  }, [isAutoRunning, revealedCount, totalMatches, campaign])
+
   const handleReveal = useCallback(() => {
     if (!campaign) return
     if (revealMode === 'automatico') {
-      setRevealedCount(totalMatches)
+      setIsAutoRunning(true)
     } else {
       setRevealedCount(prev => Math.min(prev + 1, totalMatches))
     }
   }, [campaign, revealMode, totalMatches])
+
+  const handleStopAuto = useCallback(() => {
+    setIsAutoRunning(false)
+  }, [])
 
   // Mostrar card ao revelar tudo
   useEffect(() => {
@@ -171,10 +189,12 @@ function SimulacaoInner() {
           {!allRevealed && (
             <RevealControls
               mode={revealMode}
-              onModeChange={setRevealMode}
+              onModeChange={m => { setRevealMode(m); setIsAutoRunning(false) }}
               onReveal={handleReveal}
+              onStop={handleStopAuto}
               canReveal={!allRevealed}
               allRevealed={allRevealed}
+              isAutoRunning={isAutoRunning}
             />
           )}
 
@@ -190,11 +210,13 @@ function SimulacaoInner() {
 
           {/* Jogo pendente de revelação */}
           {!allRevealed && revealedCount < totalMatches && campaign.matches[revealedCount] && (
-            <MatchReveal
-              match={campaign.matches[revealedCount]!}
-              revealed={false}
-              userFlag="🌟"
-            />
+            <div className={isAutoRunning ? 'animate-pulse' : ''}>
+              <MatchReveal
+                match={campaign.matches[revealedCount]!}
+                revealed={false}
+                userFlag="🌟"
+              />
+            </div>
           )}
 
         </div>

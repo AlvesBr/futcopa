@@ -63,17 +63,19 @@ export function TournamentBracket({ matches, revealedCount }: TournamentBracketP
 function BracketChip({ match, revealed }: { match: SimulatedMatch; revealed: boolean }) {
   return (
     <div className={cn(
-      'rounded px-3 py-2 border flex items-center gap-2 min-w-[140px]',
+      'rounded px-3 py-2 border flex items-center gap-2 min-w-[140px] transition-all duration-300',
       !revealed && 'border-[var(--slot-border)] text-fg-3',
       revealed && match.won  && 'border-[var(--success)] bg-[var(--success-bg)]',
       revealed && !match.won && 'border-[var(--error)]   bg-[var(--error-bg)]',
     )}>
-      <span>{match.opponentSquad.flag_emoji}</span>
+      <span className="text-lg">{match.opponentSquad.flag_emoji}</span>
       <span className="fc-caption text-fg truncate flex-1">{match.opponentSquad.country_name}</span>
-      {revealed && (
-        <span className="fc-caption font-bold text-fg">
+      {revealed ? (
+        <span className={cn('fc-caption font-bold', match.won ? 'text-[var(--success)]' : 'text-[var(--error)]')}>
           {match.homeGoals}–{match.awayGoals}
         </span>
+      ) : (
+        <span className="fc-caption text-fg-3">?–?</span>
       )}
     </div>
   )

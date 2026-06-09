@@ -7,14 +7,15 @@ import type { CupPlayer, CupSquad, CupEdition, DraftMode } from '@/lib/types'
 
 interface DraftRollPanelProps {
   // Estado do roll atual
-  currentSquad:   CupSquad   | null
-  currentEdition: CupEdition | null
-  players:        CupPlayer[]
-  selectedPlayer: CupPlayer  | null
-  rerollsLeft:    number
-  mode:           DraftMode
-  isRolling:      boolean
-  picksCount:     number   // quantos picks já feitos
+  currentSquad:     CupSquad   | null
+  currentEdition:   CupEdition | null
+  players:          CupPlayer[]
+  selectedPlayer:   CupPlayer  | null
+  rerollsLeft:      number
+  mode:             DraftMode
+  isRolling:        boolean
+  picksCount:       number   // quantos picks já feitos
+  disabledPlayerIds?: Set<string>  // IDs de jogadores sem slot disponível (greyed)
 
   // Callbacks
   onRoll:          () => void
@@ -32,6 +33,7 @@ export function DraftRollPanel({
   mode,
   isRolling,
   picksCount,
+  disabledPlayerIds,
   onRoll,
   onSelectPlayer,
   onRerollSquad,
@@ -68,12 +70,15 @@ export function DraftRollPanel({
 
           {/* Cabeçalho do roll */}
           <div className="flex flex-col gap-1">
-            <p className="fc-caption text-fg-3 uppercase tracking-wide">Saiu</p>
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">{currentSquad.flag_emoji}</span>
+            <div className="flex items-center justify-between">
+              <p className="fc-caption text-fg-3 uppercase tracking-wide">Sorteou</p>
+              <p className="fc-caption text-fg-3">Pick <span className="font-bold text-fg">{picksCount + 1}</span>/11</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-4xl leading-none">{currentSquad.flag_emoji}</span>
               <div>
-                <p className="fc-subtitle text-fg font-bold">{currentSquad.country_name}</p>
-                <p className="fc-caption text-fg-3">Copa {currentEdition.year}</p>
+                <p className="fc-subtitle text-fg font-bold text-lg">{currentSquad.country_name}</p>
+                <p className="fc-caption text-fg-3">Copa do Mundo {currentEdition.year}</p>
               </div>
             </div>
 
@@ -100,6 +105,7 @@ export function DraftRollPanel({
                   player={player}
                   selected={selectedPlayer?.id === player.id}
                   mode={mode}
+                  disabled={disabledPlayerIds?.has(player.id) ?? false}
                   onClick={() => onSelectPlayer(player)}
                 />
               ))}

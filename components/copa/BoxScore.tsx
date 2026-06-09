@@ -69,7 +69,10 @@ export function BoxScore({ picks, formation }: BoxScoreProps) {
           {rows.map(({ pos, idx, pick }) => (
             <tr key={`${pos}-${idx}`} className="border-b border-[var(--slot-border)] last:border-0">
               <td className="fc-caption text-fg-3 py-1 pr-2 w-10">{pos}</td>
-              <td className="fc-caption text-fg py-1 flex-1 truncate max-w-[100px]">
+              <td className="py-1 w-5 text-center text-sm leading-none">
+                {pick ? pick.squadInfo.flag_emoji : ''}
+              </td>
+              <td className="fc-caption text-fg py-1 pl-1 flex-1 truncate max-w-[80px]">
                 {pick ? pick.player.name : '—'}
               </td>
               <td className="fc-caption font-bold text-fg py-1 pl-2 text-right">
