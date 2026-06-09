@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // TypeScript e ESLint rodam no CI — pular no build de deploy para ser rápido
+  typescript: { ignoreBuildErrors: true },
+  eslint:     { ignoreDuringBuilds: true },
+
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: '*.supabase.co' },
