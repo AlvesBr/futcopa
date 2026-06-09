@@ -202,93 +202,97 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-bg">
-      <TopBar
-        onHelp={phase === 'playing' ? handleHelp : undefined}
-        helpUsed={usedHelp}
-        helpActive={helpActive}
-        onShowResult={phase === 'done' ? () => setShowResult(true) : undefined}
-      />
-      <CategoryBadge category={puzzle.category} description={puzzle.description} />
+    <div className="fc-stage">
+      <div className="fc-phone">
+        <TopBar
+          onHelp={phase === 'playing' ? handleHelp : undefined}
+          helpUsed={usedHelp}
+          helpActive={helpActive}
+          onShowResult={phase === 'done' ? () => setShowResult(true) : undefined}
+        />
 
-      {phase === 'mode-select' && (
-        <ModeSelector onSelect={handleModeSelect} />
-      )}
+        {/* Category badge — shown in playing + done */}
+        {phase !== 'mode-select' && (
+          <CategoryBadge category={puzzle.category} description={puzzle.description} />
+        )}
 
-      {phase !== 'mode-select' && (
-        <DndContext
-          sensors={sensors}
-          onDragStart={handleDragStart}
-          onDragEnd={handleDragEnd}
-        >
-          <main className="flex-1 flex flex-col items-center gap-2 overflow-y-auto pb-4">
-            <div className="w-full max-w-lg mx-auto flex flex-col items-center gap-2">
-              <PyramidShell
-                slots={slots}
-                mode={mode}
-                helpActive={helpActive}
-                activePlayerLevel={mode === 'easy' ? activePlayer?.correct_level : undefined}
-                isDragging={activeDragId !== null}
-                selectedPlayerId={selectedPlayerId}
-                onSlotClick={handleSlotClick}
-              />
-              {phase === 'playing' && (
-                <PlayerQueue
-                  queue={queue}
-                  queueIndex={queueIndex}
+        {phase === 'mode-select' && (
+          <ModeSelector onSelect={handleModeSelect} />
+        )}
+
+        {phase !== 'mode-select' && (
+          <DndContext
+            sensors={sensors}
+            onDragStart={handleDragStart}
+            onDragEnd={handleDragEnd}
+          >
+            <main className="flex-1 flex flex-col items-center gap-2 overflow-y-auto pb-4">
+              <div className="w-full max-w-lg mx-auto flex flex-col items-center gap-2">
+                <PyramidShell
+                  slots={slots}
                   mode={mode}
+                  helpActive={helpActive}
+                  activePlayerLevel={mode === 'easy' ? activePlayer?.correct_level : undefined}
+                  isDragging={activeDragId !== null}
                   selectedPlayerId={selectedPlayerId}
-                  onSelectPlayer={handleSelectPlayer}
+                  onSlotClick={handleSlotClick}
                 />
-              )}
-            </div>
-          </main>
+                {phase === 'playing' && (
+                  <PlayerQueue
+                    queue={queue}
+                    queueIndex={queueIndex}
+                    mode={mode}
+                    selectedPlayerId={selectedPlayerId}
+                    onSelectPlayer={handleSelectPlayer}
+                  />
+                )}
+              </div>
+            </main>
 
-          {phase === 'playing' && (
-            <DragOverlay dropAnimation={null}>
-              {activeDragId && (() => {
-                const p = queue.find(q => q.player_id === activeDragId)
-                return p ? (
-                  <div className="flex items-center gap-2 bg-surface-2 border-2 border-primary rounded-sm px-3 py-2 shadow-2 cursor-grabbing rotate-2 scale-105">
-                    <span className="fc-label text-fg font-medium">{p.name}</span>
-                  </div>
-                ) : null
-              })()}
-            </DragOverlay>
-          )}
-        </DndContext>
-      )}
+            {phase === 'playing' && (
+              <DragOverlay dropAnimation={null}>
+                {activeDragId && (() => {
+                  const p = queue.find(q => q.player_id === activeDragId)
+                  return p ? (
+                    <div className="flex items-center gap-2 bg-surface-2 border-2 border-primary rounded-sm px-3 py-2 shadow-2 cursor-grabbing rotate-2 scale-105">
+                      <span className="fc-label" style={{ color: 'var(--fg)', fontWeight: 600 }}>{p.name}</span>
+                    </div>
+                  ) : null
+                })()}
+              </DragOverlay>
+            )}
+          </DndContext>
+        )}
 
-      {/* HELP confirmation */}
-      <Modal open={showHelpConfirm} onClose={() => setShowHelpConfirm(false)} title="Usar dica?">
-        <p className="fc-body text-fg-2 mb-5">
-          Esta é sua única dica da partida. Os slots serão destacados por 2 segundos.
-        </p>
-        <div className="flex gap-3">
-          <button
-            onClick={confirmHelp}
-            className="flex-1 bg-primary text-[var(--on-primary)] py-3 rounded-pill font-bold border-none cursor-pointer"
-          >
-            Usar dica
-          </button>
-          <button
-            onClick={() => setShowHelpConfirm(false)}
-            className="flex-1 bg-surface-2 text-fg py-3 rounded-pill font-bold border border-[var(--border)] cursor-pointer hover:bg-surface-3"
-          >
-            Cancelar
-          </button>
-        </div>
-      </Modal>
+        {/* Dica — confirmação */}
+        <Modal open={showHelpConfirm} onClose={() => setShowHelpConfirm(false)} title="Usar dica?">
+          <p className="fc-body" style={{ color: 'var(--fg-2)', marginBottom: 20 }}>
+            Esta é sua única dica da partida. Os slots corretos serão destacados por 2 segundos.
+          </p>
+          <div className="flex gap-3">
+            <button onClick={confirmHelp} className="fc-btn fc-btn--primary" style={{ flex: 1 }}>
+              Usar dica
+            </button>
+            <button
+              onClick={() => setShowHelpConfirm(false)}
+              className="fc-btn fc-btn--secondary"
+              style={{ flex: 1 }}
+            >
+              Cancelar
+            </button>
+          </div>
+        </Modal>
 
-      <ResultModal
-        open={showResult}
-        onClose={() => setShowResult(false)}
-        score={score}
-        slots={slots}
-        usedHelp={usedHelp}
-        puzzleDate={puzzle.date}
-        category={puzzle.category}
-      />
+        <ResultModal
+          open={showResult}
+          onClose={() => setShowResult(false)}
+          score={score}
+          slots={slots}
+          usedHelp={usedHelp}
+          puzzleDate={puzzle.date}
+          category={puzzle.category}
+        />
+      </div>
     </div>
   )
 }

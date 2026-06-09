@@ -288,22 +288,24 @@ export default function DraftPage() {
   const isStuck = draft.rerollsLeft === 0 && noSlotMsg !== null
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: 'var(--bg)' }}>
+    <div className="fc-stage">
+      <div className="fc-phone">
 
       {/* Top bar */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--slot-border)]"
-              style={{ backgroundColor: 'var(--surface)' }}>
-        <Link href="/copa-dos-sonhos" className="fc-caption text-fg-3 hover:text-fg">
-          ← Sair
+      <header className="fc-topbar">
+        <Link href="/copa-dos-sonhos" className="fc-wm" style={{ textDecoration: 'none' }}>
+          <span style={{ fontSize: 18 }}>←</span>
+          <span className="fc-wm-text">
+            <span className="a">Copa </span><span className="b">dos Sonhos</span>
+          </span>
         </Link>
-        <span className="fc-caption text-fg-2">
-          {draft.formation} · {draft.mode === 'classico' ? 'Clássico' : 'De Almanaque'}
+        <span className="fc-caption" style={{ color: 'var(--fg-3)' }}>
+          {draft.formation} · {draft.mode === 'classico' ? 'Clássico' : 'Almanaque'}
         </span>
         <button
           onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-          className="fc-caption text-fg-3 hover:text-fg px-2 py-1 rounded transition-colors"
+          className="fc-iconbtn"
           aria-label="Alternar tema"
-          title={resolvedTheme === 'dark' ? 'Modo claro' : 'Modo escuro'}
         >
           {resolvedTheme === 'dark' ? '☀️' : '🌙'}
         </button>
@@ -364,14 +366,15 @@ export default function DraftPage() {
           />
           {isComplete && (
             <div className="mt-3 text-center">
-              <p className="fc-caption text-fg-2 mb-2">Escalação completa 11/11</p>
+              <p className="fc-caption" style={{ color: 'var(--fg-2)', marginBottom: 8 }}>
+                Escalação completa 11/11 ✓
+              </p>
               <button
                 onClick={() => {
                   const seed = generateSeed()
                   router.push(`/copa-dos-sonhos/simulacao?seed=${seed}`)
                 }}
-                className="font-bold px-6 py-2 rounded-sm fc-body transition-opacity hover:opacity-90"
-                style={{ backgroundColor: 'var(--primary)', color: 'var(--fg-on-brand)' }}
+                className="fc-btn fc-btn--primary"
               >
                 Simular a Copa →
               </button>
@@ -385,6 +388,7 @@ export default function DraftPage() {
         </div>
 
       </main>
+      </div>
     </div>
   )
 }

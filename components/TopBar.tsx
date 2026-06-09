@@ -1,63 +1,87 @@
 'use client'
 
+import Image from 'next/image'
+import Link from 'next/link'
 import { useTheme } from '@/components/ThemeProvider'
-import { IconButton } from '@/components/ui'
 
 interface TopBarProps {
-  title?: string
-  onHelp?: () => void
-  helpUsed?: boolean
-  helpActive?: boolean
+  onHelp?:       () => void
+  helpUsed?:     boolean
+  helpActive?:   boolean
   onShowResult?: () => void
+  backHref?:     string
 }
 
 export function TopBar({
-  title = 'FutCopa',
   onHelp,
-  helpUsed = false,
-  helpActive = false,
+  helpUsed     = false,
+  helpActive   = false,
   onShowResult,
+  backHref,
 }: TopBarProps) {
   const { resolvedTheme, setTheme } = useTheme()
-
-  function toggleTheme() {
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-  }
-
   const helpDisabled = helpUsed || helpActive || !onHelp
-  const helpLabel = helpActive ? '✨ Dica…' : helpUsed ? '💡 Usado' : '? Ajuda'
 
   return (
-    <header className="w-full flex items-center justify-between px-4 py-3 border-b border-[var(--border)] bg-surface">
-      <span className="fc-label-lg font-bold text-primary tracking-wide">{title}</span>
-      <div className="flex items-center gap-2">
-        {onShowResult && (
-          <button
-            onClick={onShowResult}
-            className="fc-caption font-semibold text-fg-2 hover:text-fg px-3 py-1 rounded-pill bg-surface-2 border border-[var(--border)] cursor-pointer transition-colors duration-[var(--dur-1)]"
-          >
-            Resultado
-          </button>
-        )}
-        {onHelp != null && (
-          <button
-            onClick={helpDisabled ? undefined : onHelp}
-            disabled={helpDisabled}
-            aria-label="Ajuda"
-            className={[
-              'px-3 py-1.5 rounded-pill fc-caption font-bold border transition-colors duration-[var(--dur-1)]',
-              helpDisabled
-                ? 'bg-surface-2 text-fg-3 border-[var(--border)] cursor-not-allowed'
-                : 'bg-surface-2 text-fg border-[var(--border)] cursor-pointer hover:border-primary hover:text-primary',
-            ].join(' ')}
-          >
-            {helpLabel}
-          </button>
-        )}
-        <IconButton label="Alternar tema" onClick={toggleTheme}>
-          {resolvedTheme === 'dark' ? '☀️' : '🌙'}
-        </IconButton>
-      </div>
+    <header className="fc-topbar">
+
+      {/* Wordmark */}
+      <Link href="/" className="fc-wm" aria-label="FutCopa — início">
+        <Image src="/assets/logo-mark.svg" alt="" width={28} height={28} />
+        <span className="fc-wm-text">
+          <span className="a">Fut</span><span className="b">Copa</span>
+        </span>
+      </Link>
+
+      {/* Back link (optional) */}
+      {backHref && (
+        <Link href={backHref} className="fc-iconbtn" aria-label="Voltar" title="Voltar">
+          ←
+        </Link>
+      )}
+
+      {/* Result (when done) */}
+      {onShowResult && (
+        <button
+          onClick={onShowResult}
+          className="fc-iconbtn"
+          aria-label="Ver resultado"
+          title="Ver resultado"
+        >
+          🏆
+        </button>
+      )}
+
+      {/* Help (Dica) */}
+      {onHelp != null && (
+        <button
+          onClick={helpDisabled ? undefined : onHelp}
+          disabled={helpDisabled}
+          aria-label={helpUsed ? 'Dica já usada' : 'Usar dica'}
+          title={helpActive ? 'Dica ativa…' : helpUsed ? 'Dica já usada' : 'Dica (1×)'}
+          className="fc-iconbtn"
+          style={
+            helpActive
+              ? { background: 'var(--warning-bg)', color: 'var(--warning-ink)' }
+              : helpUsed
+                ? { opacity: 0.4, cursor: 'not-allowed' }
+                : undefined
+          }
+        >
+          {helpActive ? '✨' : helpUsed ? '💡' : '💡'}
+        </button>
+      )}
+
+      {/* Theme toggle */}
+      <button
+        onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+        className="fc-iconbtn"
+        aria-label="Alternar tema"
+        title={resolvedTheme === 'dark' ? 'Modo claro' : 'Modo escuro'}
+      >
+        {resolvedTheme === 'dark' ? '☀️' : '🌙'}
+      </button>
+
     </header>
   )
 }

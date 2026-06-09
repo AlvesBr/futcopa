@@ -1,17 +1,25 @@
 interface CategoryBadgeProps {
-  category: string
+  category:    string
   description?: string | null
+  puzzleNo?:   number | string
 }
 
-export function CategoryBadge({ category, description }: CategoryBadgeProps) {
+export function CategoryBadge({ category, description, puzzleNo }: CategoryBadgeProps) {
   return (
-    <div className="flex flex-col items-center gap-1 py-3 px-4">
-      <span className="inline-flex items-center gap-2 bg-surface-2 border border-[var(--border)] rounded-pill px-4 py-1.5 fc-label font-semibold text-primary">
-        ⚽ {category}
-      </span>
-      {description && (
-        <p className="fc-caption text-fg-2 text-center max-w-sm">{description}</p>
-      )}
+    <div className="fc-cat">
+      {/* Festival gradient icon */}
+      <div className="fc-cat-icon" aria-hidden="true">⚽</div>
+
+      {/* Text block */}
+      <div className="flex-1 min-w-0">
+        <p className="fc-cat-label">
+          {puzzleNo ? `#${puzzleNo} · ` : ''}Categoria do dia
+        </p>
+        <p className="fc-cat-title truncate">{category}</p>
+        {description && (
+          <p className="fc-cat-desc line-clamp-2">{description}</p>
+        )}
+      </div>
     </div>
   )
 }

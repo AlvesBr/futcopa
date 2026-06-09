@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { cn } from '@/lib/cn'
 import type { Formation, DraftMode } from '@/lib/types'
 import { createEmptyDraftState, saveDraftState } from '@/lib/draftState'
@@ -11,6 +12,21 @@ import { useTheme } from '@/components/ThemeProvider'
 const FORMATIONS: Formation[] = [
   '4-3-3', '4-4-2', '4-2-3-1', '4-2-4',
   '3-5-2', '5-3-2', '4-5-1',   '3-4-3',
+]
+
+const MODES = [
+  {
+    id:    'classico'  as DraftMode,
+    icon:  '⚽',
+    title: 'Clássico',
+    desc:  'Você vê o rating de cada jogador.',
+  },
+  {
+    id:    'almanaque' as DraftMode,
+    icon:  '📖',
+    title: 'De Almanaque',
+    desc:  'Ratings ocultos — só a memória salva.',
+  },
 ]
 
 export default function CopaDosSonhosPage() {
@@ -26,104 +42,153 @@ export default function CopaDosSonhosPage() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-4 py-10 gap-8"
-          style={{ backgroundColor: 'var(--bg)', color: 'var(--fg)' }}>
+    <div className="fc-stage">
+      <div className="fc-phone">
 
-      {/* Header */}
-      <header className="text-center w-full max-w-sm relative">
-        <Link href="/" className="fc-caption text-fg-3 hover:text-fg mb-4 block">
-          ← Voltar
-        </Link>
-        <button
-          onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-          className="absolute top-0 right-0 fc-caption text-fg-3 hover:text-fg px-2 py-1 rounded transition-colors"
-          aria-label="Alternar tema"
-          title={resolvedTheme === 'dark' ? 'Modo claro' : 'Modo escuro'}
+        {/* ── Top bar ───────────────────────────────────── */}
+        <header className="fc-topbar">
+          <Link href="/" className="fc-wm" aria-label="FutCopa — início">
+            <Image src="/assets/logo-mark.svg" alt="" width={28} height={28} />
+            <span className="fc-wm-text">
+              <span className="a">Fut</span><span className="b">Copa</span>
+            </span>
+          </Link>
+          <button
+            onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+            className="fc-iconbtn"
+            aria-label="Alternar tema"
+          >
+            {resolvedTheme === 'dark' ? '☀️' : '🌙'}
+          </button>
+        </header>
+
+        {/* ── Hero banner ───────────────────────────────── */}
+        <div
+          style={{
+            background: 'var(--grad-night)',
+            padding: '28px 20px 24px',
+            textAlign: 'center',
+            borderBottom: '1px solid var(--border)',
+          }}
         >
-          {resolvedTheme === 'dark' ? '☀️' : '🌙'}
-        </button>
-        <h1 className="fc-title text-fg">Copa dos Sonhos</h1>
-        <p className="fc-body text-fg-2 mt-2 max-w-sm mx-auto">
-          Role o dado. Sorteie uma seleção e uma Copa. Escale um craque histórico.
-          Complete os 11 e simule o torneio.
-        </p>
-      </header>
+          <p
+            style={{
+              fontFamily: 'var(--font-display)',
+              textTransform: 'uppercase',
+              fontSize: 'clamp(26px, 7vw, 36px)',
+              lineHeight: 1,
+              letterSpacing: '-.01em',
+              color: 'var(--gold-400)',
+              marginBottom: 6,
+            }}
+          >
+            Copa dos Sonhos
+          </p>
+          <p style={{ color: 'var(--fg-3)', fontSize: 14, lineHeight: 1.5 }}>
+            Role o dado · Sorteie seleções históricas · Escale 11 craques · Simule a Copa
+          </p>
 
-      {/* Como funciona */}
-      <div className="flex gap-6 text-center">
-        {[
-          { icon: '🎲', label: 'Role',   desc: 'Sorteia seleção + Copa' },
-          { icon: '🧩', label: 'Monte',  desc: 'Escolha um craque' },
-          { icon: '🏆', label: 'Simule', desc: 'Veja se vai longe' },
-        ].map(step => (
-          <div key={step.label} className="flex flex-col items-center gap-1">
-            <span className="text-2xl">{step.icon}</span>
-            <span className="fc-caption font-bold text-fg">{step.label}</span>
-            <span className="fc-caption text-fg-3 max-w-[80px] text-center">{step.desc}</span>
+          {/* Como funciona */}
+          <div className="flex justify-center gap-8 mt-5">
+            {[
+              { icon: '🎲', label: 'Role',   desc: 'Sorteia seleção + Copa' },
+              { icon: '🧩', label: 'Monte',  desc: 'Escolha um craque' },
+              { icon: '🏆', label: 'Simule', desc: 'Veja se vai longe' },
+            ].map(step => (
+              <div key={step.label} style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 26, lineHeight: 1 }}>{step.icon}</div>
+                <p style={{ fontWeight: 800, fontSize: 13, color: 'var(--fg)', marginTop: 4 }}>
+                  {step.label}
+                </p>
+                <p style={{ fontSize: 11, color: 'var(--fg-3)', maxWidth: 70, margin: '2px auto 0' }}>
+                  {step.desc}
+                </p>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        {/* ── Settings ──────────────────────────────────── */}
+        <div style={{ flex: 1, padding: '20px 18px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+
+          {/* Formação */}
+          <section>
+            <p className="fc-label" style={{ color: 'var(--fg-3)', marginBottom: 8 }}>
+              Formação
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
+              {FORMATIONS.map(f => (
+                <button
+                  key={f}
+                  onClick={() => setFormation(f)}
+                  style={{
+                    padding: '9px 4px',
+                    borderRadius: 'var(--r-sm)',
+                    border: `2px solid ${formation === f ? 'var(--primary)' : 'var(--border-strong)'}`,
+                    background: formation === f ? 'var(--primary)' : 'var(--surface)',
+                    color: formation === f ? 'var(--on-primary)' : 'var(--fg)',
+                    fontWeight: 700,
+                    fontSize: 12,
+                    cursor: 'pointer',
+                    transition: 'all var(--dur-1)',
+                    boxShadow: formation === f ? 'var(--glow-grass)' : 'none',
+                  }}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+          </section>
+
+          {/* Modo */}
+          <section>
+            <p className="fc-label" style={{ color: 'var(--fg-3)', marginBottom: 8 }}>
+              Dificuldade
+            </p>
+            <div className="fc-modes" style={{ padding: 0, gap: 10 }}>
+              {MODES.map(m => (
+                <button
+                  key={m.id}
+                  onClick={() => setMode(m.id)}
+                  className={`fc-mode ${mode === m.id ? 'fc-mode--sel' : ''}`}
+                >
+                  <div className="fc-mode-badge">{m.icon}</div>
+                  <div style={{ flex: 1, textAlign: 'left' }}>
+                    <p className="fc-mode-title">{m.title}</p>
+                    <p className="fc-mode-desc">{m.desc}</p>
+                  </div>
+                  {mode === m.id && (
+                    <span style={{ color: 'var(--primary)', fontSize: 18 }}>✓</span>
+                  )}
+                </button>
+              ))}
+            </div>
+          </section>
+
+          {/* Resumo */}
+          <p style={{ fontSize: 12, color: 'var(--fg-3)', textAlign: 'center' }}>
+            {formation} · {mode === 'classico' ? 'Clássico' : 'De Almanaque'} · Rejogável ∞
+          </p>
+
+        </div>
+
+        {/* ── CTA fixo na base ──────────────────────────── */}
+        <div
+          style={{
+            padding: '12px 18px 24px',
+            borderTop: '1px solid var(--border)',
+            background: 'var(--bg-elevated)',
+          }}
+        >
+          <button
+            onClick={handleStart}
+            className="fc-btn fc-btn--primary fc-btn--block"
+          >
+            🎲 Jogar agora
+          </button>
+        </div>
+
       </div>
-
-      {/* Seleção de formação */}
-      <section className="w-full max-w-sm">
-        <p className="fc-eyebrow text-fg-3 mb-2 uppercase tracking-wide">Formação</p>
-        <div className="grid grid-cols-4 gap-2">
-          {FORMATIONS.map(f => (
-            <button
-              key={f}
-              onClick={() => setFormation(f)}
-              className={cn(
-                'py-2 px-1 rounded-sm border-2 fc-caption font-bold transition-colors',
-                formation === f
-                  ? 'border-primary bg-primary text-white'
-                  : 'border-[var(--slot-border)] bg-[var(--surface)] text-fg hover:border-primary'
-              )}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* Seleção de modo */}
-      <section className="w-full max-w-sm">
-        <p className="fc-eyebrow text-fg-3 mb-2 uppercase tracking-wide">Dificuldade</p>
-        <div className="grid grid-cols-2 gap-2">
-          {([
-            { id: 'classico',  label: 'Clássico',    desc: 'Você vê o rating de cada jogador.' },
-            { id: 'almanaque', label: 'De Almanaque', desc: 'Ratings ocultos — só a memória salva.' },
-          ] as { id: DraftMode; label: string; desc: string }[]).map(m => (
-            <button
-              key={m.id}
-              onClick={() => setMode(m.id)}
-              className={cn(
-                'p-3 rounded-sm border-2 text-left transition-colors',
-                mode === m.id
-                  ? 'border-primary bg-primary text-white'
-                  : 'border-[var(--slot-border)] bg-[var(--surface)] text-fg hover:border-primary'
-              )}
-            >
-              <span className="fc-caption font-bold block">{m.label}</span>
-              <span className={cn('fc-caption block mt-0.5', mode === m.id ? 'text-white/80' : 'text-fg-3')}>
-                {m.desc}
-              </span>
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <button
-        onClick={handleStart}
-        className="bg-primary text-white font-bold px-8 py-3 rounded-sm hover:opacity-90 transition-opacity fc-subtitle"
-      >
-        Jogar agora →
-      </button>
-
-      <p className="fc-caption text-fg-3 text-center max-w-xs">
-        {formation} · {mode === 'classico' ? 'Clássico' : 'De Almanaque'} · Rejogável quantas vezes quiser
-      </p>
-
-    </main>
+    </div>
   )
 }

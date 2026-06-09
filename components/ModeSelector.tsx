@@ -1,34 +1,73 @@
 'use client'
 
+import { useState } from 'react'
 import type { GameMode } from '@/lib/types'
 
 interface ModeSelectorProps {
   onSelect: (mode: GameMode) => void
 }
 
+const MODES = [
+  {
+    id:    'normal' as GameMode,
+    icon:  '⚽',
+    title: 'Normal',
+    desc:  'Sem dicas de nível. Confie no seu conhecimento.',
+  },
+  {
+    id:    'easy' as GameMode,
+    icon:  '📍',
+    title: 'Fácil',
+    desc:  'Mostra o nível correto de cada jogador antes de posicionar.',
+  },
+]
+
 export function ModeSelector({ onSelect }: ModeSelectorProps) {
+  const [selected, setSelected] = useState<GameMode>('normal')
+
   return (
-    <main className="flex-1 flex flex-col items-center justify-center gap-6 px-6 py-8">
-      <div className="text-center">
-        <h2 className="fc-h2 text-fg mb-1">Escolha o modo</h2>
-        <p className="fc-body text-fg-2">Como você quer jogar hoje?</p>
+    <div className="flex-1 flex flex-col" style={{ background: 'var(--bg)' }}>
+
+      {/* Title */}
+      <div style={{ padding: '20px 18px 4px' }}>
+        <h1 className="fc-h1" style={{ color: 'var(--fg)', margin: 0 }}>
+          Escolha o modo
+        </h1>
+        <p className="fc-body" style={{ color: 'var(--fg-2)', marginTop: 6 }}>
+          Você pode trocar quando quiser.
+        </p>
       </div>
-      <div className="flex flex-col gap-3 w-full max-w-xs">
+
+      {/* Mode cards */}
+      <div className="fc-modes">
+        {MODES.map(m => (
+          <button
+            key={m.id}
+            onClick={() => setSelected(m.id)}
+            className={`fc-mode ${selected === m.id ? 'fc-mode--sel' : ''}`}
+          >
+            <div className="fc-mode-badge">{m.icon}</div>
+            <div className="flex-1 text-left">
+              <p className="fc-mode-title">{m.title}</p>
+              <p className="fc-mode-desc">{m.desc}</p>
+            </div>
+            {selected === m.id && (
+              <span style={{ color: 'var(--primary)', fontSize: 20 }}>✓</span>
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* CTA */}
+      <div style={{ padding: '4px 18px 28px', marginTop: 'auto' }}>
         <button
-          onClick={() => onSelect('normal')}
-          className="flex flex-col items-start gap-1 bg-surface-2 border-2 border-[var(--border)] rounded-xl px-5 py-4 cursor-pointer hover:border-primary hover:bg-surface-3 transition-colors duration-[var(--dur-1)] text-left"
+          className="fc-btn fc-btn--primary fc-btn--block"
+          onClick={() => onSelect(selected)}
         >
-          <span className="fc-label-lg font-bold text-fg">⚽ Normal</span>
-          <span className="fc-caption text-fg-2">Sem dicas de nível. Confie no seu conhecimento.</span>
-        </button>
-        <button
-          onClick={() => onSelect('easy')}
-          className="flex flex-col items-start gap-1 bg-surface-2 border-2 border-[var(--border)] rounded-xl px-5 py-4 cursor-pointer hover:border-primary hover:bg-surface-3 transition-colors duration-[var(--dur-1)] text-left"
-        >
-          <span className="fc-label-lg font-bold text-fg">📍 Fácil</span>
-          <span className="fc-caption text-fg-2">Mostra o nível correto de cada jogador antes de posicionar.</span>
+          Começar →
         </button>
       </div>
-    </main>
+
+    </div>
   )
 }

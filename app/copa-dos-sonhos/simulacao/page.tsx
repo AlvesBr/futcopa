@@ -139,45 +139,49 @@ function SimulacaoInner() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="fc-body text-fg-2 animate-pulse">Simulando a Copa…</p>
+      <div className="fc-stage">
+        <div className="fc-phone" style={{ alignItems: 'center', justifyContent: 'center' }}>
+          <p className="fc-body animate-pulse" style={{ color: 'var(--fg-2)' }}>Simulando a Copa…</p>
+        </div>
       </div>
     )
   }
 
   if (error || !campaign) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4 px-4">
-        <p className="fc-body text-[var(--error)] text-center">{error ?? 'Erro desconhecido.'}</p>
-        <Link href="/copa-dos-sonhos/draft" className="fc-body text-primary underline">
-          ← Voltar ao draft
-        </Link>
+      <div className="fc-stage">
+        <div className="fc-phone" style={{ alignItems: 'center', justifyContent: 'center', gap: 16, padding: 24 }}>
+          <p className="fc-body" style={{ color: 'var(--error)', textAlign: 'center' }}>{error ?? 'Erro desconhecido.'}</p>
+          <Link href="/copa-dos-sonhos/draft" className="fc-body" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>
+            ← Voltar ao draft
+          </Link>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: 'var(--bg)' }}>
+    <div className="fc-stage">
+    <div className="fc-phone">
 
       {/* Top bar */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--slot-border)]"
-              style={{ backgroundColor: 'var(--surface)' }}>
-        <h1 className="fc-subtitle text-fg font-bold">
-          A campanha · SEED <span className="text-fg-3">#{seed}</span>
-        </h1>
-        <div className="flex items-center gap-3">
-          <button onClick={handleRepeat} className="fc-caption text-fg-3 hover:text-fg">
-            ↻ Repetir
-          </button>
-          <button
-            onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-            className="fc-caption text-fg-3 hover:text-fg px-2 py-1 rounded transition-colors"
-            aria-label="Alternar tema"
-            title={resolvedTheme === 'dark' ? 'Modo claro' : 'Modo escuro'}
-          >
-            {resolvedTheme === 'dark' ? '☀️' : '🌙'}
-          </button>
+      <header className="fc-topbar">
+        <div className="fc-wm" style={{ gap: 6 }}>
+          <span style={{ fontFamily: 'var(--font-display)', fontSize: 14, textTransform: 'uppercase', letterSpacing: '.04em', color: 'var(--gold-400)' }}>
+            A Campanha
+          </span>
+          <span className="fc-caption" style={{ color: 'var(--fg-3)' }}>#<span style={{ fontWeight: 700, color: 'var(--fg)' }}>{seed}</span></span>
         </div>
+        <button onClick={handleRepeat} className="fc-iconbtn" title="Recomeçar" aria-label="Recomeçar">
+          ↻
+        </button>
+        <button
+          onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+          className="fc-iconbtn"
+          aria-label="Alternar tema"
+        >
+          {resolvedTheme === 'dark' ? '☀️' : '🌙'}
+        </button>
       </header>
 
       <main className="flex-1 flex flex-col lg:flex-row gap-6 p-4 max-w-4xl mx-auto w-full">
@@ -240,14 +244,17 @@ function SimulacaoInner() {
 
       </main>
     </div>
+    </div>
   )
 }
 
 export default function SimulacaoPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="fc-body text-fg-2 animate-pulse">Carregando…</p>
+      <div className="fc-stage">
+        <div className="fc-phone" style={{ alignItems: 'center', justifyContent: 'center' }}>
+          <p className="fc-body animate-pulse" style={{ color: 'var(--fg-2)' }}>Carregando…</p>
+        </div>
       </div>
     }>
       <SimulacaoInner />
