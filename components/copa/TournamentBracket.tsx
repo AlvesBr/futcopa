@@ -12,9 +12,9 @@ interface TournamentBracketProps {
 }
 
 export function TournamentBracket({ matches, revealedCount }: TournamentBracketProps) {
-  // Só mostra jogos já revelados + o jogo atual (em andamento)
-  // Jogos futuros ficam ocultos para preservar o suspense
-  const visibleMatches = matches.filter((_, i) => i <= revealedCount)
+  // Só mostra jogos já revelados — o jogo atual e os futuros ficam ocultos
+  // para preservar o suspense (o BracketChip exibe nome e bandeira do adversário)
+  const visibleMatches = matches.filter((_, i) => i < revealedCount)
 
   const groupMatches   = visibleMatches.filter(m => m.phase === 'grupos')
   const knockoutPhases = ['oitavas', 'quartas', 'semi', 'final'] as const

@@ -32,8 +32,8 @@ export default function HomePage() {
   const { resolvedTheme, setTheme } = useTheme()
   const countdown = useCountdown()
 
-  /* Today's date → play URL */
-  const today = new Date().toISOString().split('T')[0]!
+  /* Today's date → play URL (timezone local, igual a todayDate() do servidor) */
+  const today = new Date().toLocaleDateString('en-CA')
 
   return (
     <div className="fc-stage">

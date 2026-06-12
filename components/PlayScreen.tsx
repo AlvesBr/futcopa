@@ -210,8 +210,11 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
     const targetRank = parseInt(overId.replace('slot-', ''), 10) as Rank
     const activeId = active.id as string
 
-    /* Review: arrastou um card já posicionado → troca de posições */
+    /* Review: arrastou um card já posicionado → troca de posições.
+       Guard de fase: um drag em andamento pode soltar depois do Confirmar,
+       e a troca alteraria os slots após o score já ter sido salvo. */
     if (activeId.startsWith('placed-')) {
+      if (phase !== 'review') return
       const sourceRank = parseInt(activeId.replace('placed-', ''), 10) as Rank
       swapSlots(sourceRank, targetRank)
       return
@@ -267,7 +270,7 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
     <div className="fc-stage">
       <div className="fc-phone">
         <TopBar
-          onHelp={isInteractive ? handleHelp : undefined}
+          onHelp={phase === 'playing' ? handleHelp : undefined}
           helpUsed={usedHelp}
           helpActive={helpActive}
           onShowResult={phase === 'done' ? () => setShowResult(true) : undefined}
