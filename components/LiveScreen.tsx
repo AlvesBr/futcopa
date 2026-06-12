@@ -16,6 +16,7 @@ import {
   matchesOnDate,
   displayScore,
 } from '@/lib/live'
+import { cazeLinkFor, type CazeVideo } from '@/lib/cazetv'
 
 const REFRESH_MS = 60_000
 const TICK_MS = 30_000
@@ -79,20 +80,25 @@ function StatusBadge({ status, match, now }: { status: MatchStatus; match: RawMa
 
 /* ─── card de partida (expansível) ─── */
 
-function MatchCard({ match, now }: { match: RawMatch; now: Date }) {
+function MatchCard({ match, now, videos }: { match: RawMatch; now: Date; videos: CazeVideo[] }) {
   const [expanded, setExpanded] = useState(false)
   const status = matchStatus(match, now)
   const score = displayScore(match)
   const homeWin = score ? score.home > score.away : false
   const awayWin = score ? score.away > score.home : false
+  const isLive = status === 'live' || status === 'halftime'
+  const caze = cazeLinkFor(match, videos, status)
 
   return (
-    <button
+    <div
+      role="button"
+      tabIndex={0}
       onClick={() => setExpanded(e => !e)}
+      onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpanded(v => !v) } }}
       className={cn(
         'w-full text-left bg-surface-2 border rounded-md px-3 py-2.5 cursor-pointer',
         'transition-[border-color,box-shadow] duration-[var(--dur-1)]',
-        status === 'live' || status === 'halftime'
+        isLive
           ? 'border-[var(--success)] shadow-1'
           : 'border-[var(--border)] hover:border-[var(--border-strong)]',
       )}
@@ -111,12 +117,40 @@ function MatchCard({ match, now }: { match: RawMatch; now: Date }) {
         <p className="fc-caption text-fg-3 mt-1">{score.note}</p>
       )}
 
+      {/* Jogo ao vivo: botão de assistir sempre visível */}
+      {isLive && caze && (
+        <a
+          href={caze.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={e => e.stopPropagation()}
+          className={cn(
+            'mt-2 flex items-center justify-center gap-2 rounded-pill px-3 py-2 no-underline',
+            'bg-[#FF0000] text-white font-bold fc-caption',
+            'hover:brightness-110 transition-[filter] duration-[var(--dur-1)]',
+          )}
+        >
+          ▶ {caze.label}
+        </a>
+      )}
+
       {expanded && (
         <div className="mt-2 pt-2 border-t border-[var(--border)] flex flex-col gap-1">
-          {(status === 'live' || status === 'halftime') && (
+          {isLive && (
             <p className="fc-caption text-fg-3">
               ⚽ Placar é publicado ao final da partida — minuto estimado pelo horário.
             </p>
+          )}
+          {!isLive && caze && !caze.fallback && (
+            <a
+              href={caze.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={e => e.stopPropagation()}
+              className="fc-caption font-bold text-[#FF0000] no-underline hover:underline"
+            >
+              ▶ {caze.label}
+            </a>
           )}
           {(match.goals1?.length || match.goals2?.length) ? (
             <div className="flex flex-col gap-0.5">
@@ -142,7 +176,7 @@ function MatchCard({ match, now }: { match: RawMatch; now: Date }) {
           </p>
         </div>
       )}
-    </button>
+    </div>
   )
 }
 
@@ -150,6 +184,7 @@ function MatchCard({ match, now }: { match: RawMatch; now: Date }) {
 
 export function LiveScreen() {
   const [matches, setMatches] = useState<RawMatch[] | null>(null)
+  const [cazeVideos, setCazeVideos] = useState<CazeVideo[]>([])
   const [fetchFailed, setFetchFailed] = useState(false)
   const [selectedDate, setSelectedDate] = useState(todayLocal)
   const [liveOnly, setLiveOnly] = useState(false)
@@ -164,6 +199,15 @@ export function LiveScreen() {
       setFetchFailed(false)
     } catch {
       setFetchFailed(true)
+    }
+    try {
+      const res = await fetch('/api/cazetv')
+      if (res.ok) {
+        const data = await res.json()
+        setCazeVideos((data.videos ?? []) as CazeVideo[])
+      }
+    } catch {
+      /* sem vídeos — botões caem no fallback do canal */
     }
   }, [])
 
@@ -293,7 +337,7 @@ export function LiveScreen() {
             <section key={stage} aria-label={stage} className="flex flex-col gap-2">
               <h2 className="fc-label text-fg-2 m-0 uppercase tracking-wide">{stage}</h2>
               {ms.map((m, i) => (
-                <MatchCard key={`${m.date}-${m.team1}-${m.team2}-${i}`} match={m} now={now} />
+                <MatchCard key={`${m.date}-${m.team1}-${m.team2}-${i}`} match={m} now={now} videos={cazeVideos} />
               ))}
             </section>
           ))}
