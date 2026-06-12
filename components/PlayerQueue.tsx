@@ -91,15 +91,24 @@ export function PlayerQueue({ queue, queueIndex, mode, selectedPlayerId, onSelec
       />
 
       {upcomingPlayers.length > 0 && (
-        <div className="flex items-center gap-2 mt-1">
-          {upcomingPlayers.map(p => (
-            <div key={p.player_id} className="opacity-40">
-              <Avatar src={p.photo_url} name={p.name} size={24} />
-            </div>
-          ))}
-          {queue.length - queueIndex - 1 > 5 && (
-            <span className="fc-caption text-fg-3">+{queue.length - queueIndex - 6}</span>
-          )}
+        <div className="w-full mt-1 flex flex-col items-center gap-1.5">
+          <p className="fc-caption text-fg-3">Próximos na fila:</p>
+          <div className="flex flex-wrap justify-center gap-1.5">
+            {upcomingPlayers.map(p => (
+              <span
+                key={p.player_id}
+                className="flex items-center gap-1.5 bg-surface-2 border border-[var(--border)] rounded-pill pl-1 pr-2.5 py-0.5 opacity-60"
+              >
+                <Avatar src={p.photo_url} name={p.name} size={20} />
+                <span className="fc-caption text-fg-2 whitespace-nowrap">{p.name}</span>
+              </span>
+            ))}
+            {queue.length - queueIndex - 1 > 5 && (
+              <span className="fc-caption text-fg-3 self-center">
+                +{queue.length - queueIndex - 6}
+              </span>
+            )}
+          </div>
         </div>
       )}
     </section>

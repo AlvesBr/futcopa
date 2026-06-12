@@ -22,7 +22,7 @@ import { ModeSelector } from '@/components/ModeSelector'
 import { ResultModal } from '@/components/ResultModal'
 import { Modal } from '@/components/ui'
 
-type GamePhase = 'mode-select' | 'playing' | 'done'
+type GamePhase = 'mode-select' | 'playing' | 'review' | 'done'
 
 interface SavedResult {
   score: number
@@ -68,12 +68,14 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
   const [queue, setQueue] = useState<PuzzlePlayer[]>([])
   const [queueIndex, setQueueIndex] = useState(0)
   const [slots, setSlots] = useState<Record<number, SlotEntry | null>>(buildInitialSlots)
+  const [revealed, setRevealed] = useState(false)
   const [usedHelp, setUsedHelp] = useState(false)
   const [helpActive, setHelpActive] = useState(false)
   const [showHelpConfirm, setShowHelpConfirm] = useState(false)
   const [showResult, setShowResult] = useState(false)
   const [activeDragId, setActiveDragId] = useState<string | null>(null)
   const [selectedPlayerId, setSelectedPlayerId] = useState<string | null>(null)
+  const [selectedSlotRank, setSelectedSlotRank] = useState<Rank | null>(null)
   const helpTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const resultTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const startedAtRef = useRef<number>(0)
@@ -93,6 +95,7 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
     }
     setSlots(restoredSlots)
     setUsedHelp(saved.usedHelp)
+    setRevealed(true)
     setPhase('done')
     setShowResult(true)
   }, [puzzle.date])
@@ -111,6 +114,13 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
     setMode(selectedMode)
     setQueue(shuffleArray(puzzle.players))
     setPhase('playing')
+  }
+
+  /* Recalcula a correção de uma entrada para o rank onde ela está */
+  function withCorrectness(entry: SlotEntry, rank: Rank): SlotEntry {
+    const player = puzzle.players.find(p => p.player_id === entry.playerId)
+    const correct = player ? player.correct_level === RANK_TO_LEVEL[rank] : false
+    return { ...entry, correct }
   }
 
   /* Shared placement logic used by both drag-end and tap-to-place */
@@ -133,39 +143,62 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
     setQueueIndex(nextIndex)
 
     if (nextIndex >= puzzle.players.length) {
-      const finalScore = Object.values(newSlots).filter(s => s?.correct === true).length
-      const timeSpent = startedAtRef.current
-        ? Math.round((Date.now() - startedAtRef.current) / 1000)
-        : 0
-      const slotsToSave = Object.fromEntries(
-        Object.entries(newSlots)
-          .filter(([, v]) => v !== null)
-          .map(([k, v]) => [k, v as SlotEntry])
-      )
-      saveResult(puzzle.date, {
-        score: finalScore,
-        usedHelp,
-        completedAt: new Date().toISOString(),
-        timeSpent,
-        slots: slotsToSave,
-      })
-      try {
-        const sb = createBrowserClient()
-        sb.from('user_results').insert({
-          puzzle_date: puzzle.date,
-          score: finalScore,
-          used_help: usedHelp,
-          time_spent: timeSpent,
-        }).then(() => {})
-      } catch {}
-      setPhase('done')
-      resultTimerRef.current = setTimeout(() => setShowResult(true), 800)
+      /* Todos posicionados — fase de revisão: ajustar posições antes de confirmar */
+      setPhase('review')
     }
+  }
+
+  /* Troca o conteúdo de dois slots (review). Mover para slot vazio também funciona. */
+  function swapSlots(a: Rank, b: Rank) {
+    if (a === b) return
+    setSlots(prev => {
+      const entryA = prev[a] ?? null
+      const entryB = prev[b] ?? null
+      return {
+        ...prev,
+        [a]: entryB ? withCorrectness(entryB, a) : null,
+        [b]: entryA ? withCorrectness(entryA, b) : null,
+      }
+    })
+  }
+
+  /* Confirmação final — revela o gabarito e persiste o resultado */
+  function handleConfirm() {
+    const finalScore = Object.values(slots).filter(s => s?.correct === true).length
+    const timeSpent = startedAtRef.current
+      ? Math.round((Date.now() - startedAtRef.current) / 1000)
+      : 0
+    const slotsToSave = Object.fromEntries(
+      Object.entries(slots)
+        .filter(([, v]) => v !== null)
+        .map(([k, v]) => [k, v as SlotEntry])
+    )
+    saveResult(puzzle.date, {
+      score: finalScore,
+      usedHelp,
+      completedAt: new Date().toISOString(),
+      timeSpent,
+      slots: slotsToSave,
+    })
+    try {
+      const sb = createBrowserClient()
+      sb.from('user_results').insert({
+        puzzle_date: puzzle.date,
+        score: finalScore,
+        used_help: usedHelp,
+        time_spent: timeSpent,
+      }).then(() => {})
+    } catch {}
+    setSelectedSlotRank(null)
+    setRevealed(true)
+    setPhase('done')
+    resultTimerRef.current = setTimeout(() => setShowResult(true), 800)
   }
 
   function handleDragStart(event: DragStartEvent) {
     setActiveDragId(event.active.id as string)
     setSelectedPlayerId(null)
+    setSelectedSlotRank(null)
   }
 
   function handleDragEnd(event: DragEndEvent) {
@@ -175,7 +208,16 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
     const overId = over.id as string
     if (!overId.startsWith('slot-')) return
     const targetRank = parseInt(overId.replace('slot-', ''), 10) as Rank
-    placePlayer(active.id as string, targetRank, slots, queueIndex)
+    const activeId = active.id as string
+
+    /* Review: arrastou um card já posicionado → troca de posições */
+    if (activeId.startsWith('placed-')) {
+      const sourceRank = parseInt(activeId.replace('placed-', ''), 10) as Rank
+      swapSlots(sourceRank, targetRank)
+      return
+    }
+
+    placePlayer(activeId, targetRank, slots, queueIndex)
   }
 
   /* Tap-to-place: toggle selection on active card */
@@ -183,8 +225,17 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
     setSelectedPlayerId(prev => prev === playerId ? null : playerId)
   }
 
-  /* Tap-to-place: slot tapped while a player is selected */
+  /* Tap em slot: posicionar (playing) ou trocar de lugar (review) */
   function handleSlotClick(rank: Rank) {
+    if (phase === 'review') {
+      if (selectedSlotRank === null) {
+        if (slots[rank]) setSelectedSlotRank(rank)
+      } else {
+        swapSlots(selectedSlotRank, rank)
+        setSelectedSlotRank(null)
+      }
+      return
+    }
     if (!selectedPlayerId || phase !== 'playing') return
     placePlayer(selectedPlayerId, rank, slots, queueIndex)
     setSelectedPlayerId(null)
@@ -201,17 +252,28 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
     helpTimerRef.current = setTimeout(() => setHelpActive(false), 2000)
   }
 
+  const isInteractive = phase === 'playing' || phase === 'review'
+
+  /* Nome exibido no DragOverlay (card da fila ou card já posicionado) */
+  function dragOverlayName(id: string): string | null {
+    if (id.startsWith('placed-')) {
+      const rank = parseInt(id.replace('placed-', ''), 10)
+      return slots[rank]?.playerName ?? null
+    }
+    return queue.find(q => q.player_id === id)?.name ?? null
+  }
+
   return (
     <div className="fc-stage">
       <div className="fc-phone">
         <TopBar
-          onHelp={phase === 'playing' ? handleHelp : undefined}
+          onHelp={isInteractive ? handleHelp : undefined}
           helpUsed={usedHelp}
           helpActive={helpActive}
           onShowResult={phase === 'done' ? () => setShowResult(true) : undefined}
         />
 
-        {/* Category badge — shown in playing + done */}
+        {/* Category badge — shown in playing + review + done */}
         {phase !== 'mode-select' && (
           <CategoryBadge category={puzzle.category} description={puzzle.description} />
         )}
@@ -232,6 +294,9 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
                   slots={slots}
                   mode={mode}
                   helpActive={helpActive}
+                  revealed={revealed}
+                  swappable={phase === 'review'}
+                  selectedSlotRank={selectedSlotRank}
                   activePlayerLevel={mode === 'easy' ? activePlayer?.correct_level : undefined}
                   isDragging={activeDragId !== null}
                   selectedPlayerId={selectedPlayerId}
@@ -246,16 +311,39 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
                     onSelectPlayer={handleSelectPlayer}
                   />
                 )}
+                {phase === 'review' && (
+                  <section
+                    aria-label="Revisão"
+                    className="w-full px-4 pb-6 flex flex-col items-center gap-3"
+                  >
+                    <p className="fc-caption text-fg-2 text-center">
+                      Todos posicionados! Arraste um card sobre outro — ou toque em dois —
+                      para trocar de lugar.
+                    </p>
+                    <p className="fc-caption text-fg-3 text-center">
+                      {selectedSlotRank !== null
+                        ? 'Agora toque no slot de destino'
+                        : 'Quando estiver satisfeito, confirme sua resposta'}
+                    </p>
+                    <button
+                      onClick={handleConfirm}
+                      className="fc-btn fc-btn--primary"
+                      style={{ width: '100%', maxWidth: 320 }}
+                    >
+                      Confirmar resposta
+                    </button>
+                  </section>
+                )}
               </div>
             </main>
 
-            {phase === 'playing' && (
+            {isInteractive && (
               <DragOverlay dropAnimation={null}>
                 {activeDragId && (() => {
-                  const p = queue.find(q => q.player_id === activeDragId)
-                  return p ? (
+                  const name = dragOverlayName(activeDragId)
+                  return name ? (
                     <div className="flex items-center gap-2 bg-surface-2 border-2 border-primary rounded-sm px-3 py-2 shadow-2 cursor-grabbing rotate-2 scale-105">
-                      <span className="fc-label" style={{ color: 'var(--fg)', fontWeight: 600 }}>{p.name}</span>
+                      <span className="fc-label" style={{ color: 'var(--fg)', fontWeight: 600 }}>{name}</span>
                     </div>
                   ) : null
                 })()}

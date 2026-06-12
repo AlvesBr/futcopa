@@ -1,14 +1,19 @@
 'use client'
 
-import { useDroppable } from '@dnd-kit/core'
+import { useDroppable, useDraggable } from '@dnd-kit/core'
 import { cn } from '@/lib/cn'
-import { SLOTS_PER_LEVEL, RANK_TO_LEVEL } from '@/lib/types'
+import { SLOTS_PER_LEVEL } from '@/lib/types'
 import type { Level, Rank, SlotEntry, GameMode } from '@/lib/types'
 
 interface PyramidShellProps {
   slots: Record<number, SlotEntry | null>
   mode: GameMode
   helpActive: boolean
+  /** Quando false, slots preenchidos ficam neutros (gabarito oculto até confirmar). */
+  revealed: boolean
+  /** Fase de revisão: cards podem ser trocados de lugar. */
+  swappable?: boolean
+  selectedSlotRank?: Rank | null
   activePlayerLevel?: Level
   isDragging?: boolean
   selectedPlayerId?: string | null
@@ -28,6 +33,9 @@ function DroppableSlot({
   rank,
   entry,
   helpActive,
+  revealed,
+  swappable,
+  isSwapSelected,
   showLevelHint,
   showSelectHint,
   onSlotClick,
@@ -35,17 +43,26 @@ function DroppableSlot({
   rank: number
   entry: SlotEntry | null
   helpActive: boolean
+  revealed: boolean
+  swappable: boolean
+  isSwapSelected: boolean
   showLevelHint: boolean
   showSelectHint: boolean
   onSlotClick?: (rank: Rank) => void
 }) {
   const { setNodeRef, isOver } = useDroppable({ id: `slot-${rank}` })
+  const drag = useDraggable({
+    id: `placed-${rank}`,
+    disabled: !swappable || !entry,
+  })
 
   type VisualState = 'empty' | 'active' | 'filled' | 'correct' | 'incorrect'
 
   let state: VisualState
   if (!entry) {
     state = isOver ? 'active' : 'empty'
+  } else if (!revealed) {
+    state = isOver ? 'active' : 'filled'
   } else if (entry.correct) {
     state = 'correct'
   } else {
@@ -60,17 +77,19 @@ function DroppableSlot({
     incorrect: 'bg-[var(--error-bg)] border-solid border-[var(--error)]',
   }
 
+  const clickable = onSlotClick && (!entry || swappable)
+
   return (
     <div
       ref={setNodeRef}
       aria-label={`Slot ${rank}`}
-      onClick={() => !entry && onSlotClick?.(rank as Rank)}
+      onClick={() => clickable && onSlotClick(rank as Rank)}
       className={cn(
         'relative w-[84px] h-[64px] sm:w-[100px] sm:h-[72px] rounded-sm flex items-center justify-center',
         'select-none border-2',
         'transition-[border-color,box-shadow,background] duration-[var(--dur-2)]',
         stateClasses[state],
-        !entry && onSlotClick && 'cursor-pointer',
+        clickable && 'cursor-pointer',
         /* help animation */
         helpActive && entry && entry.correct && 'animate-pulse shadow-glow-grass',
         helpActive && entry && !entry.correct && 'animate-pulse',
@@ -78,6 +97,8 @@ function DroppableSlot({
         showLevelHint && !entry && 'ring-2 ring-primary ring-offset-1',
         /* tap-to-place selection hint */
         showSelectHint && !entry && 'ring-2 ring-primary ring-offset-1 animate-pulse',
+        /* swap selection */
+        isSwapSelected && 'ring-2 ring-primary ring-offset-1 shadow-glow-grass',
       )}
     >
       <span className="absolute -top-2 -left-2 w-6 h-6 rounded-pill bg-ink-900 dark:bg-fg text-white dark:text-bg font-bold grid place-items-center text-[11px]">
@@ -87,9 +108,20 @@ function DroppableSlot({
         <span aria-hidden className="text-[20px] text-fg-3 leading-none">+</span>
       )}
       {entry && (
-        <span className="fc-caption text-current font-semibold text-center px-1 leading-tight max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
-          {entry.playerName.split(' ').at(-1)}
-        </span>
+        <div
+          ref={drag.setNodeRef}
+          {...(swappable ? { ...drag.listeners, ...drag.attributes } : {})}
+          style={swappable ? { touchAction: 'none' } : undefined}
+          className={cn(
+            'absolute inset-0 flex items-center justify-center',
+            swappable && 'cursor-grab active:cursor-grabbing',
+            drag.isDragging && 'opacity-30',
+          )}
+        >
+          <span className="fc-caption text-current font-semibold text-center px-1 leading-tight max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
+            {entry.playerName.split(' ').at(-1)}
+          </span>
+        </div>
       )}
     </div>
   )
@@ -99,6 +131,9 @@ export function PyramidShell({
   slots,
   mode,
   helpActive,
+  revealed,
+  swappable = false,
+  selectedSlotRank = null,
   activePlayerLevel,
   isDragging = false,
   selectedPlayerId,
@@ -119,6 +154,9 @@ export function PyramidShell({
                 rank={rank}
                 entry={slots[rank] ?? null}
                 helpActive={helpActive}
+                revealed={revealed}
+                swappable={swappable}
+                isSwapSelected={selectedSlotRank === rank}
                 showLevelHint={showLevelHint}
                 showSelectHint={showSelectHint}
                 onSlotClick={onSlotClick}
