@@ -44,10 +44,10 @@ export default function HomePage() {
 
           {/* Upper bar */}
           <div className="flex items-center justify-between px-4 pt-4 pb-0">
-            <div className="fc-marquee">
+            <Link href="/ao-vivo" className="fc-marquee no-underline" aria-label="Jogos da Copa 2026 ao vivo">
               <span className="fc-live-dot" />
               Copa 2026 · Ao Vivo
-            </div>
+            </Link>
             <button
               onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
               className="fc-iconbtn"
