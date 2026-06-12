@@ -118,9 +118,16 @@ function DroppableSlot({
             drag.isDragging && 'opacity-30',
           )}
         >
-          <span className="fc-caption text-current font-semibold text-center px-1 leading-tight max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
-            {entry.playerName.split(' ').at(-1)}
-          </span>
+          <div className="flex flex-col items-center min-w-0 max-w-full px-1">
+            <span className="fc-caption text-current font-semibold text-center leading-tight max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
+              {entry.playerName.split(' ').at(-1)}
+            </span>
+            {revealed && !entry.correct && entry.correctLevel != null && (
+              <span className="text-[10px] font-bold leading-tight text-current opacity-80 whitespace-nowrap">
+                → Nível {entry.correctLevel}
+              </span>
+            )}
+          </div>
         </div>
       )}
     </div>

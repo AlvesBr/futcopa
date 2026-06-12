@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { Modal, Toast } from '@/components/ui'
 import { RANK_TO_LEVEL } from '@/lib/types'
 import { createBrowserClient } from '@/lib/supabase'
-import type { SlotEntry, Rank, Level, PuzzleStats } from '@/lib/types'
+import type { SlotEntry, Rank, Level, PuzzleStats, PuzzlePlayer } from '@/lib/types'
 
 interface ResultModalProps {
   open: boolean
@@ -14,6 +14,7 @@ interface ResultModalProps {
   usedHelp: boolean
   puzzleDate: string
   category: string
+  players: PuzzlePlayer[]
 }
 
 /* ─── share text ─── */
@@ -117,6 +118,7 @@ export function ResultModal({
   usedHelp,
   puzzleDate,
   category,
+  players,
 }: ResultModalProps) {
   const countdown = useCountdown()
   const [toast, setToast] = useState<{ message: string; variant: 'success' | 'error' } | null>(null)
@@ -177,6 +179,48 @@ export function ResultModal({
           <pre className="text-2xl leading-loose text-center bg-surface-2 rounded-xl px-8 py-4 font-mono select-all">
             {buildPyramidEmoji(slots)}
           </pre>
+
+          {/* gabarito — ordem correta com acerto/erro do usuário */}
+          <div className="w-full">
+            <p className="fc-caption text-fg-2 mb-2 text-center font-semibold">Gabarito</p>
+            <ul className="flex flex-col gap-1">
+              {[...players]
+                .sort((a, b) => a.correct_rank - b.correct_rank)
+                .map(p => {
+                  const placedRank = (Object.entries(slots) as [string, SlotEntry | null][])
+                    .find(([, e]) => e?.playerId === p.player_id)?.[0]
+                  const placedLevel = placedRank
+                    ? RANK_TO_LEVEL[Number(placedRank) as Rank]
+                    : undefined
+                  const ok = placedLevel === p.correct_level
+                  return (
+                    <li
+                      key={p.player_id}
+                      className="flex items-center gap-2 bg-surface-2 rounded-md px-3 py-1.5"
+                    >
+                      <span className="w-5 shrink-0 text-center font-bold text-fg-2 text-sm">
+                        {p.correct_rank}
+                      </span>
+                      <span className="flex-1 min-w-0 text-sm font-medium text-fg overflow-hidden text-ellipsis whitespace-nowrap">
+                        {p.name}
+                      </span>
+                      {!ok && placedLevel != null && (
+                        <span className="fc-caption text-fg-3 whitespace-nowrap">
+                          você: Nv {placedLevel}
+                        </span>
+                      )}
+                      <span className="fc-caption text-fg-2 shrink-0">{p.value}</span>
+                      <span
+                        aria-label={ok ? 'Acertou' : 'Errou'}
+                        className={ok ? 'text-[var(--success)] shrink-0' : 'text-[var(--error)] shrink-0'}
+                      >
+                        {ok ? '✓' : '✗'}
+                      </span>
+                    </li>
+                  )
+                })}
+            </ul>
+          </div>
 
           {/* community stats */}
           <div className="w-full grid grid-cols-3 gap-2 text-center">

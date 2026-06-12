@@ -120,7 +120,7 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
   function withCorrectness(entry: SlotEntry, rank: Rank): SlotEntry {
     const player = puzzle.players.find(p => p.player_id === entry.playerId)
     const correct = player ? player.correct_level === RANK_TO_LEVEL[rank] : false
-    return { ...entry, correct }
+    return { ...entry, correct, correctLevel: player?.correct_level ?? entry.correctLevel }
   }
 
   /* Shared placement logic used by both drag-end and tap-to-place */
@@ -135,7 +135,7 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
 
     const newSlots = {
       ...currentSlots,
-      [targetRank]: { playerId: player.player_id, playerName: player.name, correct },
+      [targetRank]: { playerId: player.player_id, playerName: player.name, correct, correctLevel: player.correct_level },
     }
     const nextIndex = currentIndex + 1
 
@@ -382,6 +382,7 @@ export function PlayScreen({ puzzle }: PlayScreenProps) {
           usedHelp={usedHelp}
           puzzleDate={puzzle.date}
           category={puzzle.category}
+          players={puzzle.players}
         />
       </div>
     </div>

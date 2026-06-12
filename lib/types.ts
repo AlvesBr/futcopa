@@ -116,6 +116,8 @@ export interface SlotEntry {
   playerId: string
   playerName: string
   correct: boolean
+  /** Nível correto do jogador — exibido no gabarito quando errou. Opcional para resultados salvos antigos. */
+  correctLevel?: Level
 }
 
 /** Retorna o nível correto da pirâmide para um dado rank (1–10). */
