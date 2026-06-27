@@ -102,11 +102,24 @@ export default function HomePage() {
               Jogar agora
             </Link>
             <Link
+              href="/mata-mata"
+              className="fc-btn fc-btn--block"
+              style={{
+                background: 'linear-gradient(135deg, #0c3119 0%, #15512c 100%)',
+                border: '1.5px solid var(--grass-600)',
+                color: 'var(--grass-300)',
+                fontWeight: 700,
+                gap: 8,
+              }}
+            >
+              🏆 Mata-mata · Quem vai mais longe?
+            </Link>
+            <Link
               href="/copa-dos-sonhos"
               className="fc-btn fc-btn--ghost fc-btn--block"
               style={{ gap: 8 }}
             >
-              🏆 Copa dos Sonhos
+              ⚽ Copa dos Sonhos
             </Link>
           </div>
         </div>

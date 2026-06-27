@@ -49,6 +49,118 @@ function buildShareText(
   ].join('\n')
 }
 
+/* ─── stories canvas share (9:16) ─── */
+
+function wrapText(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, maxWidth: number, lineHeight: number): number {
+  const words = text.split(' ')
+  let line = ''
+  let currentY = y
+  for (const word of words) {
+    const testLine = line ? `${line} ${word}` : word
+    if (ctx.measureText(testLine).width > maxWidth && line) {
+      ctx.fillText(line, x, currentY)
+      line = word
+      currentY += lineHeight
+    } else {
+      line = testLine
+    }
+  }
+  if (line) ctx.fillText(line, x, currentY)
+  return currentY + lineHeight
+}
+
+async function generateStoriesImage(
+  date: string,
+  category: string,
+  score: number,
+  usedHelp: boolean,
+  slots: Record<number, SlotEntry | null>,
+): Promise<Blob | null> {
+  const W = 1080, H = 1920
+  const canvas = document.createElement('canvas')
+  canvas.width = W
+  canvas.height = H
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return null
+
+  /* background */
+  const bg = ctx.createLinearGradient(0, 0, 0, H)
+  bg.addColorStop(0, '#04140c')
+  bg.addColorStop(1, '#0c3119')
+  ctx.fillStyle = bg
+  ctx.fillRect(0, 0, W, H)
+
+  /* decorative circles */
+  ctx.save()
+  ctx.globalAlpha = 0.12
+  ctx.fillStyle = '#57a010'
+  ctx.beginPath(); ctx.arc(W * 0.85, H * 0.12, 360, 0, Math.PI * 2); ctx.fill()
+  ctx.beginPath(); ctx.arc(W * 0.15, H * 0.88, 300, 0, Math.PI * 2); ctx.fill()
+  ctx.restore()
+
+  /* logo */
+  ctx.textAlign = 'center'
+  ctx.font = 'bold 100px "Russo One", Helvetica, sans-serif'
+  ctx.fillStyle = '#bbe75a'
+  ctx.fillText('FUT', W / 2 - 105, 300)
+  ctx.fillStyle = '#ffc21e'
+  ctx.fillText('COPA', W / 2 + 108, 300)
+
+  /* divider */
+  ctx.strokeStyle = '#2a6b41'
+  ctx.lineWidth = 3
+  ctx.beginPath(); ctx.moveTo(80, 330); ctx.lineTo(W - 80, 330); ctx.stroke()
+
+  /* date */
+  const [yyyy, mm, dd] = date.split('-')
+  ctx.fillStyle = '#82b598'
+  ctx.font = '52px "Hanken Grotesk", Helvetica, sans-serif'
+  ctx.fillText(`${dd}/${mm}/${yyyy}`, W / 2, 405)
+
+  /* category */
+  ctx.fillStyle = '#ffffff'
+  ctx.font = 'bold 58px "Hanken Grotesk", Helvetica, sans-serif'
+  const afterCat = wrapText(ctx, category, W / 2, 490, W - 140, 74)
+
+  /* score */
+  ctx.fillStyle = '#ffc21e'
+  ctx.font = 'bold 260px "Hanken Grotesk", Helvetica, sans-serif'
+  ctx.fillText(String(score), W / 2, afterCat + 280)
+  ctx.fillStyle = '#82b598'
+  ctx.font = 'bold 80px "Hanken Grotesk", Helvetica, sans-serif'
+  ctx.fillText('/ 10', W / 2, afterCat + 375)
+
+  /* pyramid */
+  const levels: Record<Level, string[]> = { 1: [], 2: [], 3: [], 4: [] }
+  for (let rank = 1; rank <= 10; rank++) {
+    const level = RANK_TO_LEVEL[rank as Rank]
+    const slot = slots[rank]
+    levels[level].push(slot ? (slot.correct ? '🟩' : '🟥') : '⬜')
+  }
+  ctx.font = '130px serif'
+  let py = afterCat + 470
+  for (const lv of [1, 2, 3, 4] as Level[]) {
+    ctx.fillText(levels[lv].join(''), W / 2, py)
+    py += 155
+  }
+
+  /* hint */
+  if (usedHelp) {
+    ctx.fillStyle = '#82b598'
+    ctx.font = '50px "Hanken Grotesk", Helvetica, sans-serif'
+    ctx.fillText('(com dica 💡)', W / 2, py + 20)
+  }
+
+  /* url */
+  ctx.strokeStyle = '#2a6b41'
+  ctx.beginPath(); ctx.moveTo(80, H - 130); ctx.lineTo(W - 80, H - 130); ctx.stroke()
+  ctx.fillStyle = '#82b598'
+  ctx.font = '52px "Hanken Grotesk", Helvetica, sans-serif'
+  ctx.fillText('futcopa.vercel.app', W / 2, H - 65)
+
+  return new Promise(resolve => canvas.toBlob(resolve, 'image/png'))
+}
+
 async function copyToClipboard(text: string): Promise<void> {
   if (navigator.clipboard?.writeText) {
     await navigator.clipboard.writeText(text)
@@ -158,6 +270,27 @@ export function ResultModal({
     }
   }, [puzzleDate, category, slots, score, usedHelp])
 
+  const handleShareStories = useCallback(async () => {
+    try {
+      const blob = await generateStoriesImage(puzzleDate, category, score, usedHelp, slots)
+      if (!blob) throw new Error('canvas failed')
+      const file = new File([blob], `futcopa-${puzzleDate}.png`, { type: 'image/png' })
+      if (navigator.canShare?.({ files: [file] })) {
+        await navigator.share({ files: [file], title: 'FutCopa', text: `${score}/10 — ${category}` })
+      } else {
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `futcopa-${puzzleDate}.png`
+        a.click()
+        URL.revokeObjectURL(url)
+        setToast({ message: 'Imagem salva!', variant: 'success' })
+      }
+    } catch {
+      setToast({ message: 'Erro ao gerar imagem', variant: 'error' })
+    }
+  }, [puzzleDate, category, slots, score, usedHelp])
+
   const dash = (v: number | null | undefined) =>
     v != null ? String(v) : '—'
 
@@ -253,8 +386,14 @@ export function ResultModal({
               Compartilhar resultado
             </button>
             <button
-              onClick={onClose}
+              onClick={handleShareStories}
               className="w-full py-3 rounded-pill font-bold border border-[var(--border-strong)] bg-surface-2 text-fg cursor-pointer hover:bg-surface-3 transition-colors duration-[var(--dur-1)]"
+            >
+              📸 Salvar para Stories
+            </button>
+            <button
+              onClick={onClose}
+              className="w-full py-3 rounded-pill font-medium text-fg-2 bg-transparent border-none cursor-pointer hover:text-fg transition-colors duration-[var(--dur-1)]"
             >
               Ver pirâmide
             </button>
