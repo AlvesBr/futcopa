@@ -1,3 +1,5 @@
+import { Icon } from '@/components/ui'
+
 interface CategoryBadgeProps {
   category:    string
   description?: string | null
@@ -8,7 +10,9 @@ export function CategoryBadge({ category, description, puzzleNo }: CategoryBadge
   return (
     <div className="fc-cat">
       {/* Festival gradient icon */}
-      <div className="fc-cat-icon" aria-hidden="true">⚽</div>
+      <div className="fc-cat-icon" aria-hidden="true">
+        <Icon name="trophy" size={20} />
+      </div>
 
       {/* Text block */}
       <div className="flex-1 min-w-0">

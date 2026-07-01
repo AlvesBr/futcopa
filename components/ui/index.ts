@@ -9,3 +9,7 @@ export { Slot } from './Slot'
 export type { SlotState } from './Slot'
 export { Toast } from './Toast'
 export { Modal } from './Modal'
+export { Icon } from './Icon'
+export type { IconName } from './Icon'
+export { FeedbackMark } from './FeedbackMark'
+

@@ -503,3 +503,18 @@
   from { transform: translateY(22px); opacity: .6; }
   to   { transform: none; opacity: 1; }
 }
+
+/* ---------- pyramid ---------- */
+.fc-pyramid { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 18px 12px 8px; }
+.fc-pyr-row { display: flex; gap: 8px; justify-content: center; }
+
+/* Custom styles for elements inside droppable slots */
+.sav { width: 26px; height: 26px; border-radius: 7px; flex: none; display: grid; place-items: center;
+       color: #fff; font-weight: 800; font-size: 10px; position: relative; }
+.sav .fl { position: absolute; bottom: -4px; right: -5px; font-size: 12px; }
+.snm { font: var(--t-caption); font-weight: 800; color: var(--fg); max-width: 72px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mk { position: absolute; top: -8px; right: -8px; }
+
+/* Slot specific animations */
+.placed { animation: fc-drop var(--dur-3) var(--ease-bounce); }
+@keyframes fc-drop { 0% { transform: translateY(-14px) scale(.9); opacity: .4; } 100% { transform: none; opacity: 1; } }

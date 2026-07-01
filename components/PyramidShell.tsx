@@ -4,6 +4,8 @@ import { useDroppable, useDraggable } from '@dnd-kit/core'
 import { cn } from '@/lib/cn'
 import { SLOTS_PER_LEVEL } from '@/lib/types'
 import type { Level, Rank, SlotEntry, GameMode } from '@/lib/types'
+import { FeedbackMark } from '@/components/ui'
+import { initials, fcGrad, resolveCountryInfo } from '@/components/ui/Avatar'
 
 interface PyramidShellProps {
   slots: Record<number, SlotEntry | null>
@@ -90,6 +92,7 @@ function DroppableSlot({
         'transition-[border-color,box-shadow,background] duration-[var(--dur-2)]',
         stateClasses[state],
         clickable && 'cursor-pointer',
+        entry && 'placed',
         /* help animation */
         helpActive && entry && entry.correct && 'animate-pulse shadow-glow-grass',
         helpActive && entry && !entry.correct && 'animate-pulse',
@@ -101,34 +104,46 @@ function DroppableSlot({
         isSwapSelected && 'ring-2 ring-primary ring-offset-1 shadow-glow-grass',
       )}
     >
-      <span className="absolute -top-2 -left-2 w-6 h-6 rounded-pill bg-ink-900 dark:bg-fg text-white dark:text-bg font-bold grid place-items-center text-[11px]">
+      <span className="absolute -top-2 -left-2 w-6 h-6 rounded-pill bg-ink-900 dark:bg-fg text-white dark:text-bg font-bold grid place-items-center text-[11px] z-10">
         {rank}
       </span>
       {!entry && (
         <span aria-hidden className="text-[20px] text-fg-3 leading-none">+</span>
       )}
-      {entry && (
-        <div
-          ref={drag.setNodeRef}
-          {...(swappable ? { ...drag.listeners, ...drag.attributes } : {})}
-          style={swappable ? { touchAction: 'none' } : undefined}
-          className={cn(
-            'absolute inset-0 flex items-center justify-center',
-            swappable && 'cursor-grab active:cursor-grabbing',
-            drag.isDragging && 'opacity-30',
-          )}
-        >
-          <div className="flex flex-col items-center min-w-0 max-w-full px-1">
-            <span className="fc-caption text-current font-semibold text-center leading-tight max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
+      {entry && (() => {
+        const { flag, country } = resolveCountryInfo(entry.playerId)
+        const background = fcGrad(country, entry.playerName)
+        const init = initials(entry.playerName)
+        return (
+          <div
+            ref={drag.setNodeRef}
+            {...(swappable ? { ...drag.listeners, ...drag.attributes } : {})}
+            style={swappable ? { touchAction: 'none' } : undefined}
+            className={cn(
+              'absolute inset-0 flex flex-col items-center justify-center gap-0.5 min-w-0 max-w-full px-1',
+              swappable && 'cursor-grab active:cursor-grabbing',
+              drag.isDragging && 'opacity-30',
+            )}
+          >
+            <span className="sav shrink-0" style={{ background }}>
+              {init}
+              {flag && <span className="fl">{flag}</span>}
+            </span>
+            <span className="snm text-current font-extrabold text-[10px] leading-tight text-center max-w-full overflow-hidden text-ellipsis whitespace-nowrap mt-0.5">
               {entry.playerName.split(' ').at(-1)}
             </span>
             {revealed && !entry.correct && entry.correctLevel != null && (
-              <span className="text-[10px] font-bold leading-tight text-current opacity-80 whitespace-nowrap">
-                → Nível {entry.correctLevel}
+              <span className="text-[9px] font-bold leading-none text-current opacity-70 whitespace-nowrap mt-0.5">
+                → Nv {entry.correctLevel}
               </span>
             )}
           </div>
-        </div>
+        )
+      })()}
+      {(state === 'correct' || state === 'incorrect') && (
+        <span className="mk">
+          <FeedbackMark kind={state} />
+        </span>
       )}
     </div>
   )

@@ -49,7 +49,7 @@ function ActiveCard({
           : 'border-primary shadow-1',
       )}
     >
-      <Avatar src={player.photo_url} name={player.name} size={40} />
+      <Avatar src={player.photo_url} name={player.name} playerId={player.player_id} size={40} />
       <div className="flex flex-col min-w-0">
         <span className="fc-body text-fg font-semibold whitespace-nowrap">{player.name}</span>
         {mode === 'easy' && (
@@ -99,7 +99,7 @@ export function PlayerQueue({ queue, queueIndex, mode, selectedPlayerId, onSelec
                 key={p.player_id}
                 className="flex items-center gap-1.5 bg-surface-2 border border-[var(--border)] rounded-pill pl-1 pr-2.5 py-0.5 opacity-60"
               >
-                <Avatar src={p.photo_url} name={p.name} size={20} />
+                <Avatar src={p.photo_url} name={p.name} playerId={p.player_id} size={20} />
                 <span className="fc-caption text-fg-2 whitespace-nowrap">{p.name}</span>
               </span>
             ))}

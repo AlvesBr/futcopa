@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTheme } from '@/components/ThemeProvider'
+import { Icon } from '@/components/ui'
 
 interface TopBarProps {
   onHelp?:       () => void
@@ -36,7 +37,7 @@ export function TopBar({
       {/* Back link (optional) */}
       {backHref && (
         <Link href={backHref} className="fc-iconbtn" aria-label="Voltar" title="Voltar">
-          ←
+          <Icon name="left" size={20} />
         </Link>
       )}
 
@@ -48,7 +49,7 @@ export function TopBar({
           aria-label="Ver resultado"
           title="Ver resultado"
         >
-          🏆
+          <Icon name="trophy" size={20} />
         </button>
       )}
 
@@ -68,7 +69,7 @@ export function TopBar({
                 : undefined
           }
         >
-          {helpActive ? '✨' : helpUsed ? '💡' : '💡'}
+          <Icon name="hint" size={20} />
         </button>
       )}
 
@@ -79,7 +80,11 @@ export function TopBar({
         aria-label="Alternar tema"
         title={resolvedTheme === 'dark' ? 'Modo claro' : 'Modo escuro'}
       >
-        {resolvedTheme === 'dark' ? '☀️' : '🌙'}
+        {resolvedTheme === 'dark' ? (
+          <Icon name="sun" size={20} />
+        ) : (
+          <Icon name="moon" size={20} />
+        )}
       </button>
 
     </header>

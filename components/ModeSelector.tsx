@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import type { GameMode } from '@/lib/types'
+import { Icon } from '@/components/ui'
 
 interface ModeSelectorProps {
   onSelect: (mode: GameMode) => void
@@ -10,13 +11,17 @@ interface ModeSelectorProps {
 const MODES = [
   {
     id:    'normal' as GameMode,
-    icon:  '⚽',
+    icon:  'trophy',
+    bg:    'var(--info-bg)',
+    color: 'var(--info-ink)',
     title: 'Normal',
     desc:  'Sem dicas de nível. Confie no seu conhecimento.',
   },
   {
     id:    'easy' as GameMode,
-    icon:  '📍',
+    icon:  'hint',
+    bg:    'var(--warning-bg)',
+    color: 'var(--warning-ink)',
     title: 'Fácil',
     desc:  'Mostra o nível correto de cada jogador antes de posicionar.',
   },
@@ -46,13 +51,20 @@ export function ModeSelector({ onSelect }: ModeSelectorProps) {
             onClick={() => setSelected(m.id)}
             className={`fc-mode ${selected === m.id ? 'fc-mode--sel' : ''}`}
           >
-            <div className="fc-mode-badge">{m.icon}</div>
+            <div
+              className="fc-mode-badge"
+              style={{ background: m.bg, color: m.color }}
+            >
+              <Icon name={m.icon as any} size={24} />
+            </div>
             <div className="flex-1 text-left">
               <p className="fc-mode-title">{m.title}</p>
               <p className="fc-mode-desc">{m.desc}</p>
             </div>
             {selected === m.id && (
-              <span style={{ color: 'var(--primary)', fontSize: 20 }}>✓</span>
+              <span style={{ color: 'var(--primary)', fontSize: 20 }}>
+                <Icon name="check" size={20} strokeWidth={3} />
+              </span>
             )}
           </button>
         ))}

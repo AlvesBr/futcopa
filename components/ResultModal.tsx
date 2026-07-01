@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { Modal, Toast } from '@/components/ui'
+import { Modal, Toast, Icon } from '@/components/ui'
 import { RANK_TO_LEVEL } from '@/lib/types'
 import { createBrowserClient } from '@/lib/supabase'
 import type { SlotEntry, Rank, Level, PuzzleStats, PuzzlePlayer } from '@/lib/types'
@@ -347,7 +347,7 @@ export function ResultModal({
                         aria-label={ok ? 'Acertou' : 'Errou'}
                         className={ok ? 'text-[var(--success)] shrink-0' : 'text-[var(--error)] shrink-0'}
                       >
-                        {ok ? '✓' : '✗'}
+                        {ok ? <Icon name="check" size={16} strokeWidth={3} /> : <Icon name="x" size={16} strokeWidth={3} />}
                       </span>
                     </li>
                   )
@@ -381,19 +381,21 @@ export function ResultModal({
           <div className="w-full flex flex-col gap-2">
             <button
               onClick={handleShare}
-              className="w-full py-3 rounded-pill font-bold bg-primary text-[var(--on-primary)] border-none cursor-pointer hover:brightness-105 transition-[filter] duration-[var(--dur-1)]"
+              className="fc-btn fc-btn--primary fc-btn--block"
             >
+              <Icon name="share" size={20} />
               Compartilhar resultado
             </button>
             <button
               onClick={handleShareStories}
-              className="w-full py-3 rounded-pill font-bold border border-[var(--border-strong)] bg-surface-2 text-fg cursor-pointer hover:bg-surface-3 transition-colors duration-[var(--dur-1)]"
+              className="fc-btn fc-btn--secondary fc-btn--block"
             >
-              📸 Salvar para Stories
+              <Icon name="share" size={20} />
+              Salvar para Stories
             </button>
             <button
               onClick={onClose}
-              className="w-full py-3 rounded-pill font-medium text-fg-2 bg-transparent border-none cursor-pointer hover:text-fg transition-colors duration-[var(--dur-1)]"
+              className="fc-btn fc-btn--ghost fc-btn--block"
             >
               Ver pirâmide
             </button>
