@@ -103,16 +103,16 @@ export default function HomePage() {
             </Link>
             <Link
               href="/mata-mata"
-              className="fc-btn fc-btn--block"
+              className="fc-btn fc-btn--block blink-me"
               style={{
-                background: 'linear-gradient(135deg, #0c3119 0%, #15512c 100%)',
-                border: '1.5px solid var(--grass-600)',
-                color: 'var(--grass-300)',
+                background: 'linear-gradient(135deg, #FF007F 0%, #FF69B4 100%)', // Shocking pink gradient
+                border: '1.5px solid #C71585', // Darker pink border
+                color: 'white', // Ensure text is visible
                 fontWeight: 700,
                 gap: 8,
               }}
             >
-              CBJR - Charlie Brown Jr
+              Quem chega lá
             </Link>
             <Link
               href="/copa-dos-sonhos"
@@ -125,6 +125,24 @@ export default function HomePage() {
         </div>
 
       </div>
+      {/* Custom styles for blinking animation */}
+      <style>{`
+        @keyframes blink-animation {
+          0%, 100% {
+            opacity: 1;
+            transform: scale(1);
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.7); /* Shocking pink glow */
+          }
+          50% {
+            opacity: 0.9;
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(255, 0, 127, 1); /* Brighter, larger glow */
+          }
+        }
+        .blink-me {
+          animation: blink-animation 1.5s infinite alternate ease-in-out;
+        }
+      `}</style>
     </div>
   )
 }
