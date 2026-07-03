@@ -209,3 +209,15 @@ async def read_file_content(path: str, ref: str = "main") -> str:
 
     encoded: str = data.get("content", "")
     return base64.b64decode(encoded).decode("utf-8")
+
+
+async def get_issue_data(issue_number: int) -> dict[str, Any]:
+    """Retrieve details of *issue_number* (title and body)."""
+    async with httpx.AsyncClient(timeout=30) as client:
+        resp = await client.get(
+            _repo_url(f"/issues/{issue_number}"),
+            headers=_headers(),
+        )
+        resp.raise_for_status()
+        return resp.json()  # type: ignore[no-any-return]
+

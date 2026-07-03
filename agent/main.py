@@ -26,8 +26,8 @@ async def main() -> None:
     # ── 1. Read environment ──────────────────────────────────────────────────
     try:
         issue_number = get_issue_number()
-        issue_body = get_issue_body()
-        issue_title = get_issue_title()
+        issue_body = await get_issue_body()
+        issue_title = await get_issue_title()
         _ = get_github_token()  # Validate early
     except EnvironmentError as exc:
         logger.critical("Missing environment variable: %s", exc)

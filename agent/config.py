@@ -63,24 +63,36 @@ def get_issue_number() -> int:
     return int(data["issue"]["number"])
 
 
-def get_issue_body() -> str:
+async def get_issue_body() -> str:
     val = os.environ.get("ISSUE_BODY")
     if val is not None:
         return val
     data = _get_event_data()
     if "inputs" in data and "issue_body" in data["inputs"] and data["inputs"]["issue_body"]:
         return data["inputs"]["issue_body"]
-    return data["issue"]["body"] or ""
+    if "issue" in data:
+        return data["issue"]["body"] or ""
+    # Fallback for manual workflow_dispatch: fetch from GitHub API
+    from agent.github_client import get_issue_data
+    issue_number = get_issue_number()
+    issue_info = await get_issue_data(issue_number)
+    return issue_info.get("body") or ""
 
 
-def get_issue_title() -> str:
+async def get_issue_title() -> str:
     val = os.environ.get("ISSUE_TITLE")
     if val is not None:
         return val
     data = _get_event_data()
     if "inputs" in data and "issue_title" in data["inputs"] and data["inputs"]["issue_title"]:
         return data["inputs"]["issue_title"]
-    return data["issue"]["title"] or ""
+    if "issue" in data:
+        return data["issue"]["title"] or ""
+    # Fallback for manual workflow_dispatch: fetch from GitHub API
+    from agent.github_client import get_issue_data
+    issue_number = get_issue_number()
+    issue_info = await get_issue_data(issue_number)
+    return issue_info.get("title") or ""
 
 
 def is_agent_issue() -> bool:
