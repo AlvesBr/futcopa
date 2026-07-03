@@ -1,53 +1,7 @@
-name: "🤖 Auto-Fix Agent"
-
-on:
-  issues:
-    types: [opened, labeled]
-  workflow_dispatch:
-
-permissions:
-  contents: write
-  pull-requests: write
-  issues: write
-
+name: Auto-Fix Agent
+on: [push]
 jobs:
-  auto-fix:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install Node dependencies
-        run: npm ci
-
-      - name: Install Python dependencies
-        run: pip install -r agent/requirements.txt
-
-      - name: Run auto-fix agent
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ "${{ github.event_name }}" = "issues" ]; then
-            # Se for disparado por issue, verifica a etiqueta
-            LABELS='${{ toJson(github.event.issue.labels) }}'
-            if echo "$LABELS" | grep -q "agent-fix"; then
-              python -m agent.main
-            else
-              echo "A issue não possui a etiqueta 'agent-fix'. Ignorando."
-            fi
-          else
-            # Se for manual (dispatch)
-            echo "Execução manual ativada."
-            python -m agent.main
-          fi
+      - run: echo "Hello World"
