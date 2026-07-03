@@ -78,7 +78,7 @@ def _parse_file_list(raw: str) -> list[str]:
     return files
 
 
-def parse_issue(
+async def parse_issue(
     title: str,
     issue_number: int,
     body: str,
@@ -86,6 +86,7 @@ def parse_issue(
     """Parse a GitHub Issue body (Issue Forms format) into an :class:`IssueData`.
 
     Missing optional sections are silently set to ``None`` / empty values.
+    Falls back to Gemini parsing if target files are not found via regex.
     """
     logger.info("Parsing issue #%d: %s", issue_number, title)
 
@@ -104,12 +105,29 @@ def parse_issue(
         else:
             fields[field_name] = content or None
 
+    target_files = fields.get("target_files", []) or []
+    expected_behavior = fields.get("expected_behavior") or ""
+    current_behavior = fields.get("current_behavior") or ""
+
+    # Check if target files were found, otherwise fall back to LLM parsing
+    if not target_files:
+        logger.info("Regex parsing returned no target files. Falling back to Gemini LLM parsing...")
+        try:
+            from agent.gemini_client import parse_issue_text
+            extracted = await parse_issue_text(title, body or "")
+            target_files = extracted.get("target_files", [])
+            expected_behavior = expected_behavior or extracted.get("expected_behavior") or ""
+            current_behavior = current_behavior or extracted.get("current_behavior") or ""
+            logger.info("Gemini LLM successfully extracted target files: %s", target_files)
+        except Exception as exc:
+            logger.error("Failed to parse issue via Gemini: %s", exc)
+
     issue = IssueData(
         title=title,
         issue_number=issue_number,
-        target_files=fields.get("target_files", []) or [],  # type: ignore[arg-type]
-        expected_behavior=fields.get("expected_behavior") or "",  # type: ignore[arg-type]
-        current_behavior=fields.get("current_behavior") or "",  # type: ignore[arg-type]
+        target_files=target_files,  # type: ignore[arg-type]
+        expected_behavior=expected_behavior,  # type: ignore[arg-type]
+        current_behavior=current_behavior,  # type: ignore[arg-type]
         reproduction_steps=fields.get("reproduction_steps"),  # type: ignore[arg-type]
         error_logs=fields.get("error_logs"),  # type: ignore[arg-type]
         additional_context=fields.get("additional_context"),  # type: ignore[arg-type]

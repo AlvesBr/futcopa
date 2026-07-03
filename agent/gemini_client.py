@@ -213,3 +213,55 @@ async def _backoff(attempt: int) -> None:
     jitter = random.uniform(0, delay)
     logger.debug("Backing off for %.1fs (attempt %d)", jitter, attempt)
     await asyncio.sleep(jitter)
+
+
+async def parse_issue_text(title: str, body: str) -> dict[str, Any]:
+    """Use Gemini to extract structured fields from a free-form issue description."""
+    api_key = get_gemini_api_key()
+    url = f"{GEMINI_API_URL}/{GEMINI_MODEL}:generateContent?key={api_key}"
+
+    prompt = f"""\
+Dada a seguinte issue do GitHub, extraia as informações estruturadas.
+
+Título: {title}
+Corpo:
+{body}
+
+Retorne um objeto JSON contendo:
+1. "target_files": uma lista de strings contendo caminhos de arquivos relativos mencionados ou inferidos que precisam de correção (ex: app/page.tsx).
+2. "expected_behavior": o comportamento esperado.
+3. "current_behavior": o comportamento atual.
+
+Retorne APENAS o JSON no formato:
+{{
+  "target_files": ["caminho/do/arquivo.ts"],
+  "expected_behavior": "...",
+  "current_behavior": "..."
+}}
+"""
+    payload = {
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {
+            "temperature": 0.1,
+            "responseMimeType": "application/json",
+            "responseSchema": {
+                "type": "OBJECT",
+                "properties": {
+                    "target_files": {"type": "ARRAY", "items": {"type": "STRING"}},
+                    "expected_behavior": {"type": "STRING"},
+                    "current_behavior": {"type": "STRING"},
+                },
+                "required": ["target_files", "expected_behavior", "current_behavior"],
+            },
+        },
+    }
+
+    async with httpx.AsyncClient(timeout=30) as client:
+        resp = await client.post(url, json=payload)
+        resp.raise_for_status()
+        candidates = resp.json().get("candidates", [])
+        if not candidates:
+            raise ValueError("No candidates returned from Gemini during parsing.")
+        text = candidates[0]["content"]["parts"][0]["text"]
+        return json.loads(text.strip())  # type: ignore[no-any-return]
+

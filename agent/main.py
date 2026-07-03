@@ -42,7 +42,7 @@ async def main() -> None:
 
     # ── 2. Parse issue ───────────────────────────────────────────────────────
     try:
-        issue_data = parse_issue(issue_title, issue_number, issue_body)
+        issue_data = await parse_issue(issue_title, issue_number, issue_body)
     except Exception as exc:
         logger.error("Failed to parse issue body: %s", exc)
         await comment_issue(

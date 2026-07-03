@@ -132,8 +132,9 @@ class TestParseFileList:
 
 
 class TestParseIssue:
-    def test_full_issue(self) -> None:
-        issue = parse_issue("Hydration error on home page", 42, FULL_ISSUE_BODY)
+    @pytest.mark.asyncio
+    async def test_full_issue(self) -> None:
+        issue = await parse_issue("Hydration error on home page", 42, FULL_ISSUE_BODY)
         assert isinstance(issue, IssueData)
         assert issue.issue_number == 42
         assert issue.title == "Hydration error on home page"
@@ -144,8 +145,9 @@ class TestParseIssue:
         assert issue.error_logs is not None
         assert issue.additional_context is not None
 
-    def test_minimal_issue(self) -> None:
-        issue = parse_issue("Build fails", 10, MINIMAL_ISSUE_BODY)
+    @pytest.mark.asyncio
+    async def test_minimal_issue(self) -> None:
+        issue = await parse_issue("Build fails", 10, MINIMAL_ISSUE_BODY)
         assert issue.issue_number == 10
         assert len(issue.target_files) == 1
         assert issue.target_files[0] == "src/app/layout.tsx"
@@ -153,19 +155,22 @@ class TestParseIssue:
         assert issue.error_logs is None
         assert issue.additional_context is None
 
-    def test_empty_optional_fields(self) -> None:
-        issue = parse_issue("Wrong return value", 5, EMPTY_OPTIONAL_BODY)
+    @pytest.mark.asyncio
+    async def test_empty_optional_fields(self) -> None:
+        issue = await parse_issue("Wrong return value", 5, EMPTY_OPTIONAL_BODY)
         assert issue.reproduction_steps is None
         assert issue.error_logs is None
         assert issue.additional_context is None
 
-    def test_empty_body(self) -> None:
-        issue = parse_issue("Empty issue", 1, "")
+    @pytest.mark.asyncio
+    async def test_empty_body(self) -> None:
+        issue = await parse_issue("Empty issue", 1, "")
         assert issue.target_files == []
         assert issue.expected_behavior == ""
 
-    def test_none_body(self) -> None:
-        issue = parse_issue("None body", 2, None)  # type: ignore[arg-type]
+    @pytest.mark.asyncio
+    async def test_none_body(self) -> None:
+        issue = await parse_issue("None body", 2, None)  # type: ignore[arg-type]
         assert issue.target_files == []
 
 
@@ -173,7 +178,8 @@ class TestParseIssue:
 
 
 class TestPortugueseHeadings:
-    def test_portuguese_sections(self) -> None:
+    @pytest.mark.asyncio
+    async def test_portuguese_sections(self) -> None:
         body = """\
 ### Arquivos Alvo
 
@@ -200,7 +206,7 @@ TypeError: Cannot read properties of undefined
 
 Nenhum contexto extra.
 """
-        issue = parse_issue("Página não carrega", 99, body)
+        issue = await parse_issue("Página não carrega", 99, body)
         assert len(issue.target_files) == 1
         assert "não carrega" in issue.current_behavior
         assert issue.reproduction_steps is not None
