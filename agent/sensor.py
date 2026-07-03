@@ -3,11 +3,26 @@
 from __future__ import annotations
 
 import logging
+import os
 import re
 
 from agent.models import IssueData
 
 logger = logging.getLogger(__name__)
+
+
+def list_project_files() -> list[str]:
+    """Recursively list all relevant code files in the repository."""
+    ignored_dirs = {".git", "node_modules", ".next", "agent", "out", "dist"}
+    file_list = []
+    for root, dirs, files in os.walk("."):
+        dirs[:] = [d for d in dirs if d not in ignored_dirs]
+        for f in files:
+            rel_path = os.path.relpath(os.path.join(root, f), ".")
+            rel_path = rel_path.replace("\\", "/")  # Normalize paths to use forward slashes
+            if any(rel_path.endswith(ext) for ext in [".ts", ".tsx", ".js", ".jsx", ".json", ".css"]):
+                file_list.append(rel_path)
+    return file_list
 
 # ── Section heading → IssueData field mapping ────────────────────────────────
 _SECTION_MAP: dict[str, str] = {
@@ -114,7 +129,8 @@ async def parse_issue(
         logger.info("Regex parsing returned no target files. Falling back to Gemini LLM parsing...")
         try:
             from agent.gemini_client import parse_issue_text
-            extracted = await parse_issue_text(title, body or "")
+            files_on_disk = list_project_files()
+            extracted = await parse_issue_text(title, body or "", files_on_disk)
             target_files = extracted.get("target_files", [])
             expected_behavior = expected_behavior or extracted.get("expected_behavior") or ""
             current_behavior = current_behavior or extracted.get("current_behavior") or ""

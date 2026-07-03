@@ -215,20 +215,24 @@ async def _backoff(attempt: int) -> None:
     await asyncio.sleep(jitter)
 
 
-async def parse_issue_text(title: str, body: str) -> dict[str, Any]:
-    """Use Gemini to extract structured fields from a free-form issue description."""
+async def parse_issue_text(title: str, body: str, file_list: list[str]) -> dict[str, Any]:
+    """Use Gemini to extract structured fields from a free-form issue description, matching against existing project files."""
     api_key = get_gemini_api_key()
     url = f"{GEMINI_API_URL}/{GEMINI_MODEL}:generateContent?key={api_key}"
 
     prompt = f"""\
-Dada a seguinte issue do GitHub, extraia as informações estruturadas.
+Dada a seguinte issue do GitHub e a lista de arquivos existentes no projeto, extraia as informações estruturadas de correção.
 
 Título: {title}
 Corpo:
 {body}
 
+A lista de arquivos reais existentes no projeto é:
+{json.dumps(file_list, indent=2)}
+
+Sua tarefa é selecionar da lista de arquivos reais acima quais arquivos precisam ser modificados para resolver a issue. Escolha apenas arquivos que estejam de fato listados acima.
 Retorne um objeto JSON contendo:
-1. "target_files": uma lista de strings contendo caminhos de arquivos relativos mencionados ou inferidos que precisam de correção (ex: app/page.tsx).
+1. "target_files": uma lista contendo caminhos exatos de arquivos reais do projeto (escolhidos da lista acima) que precisam ser modificados.
 2. "expected_behavior": o comportamento esperado.
 3. "current_behavior": o comportamento atual.
 
