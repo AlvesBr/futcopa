@@ -81,3 +81,18 @@ def get_issue_title() -> str:
     if "inputs" in data and "issue_title" in data["inputs"] and data["inputs"]["issue_title"]:
         return data["inputs"]["issue_title"]
     return data["issue"]["title"] or ""
+
+
+def is_agent_issue() -> bool:
+    """Return True if the execution was manually triggered or the issue has the 'agent-fix' label."""
+    try:
+        # If running locally for testing without GITHUB_EVENT_PATH, default to True
+        if not os.environ.get("GITHUB_EVENT_PATH") and not os.environ.get("ISSUE_NUMBER"):
+            return True
+        data = _get_event_data()
+        if "issue" not in data:
+            return True  # Manual workflow_dispatch
+        labels = data["issue"].get("labels", [])
+        return any(label.get("name") == "agent-fix" for label in labels)
+    except Exception:
+        return True

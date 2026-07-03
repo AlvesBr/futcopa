@@ -6,7 +6,7 @@ import asyncio
 import logging
 import sys
 
-from agent.config import get_github_token, get_issue_body, get_issue_number, get_issue_title
+from agent.config import get_github_token, get_issue_body, get_issue_number, get_issue_title, is_agent_issue
 from agent.github_client import branch_exists, comment_issue, commit_and_push, create_branch, create_pull_request
 from agent.loop import run_fix_loop
 from agent.sensor import parse_issue
@@ -32,6 +32,11 @@ async def main() -> None:
     except EnvironmentError as exc:
         logger.critical("Missing environment variable: %s", exc)
         sys.exit(1)
+
+    # ── 1.5. Validate label ──────────────────────────────────────────────────
+    if not is_agent_issue():
+        logger.info("Issue #%d does not have the 'agent-fix' label. Skipping execution.", issue_number)
+        return
 
     logger.info("Agent started for issue #%d: %s", issue_number, issue_title)
 
