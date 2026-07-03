@@ -112,7 +112,7 @@ export default function HomePage() {
                 gap: 8,
               }}
             >
-              🏆 Mata-mata · Quem vai mais longe?
+              CBJR - Charlie Brown Jr
             </Link>
             <Link
               href="/copa-dos-sonhos"
