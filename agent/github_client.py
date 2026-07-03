@@ -45,13 +45,25 @@ async def branch_exists(name: str) -> bool:
 
 async def _get_ref_sha(ref: str = "heads/main") -> str:
     """Return the commit SHA pointed to by *ref*."""
+    import asyncio
+
     async with httpx.AsyncClient(timeout=30) as client:
-        resp = await client.get(
-            _repo_url(f"/git/ref/{ref}"),
-            headers=_headers(),
-        )
-        resp.raise_for_status()
-        return resp.json()["object"]["sha"]  # type: ignore[no-any-return]
+        for attempt in range(1, 6):
+            resp = await client.get(
+                _repo_url(f"/git/ref/{ref}"),
+                headers=_headers(),
+            )
+            if resp.status_code == 404 and ref != "heads/main" and attempt < 5:
+                logger.warning(
+                    "Ref %s returned 404 (possibly GitHub delay) — retrying in 1s (attempt %d/5)",
+                    ref,
+                    attempt,
+                )
+                await asyncio.sleep(1)
+                continue
+            resp.raise_for_status()
+            return resp.json()["object"]["sha"]  # type: ignore[no-any-return]
+    raise RuntimeError(f"Failed to get ref SHA for {ref}")
 
 
 async def create_branch(name: str, from_ref: str = "main") -> None:
