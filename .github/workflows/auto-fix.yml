@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   auto-fix:
-    if: contains(github.event.issue.labels.*.name, 'agent-fix')
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.issue.labels.*.name, 'agent-fix')
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +22,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: "20"
           cache: npm
 
       - name: Setup Python
