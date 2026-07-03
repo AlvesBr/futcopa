@@ -1,0 +1,63 @@
+name: "🐛 Bug Fix Request"
+description: "Reporte um bug para o agente de correção automática analisar e corrigir."
+title: "bug: "
+labels: ["bug", "agent-fix"]
+
+body:
+  - type: textarea
+    id: target_files
+    attributes:
+      label: "Arquivos alvo"
+      description: "Quais arquivos precisam ser modificados? Liste um por linha."
+      placeholder: |
+        src/components/Pyramid.tsx
+        src/utils/scoring.ts
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: "Comportamento esperado"
+      description: "Descreva o que deveria acontecer."
+      placeholder: "O componente deveria renderizar corretamente..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: "Comportamento atual"
+      description: "Descreva o que está acontecendo de errado."
+      placeholder: "O componente está quebrando quando..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: "Passos para reproduzir"
+      description: "Como reproduzir o bug?"
+      placeholder: |
+        1. Abra a página '...'
+        2. Clique em '...'
+        3. Observe o erro
+    validations:
+      required: false
+
+  - type: textarea
+    id: error_logs
+    attributes:
+      label: "Logs de erro"
+      description: "Cole aqui qualquer log de erro relevante."
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Contexto adicional"
+      description: "Qualquer informação adicional que possa ajudar na correção."
+    validations:
+      required: false

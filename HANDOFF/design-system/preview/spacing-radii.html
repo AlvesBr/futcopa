@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 22px 24px; font-family: var(--font-ui); }
+  .cap { font: var(--t-label); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--fg-2); margin: 0 0 16px; }
+  .grid { display: flex; gap: 14px; align-items: flex-end; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .box { width: 78px; height: 64px; background: var(--surface); border: 2px solid var(--grass-500); }
+  .item .t { font: var(--t-caption); font-weight: 700; color: var(--fg-2); }
+  .item .n { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); }
+</style>
+</head>
+<body>
+  <div class="cap">Radii</div>
+  <div class="grid">
+    <div class="item"><div class="box" style="border-radius:6px"></div><div class="t">xs</div><div class="n">6</div></div>
+    <div class="item"><div class="box" style="border-radius:10px"></div><div class="t">sm</div><div class="n">10</div></div>
+    <div class="item"><div class="box" style="border-radius:14px"></div><div class="t">md</div><div class="n">14</div></div>
+    <div class="item"><div class="box" style="border-radius:18px"></div><div class="t">lg</div><div class="n">18</div></div>
+    <div class="item"><div class="box" style="border-radius:20px"></div><div class="t">card</div><div class="n">20</div></div>
+    <div class="item"><div class="box" style="border-radius:24px"></div><div class="t">xl</div><div class="n">24</div></div>
+    <div class="item"><div class="box" style="border-radius:999px;width:64px"></div><div class="t">pill</div><div class="n">999</div></div>
+  </div>
+</body>
+</html>

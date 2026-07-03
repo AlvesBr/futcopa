@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 26px 24px; font-family: var(--font-ui); }
+  .cap { font: var(--t-label); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--fg-2); margin: 0 0 22px; }
+  .grid { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .box { width: 78px; height: 56px; background: var(--surface); border-radius: var(--r-md); }
+  .item .t { font: var(--t-caption); font-weight: 700; color: var(--fg-2); }
+</style>
+</head>
+<body>
+  <div class="cap">Elevation &amp; glow</div>
+  <div class="grid">
+    <div class="item"><div class="box" style="box-shadow:var(--sh-1)"></div><div class="t">sh-1</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--sh-2)"></div><div class="t">sh-2</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--sh-3)"></div><div class="t">sh-3</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--sh-4)"></div><div class="t">sh-4</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--glow-grass);background:var(--grass-500)"></div><div class="t">glow-grass</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--glow-magenta);background:var(--magenta-500)"></div><div class="t">glow-magenta</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--glow-gold);background:var(--gold-400)"></div><div class="t">glow-gold</div></div>
+  </div>
+</body>
+</html>
