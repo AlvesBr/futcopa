@@ -2,7 +2,8 @@ name: "🤖 Auto-Fix Agent"
 
 on:
   issues:
-    types: [opened]
+    types: [opened, labeled]
+  workflow_dispatch:
 
 permissions:
   contents: write
