@@ -12,9 +12,7 @@ permissions:
 
 jobs:
   auto-fix:
-    if: github.event_name == 'workflow_dispatch' || contains(github.event.issue.labels.*.name, 'agent-fix')
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -23,7 +21,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: npm
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -43,4 +40,17 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_BODY: ${{ github.event.issue.body }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
-        run: python -m agent.main
+        run: |
+          if [ "${{ github.event_name }}" = "issues" ]; then
+            # Se for disparado por issue, verifica a etiqueta
+            LABELS='${{ toJson(github.event.issue.labels) }}'
+            if echo "$LABELS" | grep -q "agent-fix"; then
+              python -m agent.main
+            else
+              echo "A issue não possui a etiqueta 'agent-fix'. Ignorando."
+            fi
+          else
+            # Se for manual (dispatch)
+            echo "Execução manual ativada."
+            python -m agent.main
+          fi
