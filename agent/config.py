@@ -44,13 +44,40 @@ def get_github_token() -> str:
     return _require_env("GITHUB_TOKEN")
 
 
+def _get_event_data() -> dict:
+    event_path = os.environ.get("GITHUB_EVENT_PATH")
+    if not event_path:
+        raise EnvironmentError("Neither issue env vars nor GITHUB_EVENT_PATH is set.")
+    import json
+    with open(event_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 def get_issue_number() -> int:
-    return int(_require_env("ISSUE_NUMBER"))
+    val = os.environ.get("ISSUE_NUMBER")
+    if val:
+        return int(val)
+    data = _get_event_data()
+    if "inputs" in data and "issue_number" in data["inputs"] and data["inputs"]["issue_number"]:
+        return int(data["inputs"]["issue_number"])
+    return int(data["issue"]["number"])
 
 
 def get_issue_body() -> str:
-    return _require_env("ISSUE_BODY")
+    val = os.environ.get("ISSUE_BODY")
+    if val is not None:
+        return val
+    data = _get_event_data()
+    if "inputs" in data and "issue_body" in data["inputs"] and data["inputs"]["issue_body"]:
+        return data["inputs"]["issue_body"]
+    return data["issue"]["body"] or ""
 
 
 def get_issue_title() -> str:
-    return _require_env("ISSUE_TITLE")
+    val = os.environ.get("ISSUE_TITLE")
+    if val is not None:
+        return val
+    data = _get_event_data()
+    if "inputs" in data and "issue_title" in data["inputs"] and data["inputs"]["issue_title"]:
+        return data["inputs"]["issue_title"]
+    return data["issue"]["title"] or ""
