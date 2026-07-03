@@ -248,15 +248,16 @@ export default function MataMataPredictionPage() {
               flex: 1,
               padding: '14px',
               borderRadius: 'var(--radius-pill)',
-              background: 'var(--primary)',
-              color: 'var(--on-primary)',
+              background: '#ef4444', // Red color for eye-catching effect
+              color: 'white',
               fontWeight: 700,
               fontSize: 16,
               border: 'none',
               cursor: 'pointer',
             }}
+            className={!copied ? 'animate-pulse' : ''} // Apply blinking animation conditionally
           >
-            {copied ? '✓ Copiado!' : '📤 Compartilhar previsão'}
+            {copied ? '✓ Copiado!' : 'Mata a mata'}
           </button>
         </div>
 
