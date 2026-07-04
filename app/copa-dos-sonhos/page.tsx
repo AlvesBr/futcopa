@@ -183,6 +183,7 @@ export default function CopaDosSonhosPage() {
           <button
             onClick={handleStart}
             className="fc-btn fc-btn--primary fc-btn--block"
+            style={{ background: 'linear-gradient(to right, var(--grass-500), var(--gold-500))' }}
           >
             🎲 Jogar agora
           </button>
