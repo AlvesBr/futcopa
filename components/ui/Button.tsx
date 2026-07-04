@@ -11,7 +11,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary:   'bg-primary text-[var(--on-primary)] shadow-glow-grass hover:brightness-105 disabled:bg-surface-3 disabled:text-fg-3 disabled:shadow-none disabled:cursor-not-allowed',
+  primary:   'bg-blue-500 text-[var(--on-primary)] shadow-glow-blue hover:brightness-105 disabled:bg-surface-3 disabled:text-fg-3 disabled:shadow-none disabled:cursor-not-allowed',
   gold:      'bg-gold-400 text-[var(--fg-on-gold)] shadow-glow-gold hover:brightness-105',
   secondary: 'bg-surface text-fg border border-[var(--border-strong)] hover:bg-surface-2',
   ghost:     'bg-transparent text-primary hover:bg-surface-2',
